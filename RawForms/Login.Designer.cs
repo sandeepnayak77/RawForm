@@ -49,9 +49,9 @@
             this.lblLoginMessage.ForeColor = System.Drawing.Color.DimGray;
             this.lblLoginMessage.Location = new System.Drawing.Point(99, 17);
             this.lblLoginMessage.Name = "lblLoginMessage";
-            this.lblLoginMessage.Size = new System.Drawing.Size(154, 59);
+            this.lblLoginMessage.Size = new System.Drawing.Size(185, 59);
             this.lblLoginMessage.TabIndex = 0;
-            this.lblLoginMessage.Text = "Login";
+            this.lblLoginMessage.Text = "Login1";
             // 
             // panelUsername
             // 
