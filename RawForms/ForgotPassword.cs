@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RawForms.AppUtil;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,7 @@ namespace RawForms
         {
             txtAnswar1.Hide();
             txtAnswar2.Hide();
+            lblError.Text = "";
             this.ActiveControl = btnReset;
         }
 
@@ -79,7 +81,28 @@ namespace RawForms
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you Sure to Reset the Password ???", "Password Reset", MessageBoxButtons.YesNo) == DialogResult.Yes)
+
+            if (ControlValidation.Isblank(txtUsername.Text.Trim()) == true || ControlValidation.IsReserveWord(txtUsername.Text.Trim().ToLower()))
+            {
+                lblError.Text = "Please enter Username !";
+                txtUsername.Text = "";
+                txtUsername.Focus();
+
+            }
+            else if (ControlValidation.Isblank(txtAnswar1.Text.Trim()) == true || ControlValidation.IsReserveWord(txtAnswar1.Text.Trim().ToLower()))
+            {
+                lblError.Text = "Enter Answar for Question1 !";
+                txtAnswar1.Text = "";
+                txtAnswar1.Focus();
+            }
+            else if (ControlValidation.Isblank(txtAnswar2.Text.Trim()) == true ||  ControlValidation.IsReserveWord(txtAnswar2.Text.Trim().ToLower()))
+            {
+                lblError.Text = "Enter Answar for Question2 !";
+                txtAnswar2.Text = "";
+                txtAnswar2.Focus();
+            }
+
+            else if (MessageBox.Show("Are you Sure to Reset the Password ???", "Password Reset", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 NewPassword newpasswordform = new NewPassword();
                 newpasswordform.Show();
@@ -98,6 +121,24 @@ namespace RawForms
         {
             btnReset.Focus();
             //this.Focus();
+        }
+
+        private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar) || char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtAnswar1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
+
+        private void txtAnswar2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
         }
     }
 }

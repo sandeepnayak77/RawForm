@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RawForms.AppUtil;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,9 +18,15 @@ namespace RawForms
             InitializeComponent();
         }
 
+        private void NewPassword_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = btnUpdate;
+            lblError.Text = "";
+        }
+
         private void txtPassword_Click(object sender, EventArgs e)
         {
-            if (txtPassword.Text == "NewPassword")
+            if (txtPassword.Text.ToLower() == "newpassword" || txtPassword.Text.ToLower() == "password" || txtPassword.Text.ToLower() == "confirmpassword " || txtPassword.Text.ToLower() == "confirmnewpassword")
             {
                 txtPassword.UseSystemPasswordChar = true;
                 txtPassword.Text = "";
@@ -37,7 +44,7 @@ namespace RawForms
 
         private void txtConfirmPassword_Click(object sender, EventArgs e)
         {
-            if (txtConfirmPassword.Text == "ConfirmNewPassword")
+            if (txtConfirmPassword.Text.ToLower() == "confirmnewpassword")
             {
                 txtConfirmPassword.UseSystemPasswordChar = true;
                 txtConfirmPassword.Text = "";
@@ -55,16 +62,49 @@ namespace RawForms
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Password Reset Successfully!!!!");
-            Login loginform = new Login();
-            loginform.Show();
-            this.Hide();
+            if (ControlValidation.Isblank(txtPassword.Text.Trim()) == true || ControlValidation.IsReserveWord(txtPassword.Text.Trim().ToLower()))
+            {
+
+                lblError.Text = "Pleasse enter Password !";
+                txtPassword.Text = "";
+                txtPassword.Focus();
+            }
+            else if (txtPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
+            {
+                lblError.Text = "Password Mismatch !";
+                txtPassword.Text = "";
+                txtPassword.Focus();
+                txtConfirmPassword.Text = "ConfirmNewPassword";
+            }
+            else
+            {
+                MessageBox.Show("Password Reset Successfully!!!!");
+                Login loginform = new Login();
+                loginform.Show();
+                this.Hide();
+            }
+            
                
         }
 
-        private void NewPassword_Load(object sender, EventArgs e)
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
-            this.ActiveControl = btnUpdate;
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
+
+        private void txtConfirmPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
+
+        private void panelConfirmNewPassword_Enter(object sender, EventArgs e)
+        {
+            txtConfirmPassword.UseSystemPasswordChar = true;
+        }
+
+        private void panelnewPassword_Enter(object sender, EventArgs e)
+        {
+            txtConfirmPassword.UseSystemPasswordChar = true;
         }
     }
 }

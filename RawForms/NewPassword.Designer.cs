@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.btnUpdate = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelnewPassword = new System.Windows.Forms.Panel();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.panelPassword = new System.Windows.Forms.Panel();
+            this.panelConfirmNewPassword = new System.Windows.Forms.Panel();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             this.panelUsername = new System.Windows.Forms.Panel();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.lblLoginMessage = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            this.panelPassword.SuspendLayout();
+            this.lblError = new System.Windows.Forms.Label();
+            this.panelnewPassword.SuspendLayout();
+            this.panelConfirmNewPassword.SuspendLayout();
             this.panelUsername.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +48,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Verdana", 15.75F);
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(16, 199);
+            this.btnUpdate.Location = new System.Drawing.Point(16, 210);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(270, 35);
             this.btnUpdate.TabIndex = 14;
@@ -55,14 +56,15 @@
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // panel1
+            // panelnewPassword
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.panel1.Controls.Add(this.txtPassword);
-            this.panel1.Location = new System.Drawing.Point(16, 100);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(270, 35);
-            this.panel1.TabIndex = 12;
+            this.panelnewPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.panelnewPassword.Controls.Add(this.txtPassword);
+            this.panelnewPassword.Location = new System.Drawing.Point(16, 100);
+            this.panelnewPassword.Name = "panelnewPassword";
+            this.panelnewPassword.Size = new System.Drawing.Size(270, 35);
+            this.panelnewPassword.TabIndex = 12;
+            this.panelnewPassword.Enter += new System.EventHandler(this.panelnewPassword_Enter);
             // 
             // txtPassword
             // 
@@ -77,16 +79,18 @@
             this.txtPassword.Text = "NewPassword";
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPassword.Click += new System.EventHandler(this.txtPassword_Click);
+            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             this.txtPassword.Leave += new System.EventHandler(this.txtPassword_Leave);
             // 
-            // panelPassword
+            // panelConfirmNewPassword
             // 
-            this.panelPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.panelPassword.Controls.Add(this.txtConfirmPassword);
-            this.panelPassword.Location = new System.Drawing.Point(16, 141);
-            this.panelPassword.Name = "panelPassword";
-            this.panelPassword.Size = new System.Drawing.Size(270, 35);
-            this.panelPassword.TabIndex = 13;
+            this.panelConfirmNewPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.panelConfirmNewPassword.Controls.Add(this.txtConfirmPassword);
+            this.panelConfirmNewPassword.Location = new System.Drawing.Point(16, 141);
+            this.panelConfirmNewPassword.Name = "panelConfirmNewPassword";
+            this.panelConfirmNewPassword.Size = new System.Drawing.Size(270, 35);
+            this.panelConfirmNewPassword.TabIndex = 13;
+            this.panelConfirmNewPassword.Enter += new System.EventHandler(this.panelConfirmNewPassword_Enter);
             // 
             // txtConfirmPassword
             // 
@@ -101,6 +105,7 @@
             this.txtConfirmPassword.Text = "ConfirmNewPassword";
             this.txtConfirmPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtConfirmPassword.Click += new System.EventHandler(this.txtConfirmPassword_Click);
+            this.txtConfirmPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConfirmPassword_KeyPress);
             this.txtConfirmPassword.Leave += new System.EventHandler(this.txtConfirmPassword_Leave);
             // 
             // panelUsername
@@ -137,15 +142,26 @@
             this.lblLoginMessage.TabIndex = 10;
             this.lblLoginMessage.Text = "New Password";
             // 
+            // lblError
+            // 
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(16, 176);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(270, 23);
+            this.lblError.TabIndex = 15;
+            this.lblError.Text = "Error";
+            this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // NewPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(314, 268);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panelPassword);
+            this.Controls.Add(this.panelnewPassword);
+            this.Controls.Add(this.panelConfirmNewPassword);
             this.Controls.Add(this.panelUsername);
             this.Controls.Add(this.lblLoginMessage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -153,10 +169,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.NewPassword_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panelPassword.ResumeLayout(false);
-            this.panelPassword.PerformLayout();
+            this.panelnewPassword.ResumeLayout(false);
+            this.panelnewPassword.PerformLayout();
+            this.panelConfirmNewPassword.ResumeLayout(false);
+            this.panelConfirmNewPassword.PerformLayout();
             this.panelUsername.ResumeLayout(false);
             this.panelUsername.PerformLayout();
             this.ResumeLayout(false);
@@ -167,12 +183,13 @@
         #endregion
 
         private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelnewPassword;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Panel panelPassword;
+        private System.Windows.Forms.Panel panelConfirmNewPassword;
         private System.Windows.Forms.TextBox txtConfirmPassword;
         private System.Windows.Forms.Panel panelUsername;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label lblLoginMessage;
+        private System.Windows.Forms.Label lblError;
     }
 }

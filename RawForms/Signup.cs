@@ -79,6 +79,41 @@ namespace RawForms
                 txtConfirmPassword.Text = "ConfirmPassword";
             }
         }
+        private void txtFirstName_Click(object sender, EventArgs e)
+        {
+            if (txtFirstName.Text == "FirstName")
+                txtFirstName.Text = "";
+        }
+
+        private void txtFirstName_Leave(object sender, EventArgs e)
+        {
+            if (txtFirstName.Text == "")
+                txtFirstName.Text = "FirstName";
+        }
+
+        private void txtLastName_Click(object sender, EventArgs e)
+        {
+            if (txtLastName.Text == "LastName")
+                txtLastName.Text = "";
+        }
+
+        private void txtLastName_Leave(object sender, EventArgs e)
+        {
+            if (txtLastName.Text == "")
+                txtLastName.Text = "LastName";
+        }
+
+        private void txtMiddleName_Click(object sender, EventArgs e)
+        {
+            if (txtMiddleName.Text == "MiddleName")
+                txtMiddleName.Text = "";
+        }
+
+        private void txtMiddleName_Leave(object sender, EventArgs e)
+        {
+            if (txtMiddleName.Text == "")
+                txtMiddleName.Text = "MiddleName";
+        }
 
         private void txtMobileNo_Click(object sender, EventArgs e)
         {
@@ -125,13 +160,21 @@ namespace RawForms
         private void txtAnswar1_Click(object sender, EventArgs e)
         {
             if (txtAnswar1.Text == "Answar")
+            {
                 txtAnswar1.Text = "";
+                
+            }
+                
         }
 
         private void txtAnswar1_Leave(object sender, EventArgs e)
         {
             if (txtAnswar1.Text == "")
+            {
                 txtAnswar1.Text = "Answar";
+                
+            }
+                
         }
 
         private void cmbQues2_SelectedIndexChanged(object sender, EventArgs e)
@@ -140,6 +183,7 @@ namespace RawForms
             {
                 txtAnswar2.Show();
                 txtAnswar2.Enabled = true;
+                
             }
 
             else
@@ -152,55 +196,97 @@ namespace RawForms
         private void txtAnswar2_Click(object sender, EventArgs e)
         {
             if (txtAnswar2.Text == "Answar")
+            {
                 txtAnswar2.Text = "";
+                
+            }
+                
         }
 
         private void txtAnswar2_Leave(object sender, EventArgs e)
         {
             if (txtAnswar2.Text == "")
+            {
                 txtAnswar2.Text = "Answar";
+                
+            }
+                
         }
 
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            if (ControlValidation.Isblank(txtUsername.Text.Trim()) == true || txtUsername.Text.Trim() == "Username")
+            if (ControlValidation.Isblank(txtUsername.Text.Trim()) == true || ControlValidation.IsReserveWord(txtUsername.Text.Trim().ToLower()))
             {
                 lblError.Text = "Please enter Username !";
+                txtUsername.Text="";
+                txtUsername.Focus();
 
             }
-            else if (ControlValidation.Isblank(txtPassword.Text.Trim()) == true || txtPassword.Text.Trim() == "Password")
+            else if (ControlValidation.Isblank(txtPassword.Text.Trim()) == true || ControlValidation.IsReserveWord(txtPassword.Text.Trim().ToLower()))
             {
 
                 lblError.Text = "Pleasse enter Password !";
+                txtPassword.Text = "";
+                txtPassword.Focus();
             }
             else if (txtPassword.Text.Trim() != txtConfirmPassword.Text.Trim())
             {
                 lblError.Text = "Password Mismatch !";
+                txtPassword.Text = "";
+                txtPassword.Focus();
+                txtConfirmPassword.Text = "ConfirmPassword";
+
+            }
+            else if (ControlValidation.Isblank(txtFirstName.Text.Trim()) == true || ControlValidation.IsReserveWord(txtFirstName.Text.Trim().ToLower()))
+            {
+                lblError.Text = "Enter First Name !";
+                txtFirstName.Text = "";
+                txtFirstName.Focus();
+            }
+            else if (ControlValidation.Isblank(txtLastName.Text.Trim()) == true || ControlValidation.IsReserveWord(txtLastName.Text.Trim().ToLower()))
+            {
+                lblError.Text = "Enter Last Name !";
+                txtLastName.Text = "";
+                txtLastName.Focus();
+            }
+            else if (radioMale.Checked==false && radioFemale.Checked==false)
+            {
+                lblError.Text = "Select Gender !";
+                
+                
             }
             else if (ControlValidation.Isblank(txtMobileNo.Text.Trim()) == true || txtMobileNo.Text.Trim() == "MobileNo" || ControlValidation.IsValidMobileNo(txtMobileNo.Text.Trim()) == false)
             {
                 lblError.Text = "Enter valid Mobile Number !";
+                txtMobileNo.Text = "";
+                txtMobileNo.Focus();
             }
             else if (ControlValidation.Isblank(txtEmail.Text.Trim()) == true || txtEmail.Text.Trim() == "E-mail" || ControlValidation.IsValidEmail(txtEmail.Text.Trim()) == false)
             {
                 lblError.Text = "Enter a valid email id !";
+                txtEmail.Text = "";
+                txtEmail.Focus();
             }
             else if (cmbQues1.SelectedIndex == 0)
             {
                 lblError.Text = "Select Security Question 1 !";
             }
-            else if (ControlValidation.Isblank(txtAnswar1.Text.Trim()) == true || txtAnswar1.Text.Trim() == "Answar")
+            else if (ControlValidation.Isblank(txtAnswar1.Text.Trim()) == true || ControlValidation.IsReserveWord(txtAnswar1.Text.Trim().ToLower()))
             {
                 lblError.Text = "Enter Answar for Question1 !";
+                txtAnswar1.Text = "";
+                txtAnswar1.Focus();
             }
             else if (cmbQues2.SelectedIndex == 0)
             {
                 lblError.Text = "Select Security Question 2 !";
             }
-            else if (ControlValidation.Isblank(txtAnswar2.Text.Trim()) == true || txtAnswar2.Text.Trim() == "Answar")
+            else if (ControlValidation.Isblank(txtAnswar2.Text.Trim()) == true || ControlValidation.IsReserveWord(txtAnswar2.Text.Trim().ToLower()))
             {
                 lblError.Text = "Enter Answar for Question2 !";
+                txtAnswar2.Text = "";
+                txtAnswar2.Focus();
             }
             else
             {
@@ -221,10 +307,11 @@ namespace RawForms
 
         private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if ((e.KeyChar < (char)Keys.NumPad0 || e.KeyChar > (char)Keys.NumPad9) && (e.KeyChar < (char)Keys.A || e.KeyChar > (char)Keys.Z))
-            {
-                e.Handled = true;
-            }
+            //if (((e.KeyChar < (char)Keys.NumPad0) || (e.KeyChar > (char)Keys.NumPad9) ) && ((e.KeyChar < (char)Keys.A )|| (e.KeyChar > (char)Keys.Z)))
+            if(!(char.IsLetter(e.KeyChar)||char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back))
+                {
+                    e.Handled = true;
+                }
             
         }
 
@@ -241,12 +328,63 @@ namespace RawForms
 
         private void txtMobileNo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = (e.KeyChar == (char)Keys.Space);
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+            //e.Handled = (e.KeyChar == (char)Keys.Space);
         }
 
         private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
+
+        private void txtAnswar1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+            
+        }
+
+        private void txtAnswar2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+            
+        }
+
+        private void panelPassword_Enter(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = true;
+        }
+
+        private void panelConfirmPassword_Enter(object sender, EventArgs e)
+        {
+            txtConfirmPassword.UseSystemPasswordChar = true;
+        }
+
+        private void txtFirstName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtLastName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMiddleName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

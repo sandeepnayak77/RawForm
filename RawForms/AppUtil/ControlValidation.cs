@@ -32,6 +32,30 @@ namespace RawForms.AppUtil
         {
             return mobileno.IsMatch(inputMobileNo);
         }
+        public static bool IsReserveWord(string inputstring)
+        {
+            bool result = false;
+            List<string> reservewords = new List<string>();
+            reservewords.Add("username");
+            reservewords.Add("password");
+            reservewords.Add("confirmpassword");
+            reservewords.Add("newpassword");
+            reservewords.Add("confirmnewpassword");
+            reservewords.Add("answar");
+            reservewords.Add("mobileno");
+            reservewords.Add("firstname");
+            reservewords.Add("lastname");
+            reservewords.Add("middlename");
+
+            if (reservewords.Contains(inputstring))
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
+        
 
     }
 }

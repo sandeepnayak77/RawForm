@@ -22,40 +22,53 @@ namespace RawForms
 
         private void txtUsername_Click(object sender, EventArgs e)
         {
-            if(txtUsername.Text=="Username")
-                    txtUsername.Text = "";
-            
-            
+
+            if (txtUsername.Text.Trim() == "Username")
+            {
+                txtUsername.Text = "";
+                txtUsername.ForeColor = Color.Black;
+            }
+
+
         }
 
         private void txtPassword_Click(object sender, EventArgs e)
         {
-            if (txtPassword.Text == "Password")
+
+            if (txtPassword.Text.Trim() == "Password")
             {
                 txtPassword.UseSystemPasswordChar = true;
                 txtPassword.Text = "";
+                txtPassword.ForeColor = Color.Black;
+                //txtPassword.PasswordChar = '*';
             }
-                
-            
+    
         }
 
-    
-      
 
-     
+
+
+
 
         private void txtUsername_Leave(object sender, EventArgs e)
         {
-            if (txtUsername.Text == "")
+            if (txtUsername.Text.Trim() == "")
+            {
                 txtUsername.Text = "Username";
+                txtUsername.ForeColor = Color.DarkGray;
+            }
+                
+
         }
 
         private void txtPassword_Leave(object sender, EventArgs e)
         {
-            if (txtPassword.Text == "")
+            if (txtPassword.Text.Trim()== "")
             {
-                txtPassword.UseSystemPasswordChar = false;
+                
                 txtPassword.Text = "Password";
+                txtPassword.ForeColor = Color.DarkGray;
+                txtPassword.UseSystemPasswordChar = false;
             }
                 
         }
@@ -64,7 +77,8 @@ namespace RawForms
         {
             lblPasswordError.Text = "";
             lblUsernameError.Text = "";
-            this.ActiveControl = btnLogin;
+            //this.Focus();
+            this.ActiveControl = lblLoginMessage;
         }
 
         
@@ -84,15 +98,19 @@ namespace RawForms
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (ControlValidation.Isblank(txtUsername.Text.Trim()) == true || txtUsername.Text.Trim()=="Username")
+            if (ControlValidation.Isblank(txtUsername.Text.Trim()) == true || ControlValidation.IsReserveWord(txtUsername.Text.Trim().ToLower()))
             {
-                lblUsernameError.Text = "Please enter Username";
-                
+                lblPasswordError.Text = "";
+                lblUsernameError.Text = "Please enter a valid Username";
+                txtUsername.Text = "";
+                txtUsername.Focus();
             }
-            else if(ControlValidation.Isblank(txtPassword.Text.Trim()) == true || txtPassword.Text.Trim() == "Password")
+            else if(ControlValidation.Isblank(txtPassword.Text.Trim()) == true || ControlValidation.IsReserveWord(txtPassword.Text.Trim().ToLower()))
             {
                 lblUsernameError.Text = "";
-                lblPasswordError.Text = "Pleasse enter Password";
+                lblPasswordError.Text = "Pleasse enter a valid Password";
+                txtPassword.Text = "";
+                txtPassword.Focus();
             }
             else
             {
@@ -119,6 +137,21 @@ namespace RawForms
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
+
+        private void panelPassword_Enter(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = true;
+        }
+
+        private void txtUsername_Enter(object sender, EventArgs e)
+        {
+            txtUsername_Click(sender, e);
+        }
+
+        private void txtPassword_Enter(object sender, EventArgs e)
+        {
+            txtPassword_Click(sender, e);
         }
     }
 }
