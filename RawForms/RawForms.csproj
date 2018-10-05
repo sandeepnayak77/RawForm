@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +57,34 @@
   <ItemGroup>
     <Compile Include="AppUtil\AppTheme.cs" />
     <Compile Include="AppUtil\ControlValidation.cs" />
+    <Compile Include="Connection\dbContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\dbContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\dbContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\Privilege.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\Role.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\UserAuth.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\UserMaster.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Results.cs" />
     <Compile Include="ForgotPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +159,14 @@
     <EmbeddedResource Include="Signup.resx">
       <DependentUpon>Signup.cs</DependentUpon>
     </EmbeddedResource>
+    <EntityDeploy Include="Connection\dbContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Connection\dbContext.edmx.diagram">
+      <DependentUpon>dbContext.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -134,6 +179,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Connection\dbContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>dbContext.Context.cs</LastGenOutput>
+      <DependentUpon>dbContext.edmx</DependentUpon>
+    </Content>
+    <Content Include="Connection\dbContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbContext.edmx</DependentUpon>
+      <LastGenOutput>dbContext.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

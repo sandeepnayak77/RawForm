@@ -1,4 +1,6 @@
 ﻿using RawForms.AppUtil;
+using RawForms.Connection;
+using RawForms.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -212,6 +214,92 @@ namespace RawForms
             }
                 
         }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if (((e.KeyChar < (char)Keys.NumPad0) || (e.KeyChar > (char)Keys.NumPad9) ) && ((e.KeyChar < (char)Keys.A )|| (e.KeyChar > (char)Keys.Z)))
+            if (!(char.IsLetter(e.KeyChar) || char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
+
+        private void txtConfirmPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
+
+        private void txtMobileNo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+            //e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
+
+        private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
+
+        private void txtAnswar1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+
+        }
+
+        private void txtAnswar2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+
+        }
+
+        private void panelPassword_Enter(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = true;
+        }
+
+        private void panelConfirmPassword_Enter(object sender, EventArgs e)
+        {
+            txtConfirmPassword.UseSystemPasswordChar = true;
+        }
+
+        private void txtFirstName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtLastName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMiddleName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back))
+            {
+                e.Handled = true;
+            }
+        }
 
 
         private void btnSignUp_Click(object sender, EventArgs e)
@@ -290,101 +378,75 @@ namespace RawForms
             }
             else
             {
-                lblError.Text = "";
-                Login loginform = new Login();
-                loginform.Show();
-                this.Hide();
-            }
-
-
-        }
-
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //if (((e.KeyChar < (char)Keys.NumPad0) || (e.KeyChar > (char)Keys.NumPad9) ) && ((e.KeyChar < (char)Keys.A )|| (e.KeyChar > (char)Keys.Z)))
-            if(!(char.IsLetter(e.KeyChar)||char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back))
+                InventoryEntities database = new InventoryEntities();
+                if(ControlValidation.IsReserveWord(txtMiddleName.Text.Trim()))
                 {
-                    e.Handled = true;
+                    txtMiddleName.Text = "";
                 }
-            
-        }
+                var result = Register();
+                if(result.Result==true)
+                {
+                    lblError.Text = "";
+                    Login loginform = new Login();
+                    loginform.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    lblError.Text = result.Message;
+                }
 
-        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-            e.Handled = (e.KeyChar == (char)Keys.Space);
-        }
-
-        private void txtConfirmPassword_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = (e.KeyChar == (char)Keys.Space);
-        }
-
-        private void txtMobileNo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back))
-            {
-                e.Handled = true;
+                
             }
-            //e.Handled = (e.KeyChar == (char)Keys.Space);
-        }
 
-        private void txtEmail_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = (e.KeyChar == (char)Keys.Space);
-        }
 
-        private void txtAnswar1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = (e.KeyChar == (char)Keys.Space);
-            
         }
-
-        private void txtAnswar2_KeyPress(object sender, KeyPressEventArgs e)
+        private Results Register()
         {
-            
-            e.Handled = (e.KeyChar == (char)Keys.Space);
-            
-        }
-
-        private void panelPassword_Enter(object sender, EventArgs e)
-        {
-            txtPassword.UseSystemPasswordChar = true;
-        }
-
-        private void panelConfirmPassword_Enter(object sender, EventArgs e)
-        {
-            txtConfirmPassword.UseSystemPasswordChar = true;
-        }
-
-        private void txtFirstName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back))
+            var result = new Results();
+            try
             {
-                e.Handled = true;
+                var database = new InventoryEntities();
+                var userMaster = new UserMaster();
+                var userAuth = new UserAuth();
+                var count = (from c in database.UserAuths where c.UserName == txtUsername.Text.Trim() select c).Count();
+                if(count==0)
+                {
+                    userMaster.FirstName = txtFirstName.Text.Trim();
+                    userMaster.LastName = txtLastName.Text.Trim();
+                    userMaster.MiddleName = txtMiddleName.Text.Trim();
+                    userMaster.PhoneNumber = txtMobileNo.Text.Trim();
+                    userAuth.UserName = txtUsername.Text.Trim();
+                    userAuth.Password = txtPassword.Text.Trim();
+                    userAuth.IsActive = true;
+                    userAuth.CreatedBy = 1;
+                    userAuth.CreatedOn = System.DateTime.Today;
+
+                    database.UserMasters.Add(userMaster);
+                    database.UserAuths.Add(userAuth);
+                    database.SaveChanges();
+                    
+                }
+                else
+                {
+                    result.Message = "User Already exists";
+                    result.Result = false;
+                    return result;
+                }
+
+                result.Result = true;
+                return result;
             }
+            catch(Exception ex)
+            {
+                result.Result = false;
+                return result;
+            }
+
+
         }
 
-        private void txtLastName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back))
-            {
-                e.Handled = true;
-            }
-        }
 
-        private void txtMiddleName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back))
-            {
-                e.Handled = true;
-            }
-        }
+        
     }
 }

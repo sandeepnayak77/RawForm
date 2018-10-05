@@ -32,12 +32,12 @@
             this.panelUsername = new System.Windows.Forms.Panel();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.panelPassword = new System.Windows.Forms.Panel();
-            this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.lblUsernameError = new System.Windows.Forms.Label();
             this.lblPasswordError = new System.Windows.Forms.Label();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.panelUsername.SuspendLayout();
             this.panelPassword.SuspendLayout();
             this.SuspendLayout();
@@ -49,9 +49,9 @@
             this.lblLoginMessage.ForeColor = System.Drawing.Color.DimGray;
             this.lblLoginMessage.Location = new System.Drawing.Point(99, 17);
             this.lblLoginMessage.Name = "lblLoginMessage";
-            this.lblLoginMessage.Size = new System.Drawing.Size(185, 59);
+            this.lblLoginMessage.Size = new System.Drawing.Size(154, 59);
             this.lblLoginMessage.TabIndex = 0;
-            this.lblLoginMessage.Text = "Login1";
+            this.lblLoginMessage.Text = "Login";
             // 
             // panelUsername
             // 
@@ -87,25 +87,7 @@
             this.panelPassword.Name = "panelPassword";
             this.panelPassword.Size = new System.Drawing.Size(273, 57);
             this.panelPassword.TabIndex = 2;
-            this.panelPassword.TabStop = true;
             this.panelPassword.Enter += new System.EventHandler(this.panelPassword_Enter);
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPassword.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtPassword.Location = new System.Drawing.Point(6, 18);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(259, 26);
-            this.txtPassword.TabIndex = 0;
-            this.txtPassword.Text = "Password";
-            this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPassword.Click += new System.EventHandler(this.txtPassword_Click);
-            this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
-            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
-            this.txtPassword.Leave += new System.EventHandler(this.txtPassword_Leave);
             // 
             // btnLogin
             // 
@@ -165,9 +147,26 @@
             this.lblPasswordError.Location = new System.Drawing.Point(58, 253);
             this.lblPasswordError.Name = "lblPasswordError";
             this.lblPasswordError.Size = new System.Drawing.Size(270, 18);
-            this.lblPasswordError.TabIndex = 7;
+            this.lblPasswordError.TabIndex = 6;
             this.lblPasswordError.Text = "Error";
             this.lblPasswordError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPassword.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtPassword.Location = new System.Drawing.Point(3, 19);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(259, 26);
+            this.txtPassword.TabIndex = 0;
+            this.txtPassword.Text = "Password";
+            this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPassword.Click += new System.EventHandler(this.txtPassword_Click);
+            this.txtPassword.Enter += new System.EventHandler(this.txtPassword_Enter);
+            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
+            this.txtPassword.Leave += new System.EventHandler(this.txtPassword_Leave);
             // 
             // Login
             // 
@@ -202,13 +201,13 @@
         private System.Windows.Forms.Label lblLoginMessage;
         private System.Windows.Forms.Panel panelUsername;
         private System.Windows.Forms.Panel panelPassword;
-        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Label lblUsernameError;
         private System.Windows.Forms.Label lblPasswordError;
+        private System.Windows.Forms.TextBox txtPassword;
     }
 }
 

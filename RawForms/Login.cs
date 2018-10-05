@@ -70,7 +70,7 @@ namespace RawForms
                 txtPassword.ForeColor = Color.DarkGray;
                 txtPassword.UseSystemPasswordChar = false;
             }
-                
+            btnLogin.Focus();   
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -141,7 +141,7 @@ namespace RawForms
 
         private void panelPassword_Enter(object sender, EventArgs e)
         {
-            txtPassword.UseSystemPasswordChar = true;
+            //txtPassword.UseSystemPasswordChar = true;
         }
 
         private void txtUsername_Enter(object sender, EventArgs e)

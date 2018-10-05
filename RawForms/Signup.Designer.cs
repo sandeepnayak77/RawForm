@@ -42,6 +42,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.cmbQues1 = new System.Windows.Forms.ComboBox();
             this.pannelAnswar1 = new System.Windows.Forms.Panel();
             this.txtAnswar1 = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -59,10 +60,9 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.txtMiddleName = new System.Windows.Forms.TextBox();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.radioMale = new System.Windows.Forms.RadioButton();
             this.radioFemale = new System.Windows.Forms.RadioButton();
+            this.radioMale = new System.Windows.Forms.RadioButton();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.cmbQues1 = new System.Windows.Forms.ComboBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panelConfirmPassword.SuspendLayout();
             this.panelUsername.SuspendLayout();
@@ -90,7 +90,7 @@
             this.btnSignUp.Location = new System.Drawing.Point(14, 412);
             this.btnSignUp.Name = "btnSignUp";
             this.btnSignUp.Size = new System.Drawing.Size(270, 35);
-            this.btnSignUp.TabIndex = 9;
+            this.btnSignUp.TabIndex = 15;
             this.btnSignUp.Text = "Signup";
             this.btnSignUp.UseVisualStyleBackColor = false;
             this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
@@ -102,7 +102,7 @@
             this.panelConfirmPassword.Location = new System.Drawing.Point(325, 100);
             this.panelConfirmPassword.Name = "panelConfirmPassword";
             this.panelConfirmPassword.Size = new System.Drawing.Size(270, 35);
-            this.panelConfirmPassword.TabIndex = 8;
+            this.panelConfirmPassword.TabIndex = 4;
             this.panelConfirmPassword.Enter += new System.EventHandler(this.panelConfirmPassword_Enter);
             // 
             // txtConfirmPassword
@@ -128,7 +128,7 @@
             this.panelUsername.Location = new System.Drawing.Point(21, 59);
             this.panelUsername.Name = "panelUsername";
             this.panelUsername.Size = new System.Drawing.Size(270, 35);
-            this.panelUsername.TabIndex = 7;
+            this.panelUsername.TabIndex = 1;
             // 
             // txtUsername
             // 
@@ -154,7 +154,7 @@
             this.lblLoginMessage.Location = new System.Drawing.Point(130, 9);
             this.lblLoginMessage.Name = "lblLoginMessage";
             this.lblLoginMessage.Size = new System.Drawing.Size(388, 38);
-            this.lblLoginMessage.TabIndex = 6;
+            this.lblLoginMessage.TabIndex = 0;
             this.lblLoginMessage.Text = "User Registration Form";
             // 
             // panelPassword
@@ -164,7 +164,7 @@
             this.panelPassword.Location = new System.Drawing.Point(21, 100);
             this.panelPassword.Name = "panelPassword";
             this.panelPassword.Size = new System.Drawing.Size(270, 35);
-            this.panelPassword.TabIndex = 8;
+            this.panelPassword.TabIndex = 3;
             this.panelPassword.Enter += new System.EventHandler(this.panelPassword_Enter);
             // 
             // txtPassword
@@ -190,7 +190,7 @@
             this.panel2.Location = new System.Drawing.Point(21, 261);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(270, 35);
-            this.panel2.TabIndex = 7;
+            this.panel2.TabIndex = 9;
             // 
             // txtMobileNo
             // 
@@ -215,7 +215,7 @@
             this.panel3.Location = new System.Drawing.Point(325, 261);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(270, 35);
-            this.panel3.TabIndex = 7;
+            this.panel3.TabIndex = 10;
             // 
             // txtEmail
             // 
@@ -240,7 +240,21 @@
             this.panel4.Location = new System.Drawing.Point(20, 302);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(270, 40);
-            this.panel4.TabIndex = 7;
+            this.panel4.TabIndex = 11;
+            // 
+            // cmbQues1
+            // 
+            this.cmbQues1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.cmbQues1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbQues1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbQues1.Font = new System.Drawing.Font("Verdana", 12F);
+            this.cmbQues1.ForeColor = System.Drawing.Color.DarkGray;
+            this.cmbQues1.FormattingEnabled = true;
+            this.cmbQues1.Location = new System.Drawing.Point(1, 7);
+            this.cmbQues1.Name = "cmbQues1";
+            this.cmbQues1.Size = new System.Drawing.Size(267, 26);
+            this.cmbQues1.TabIndex = 0;
+            this.cmbQues1.SelectedIndexChanged += new System.EventHandler(this.cmbQues1_SelectedIndexChanged);
             // 
             // pannelAnswar1
             // 
@@ -249,7 +263,7 @@
             this.pannelAnswar1.Location = new System.Drawing.Point(20, 347);
             this.pannelAnswar1.Name = "pannelAnswar1";
             this.pannelAnswar1.Size = new System.Drawing.Size(270, 35);
-            this.pannelAnswar1.TabIndex = 7;
+            this.pannelAnswar1.TabIndex = 12;
             // 
             // txtAnswar1
             // 
@@ -261,7 +275,7 @@
             this.txtAnswar1.Location = new System.Drawing.Point(6, 8);
             this.txtAnswar1.Name = "txtAnswar1";
             this.txtAnswar1.Size = new System.Drawing.Size(259, 20);
-            this.txtAnswar1.TabIndex = 1;
+            this.txtAnswar1.TabIndex = 0;
             this.txtAnswar1.Text = "Answar";
             this.txtAnswar1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAnswar1.Click += new System.EventHandler(this.txtAnswar1_Click);
@@ -275,7 +289,7 @@
             this.panel6.Location = new System.Drawing.Point(326, 302);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(270, 40);
-            this.panel6.TabIndex = 7;
+            this.panel6.TabIndex = 13;
             // 
             // cmbQues2
             // 
@@ -288,7 +302,7 @@
             this.cmbQues2.Location = new System.Drawing.Point(2, 7);
             this.cmbQues2.Name = "cmbQues2";
             this.cmbQues2.Size = new System.Drawing.Size(267, 26);
-            this.cmbQues2.TabIndex = 1;
+            this.cmbQues2.TabIndex = 0;
             this.cmbQues2.SelectedIndexChanged += new System.EventHandler(this.cmbQues2_SelectedIndexChanged);
             // 
             // pannelAnswar2
@@ -298,7 +312,7 @@
             this.pannelAnswar2.Location = new System.Drawing.Point(325, 348);
             this.pannelAnswar2.Name = "pannelAnswar2";
             this.pannelAnswar2.Size = new System.Drawing.Size(270, 35);
-            this.pannelAnswar2.TabIndex = 7;
+            this.pannelAnswar2.TabIndex = 14;
             // 
             // txtAnswar2
             // 
@@ -310,7 +324,7 @@
             this.txtAnswar2.Location = new System.Drawing.Point(6, 8);
             this.txtAnswar2.Name = "txtAnswar2";
             this.txtAnswar2.Size = new System.Drawing.Size(259, 20);
-            this.txtAnswar2.TabIndex = 1;
+            this.txtAnswar2.TabIndex = 0;
             this.txtAnswar2.Text = "Answar";
             this.txtAnswar2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAnswar2.Click += new System.EventHandler(this.txtAnswar2_Click);
@@ -335,7 +349,7 @@
             this.lblError.Location = new System.Drawing.Point(20, 383);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(577, 23);
-            this.lblError.TabIndex = 11;
+            this.lblError.TabIndex = 17;
             this.lblError.Text = "Error";
             this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -346,7 +360,7 @@
             this.panel1.Location = new System.Drawing.Point(21, 175);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(270, 35);
-            this.panel1.TabIndex = 7;
+            this.panel1.TabIndex = 5;
             // 
             // txtFirstName
             // 
@@ -372,7 +386,7 @@
             this.chkOwner.Location = new System.Drawing.Point(59, 6);
             this.chkOwner.Name = "chkOwner";
             this.chkOwner.Size = new System.Drawing.Size(170, 22);
-            this.chkOwner.TabIndex = 12;
+            this.chkOwner.TabIndex = 0;
             this.chkOwner.Text = "Are You  Owner ?";
             this.chkOwner.UseVisualStyleBackColor = true;
             // 
@@ -383,7 +397,7 @@
             this.panel5.Location = new System.Drawing.Point(325, 59);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(270, 35);
-            this.panel5.TabIndex = 7;
+            this.panel5.TabIndex = 2;
             // 
             // panel7
             // 
@@ -392,7 +406,7 @@
             this.panel7.Location = new System.Drawing.Point(325, 175);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(270, 35);
-            this.panel7.TabIndex = 7;
+            this.panel7.TabIndex = 6;
             // 
             // txtLastName
             // 
@@ -443,7 +457,20 @@
             this.panel9.Location = new System.Drawing.Point(326, 220);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(270, 35);
-            this.panel9.TabIndex = 7;
+            this.panel9.TabIndex = 8;
+            // 
+            // radioFemale
+            // 
+            this.radioFemale.AutoSize = true;
+            this.radioFemale.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioFemale.ForeColor = System.Drawing.Color.DarkGray;
+            this.radioFemale.Location = new System.Drawing.Point(130, 6);
+            this.radioFemale.Name = "radioFemale";
+            this.radioFemale.Size = new System.Drawing.Size(85, 22);
+            this.radioFemale.TabIndex = 1;
+            this.radioFemale.TabStop = true;
+            this.radioFemale.Text = "Female";
+            this.radioFemale.UseVisualStyleBackColor = true;
             // 
             // radioMale
             // 
@@ -454,21 +481,9 @@
             this.radioMale.Name = "radioMale";
             this.radioMale.Size = new System.Drawing.Size(64, 22);
             this.radioMale.TabIndex = 0;
+            this.radioMale.TabStop = true;
             this.radioMale.Text = "Male";
             this.radioMale.UseVisualStyleBackColor = true;
-            // 
-            // radioFemale
-            // 
-            this.radioFemale.AutoSize = true;
-            this.radioFemale.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioFemale.ForeColor = System.Drawing.Color.DarkGray;
-            this.radioFemale.Location = new System.Drawing.Point(130, 6);
-            this.radioFemale.Name = "radioFemale";
-            this.radioFemale.Size = new System.Drawing.Size(85, 22);
-            this.radioFemale.TabIndex = 0;
-            this.radioFemale.TabStop = true;
-            this.radioFemale.Text = "Female";
-            this.radioFemale.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
@@ -479,24 +494,10 @@
             this.btnCancel.Location = new System.Drawing.Point(326, 412);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(270, 35);
-            this.btnCancel.TabIndex = 9;
+            this.btnCancel.TabIndex = 16;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnSignUp_Click);
-            // 
-            // cmbQues1
-            // 
-            this.cmbQues1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.cmbQues1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbQues1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbQues1.Font = new System.Drawing.Font("Verdana", 12F);
-            this.cmbQues1.ForeColor = System.Drawing.Color.DarkGray;
-            this.cmbQues1.FormattingEnabled = true;
-            this.cmbQues1.Location = new System.Drawing.Point(1, 7);
-            this.cmbQues1.Name = "cmbQues1";
-            this.cmbQues1.Size = new System.Drawing.Size(267, 26);
-            this.cmbQues1.TabIndex = 0;
-            this.cmbQues1.SelectedIndexChanged += new System.EventHandler(this.cmbQues1_SelectedIndexChanged);
             // 
             // panel10
             // 
@@ -504,7 +505,7 @@
             this.panel10.Location = new System.Drawing.Point(21, 155);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(576, 2);
-            this.panel10.TabIndex = 12;
+            this.panel10.TabIndex = 18;
             // 
             // Signup
             // 
