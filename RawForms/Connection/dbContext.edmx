@@ -23,9 +23,20 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="50" />
           <Property Name="Password" Type="varchar" MaxLength="500" />
+          <Property Name="FirstQuestionID" Type="int" />
+          <Property Name="FirstQuestionAnswer" Type="varchar" MaxLength="500" />
+          <Property Name="SecondQuestionID" Type="int" />
+          <Property Name="SecondQuestionAnswer" Type="varchar" MaxLength="500" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SecurityQuestion">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -45,6 +56,7 @@
           <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MiddleName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EmailId" Type="varchar" MaxLength="50" />
           <Property Name="ZIP" Type="varchar" MaxLength="50" />
@@ -72,6 +84,7 @@
         <EntityContainer Name="InventoryModelStoreContainer">
           <EntitySet Name="Privilege" EntityType="Self.Privilege" Schema="Auth" store:Type="Tables" />
           <EntitySet Name="UserAuth" EntityType="Self.UserAuth" Schema="Auth" store:Type="Tables" />
+          <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="User" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="User" store:Type="Tables" />
           <AssociationSet Name="FK_UserAuth_UserMaster" Association="Self.FK_UserAuth_UserMaster">
@@ -123,6 +136,7 @@
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="DeletedFlag" Type="Boolean" />
           <NavigationProperty Name="UserAuths" Relationship="InventoryModel.FK_UserAuth_UserMaster" FromRole="UserMaster" ToRole="UserAuth" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="InventoryEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Privileges" EntityType="Self.Privilege" />
@@ -133,6 +147,7 @@
             <End Role="UserMaster" EntitySet="UserMasters" />
             <End Role="UserAuth" EntitySet="UserAuths" />
           </AssociationSet>
+          <EntitySet Name="SecurityQuestions" EntityType="InventoryModel.SecurityQuestion" />
         </EntityContainer>
         <EntityType Name="UserAuth">
           <Key>
@@ -146,6 +161,10 @@
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="UserMaster" Relationship="InventoryModel.FK_UserAuth_UserMaster" FromRole="UserAuth" ToRole="UserMaster" />
+          <Property Name="FirstQuestionID" Type="Int32" />
+          <Property Name="FirstQuestionAnswer" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="SecondQuestionID" Type="Int32" />
+          <Property Name="SecondQuestionAnswer" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_UserAuth_UserMaster">
           <End Type="InventoryModel.UserMaster" Role="UserMaster" Multiplicity="1" />
@@ -159,6 +178,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SecurityQuestion">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -189,6 +215,7 @@
           <EntitySetMapping Name="UserMasters">
             <EntityTypeMapping TypeName="InventoryModel.UserMaster">
               <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -211,6 +238,10 @@
           <EntitySetMapping Name="UserAuths">
             <EntityTypeMapping TypeName="InventoryModel.UserAuth">
               <MappingFragment StoreEntitySet="UserAuth">
+                <ScalarProperty Name="SecondQuestionAnswer" ColumnName="SecondQuestionAnswer" />
+                <ScalarProperty Name="SecondQuestionID" ColumnName="SecondQuestionID" />
+                <ScalarProperty Name="FirstQuestionAnswer" ColumnName="FirstQuestionAnswer" />
+                <ScalarProperty Name="FirstQuestionID" ColumnName="FirstQuestionID" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -218,6 +249,14 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="AuthId" ColumnName="AuthId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecurityQuestions">
+            <EntityTypeMapping TypeName="InventoryModel.SecurityQuestion">
+              <MappingFragment StoreEntitySet="SecurityQuestion">
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

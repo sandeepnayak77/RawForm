@@ -44,11 +44,11 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.cmbQues1 = new System.Windows.Forms.ComboBox();
             this.pannelAnswar1 = new System.Windows.Forms.Panel();
-            this.txtAnswar1 = new System.Windows.Forms.TextBox();
+            this.txtAnswer1 = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.cmbQues2 = new System.Windows.Forms.ComboBox();
             this.pannelAnswar2 = new System.Windows.Forms.Panel();
-            this.txtAnswar2 = new System.Windows.Forms.TextBox();
+            this.txtAnswer2 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.PictureBox();
             this.lblError = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -259,28 +259,28 @@
             // pannelAnswar1
             // 
             this.pannelAnswar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.pannelAnswar1.Controls.Add(this.txtAnswar1);
+            this.pannelAnswar1.Controls.Add(this.txtAnswer1);
             this.pannelAnswar1.Location = new System.Drawing.Point(20, 347);
             this.pannelAnswar1.Name = "pannelAnswar1";
             this.pannelAnswar1.Size = new System.Drawing.Size(270, 35);
             this.pannelAnswar1.TabIndex = 12;
             // 
-            // txtAnswar1
+            // txtAnswer1
             // 
-            this.txtAnswar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.txtAnswar1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAnswar1.Enabled = false;
-            this.txtAnswar1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAnswar1.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtAnswar1.Location = new System.Drawing.Point(6, 8);
-            this.txtAnswar1.Name = "txtAnswar1";
-            this.txtAnswar1.Size = new System.Drawing.Size(259, 20);
-            this.txtAnswar1.TabIndex = 0;
-            this.txtAnswar1.Text = "Answar";
-            this.txtAnswar1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtAnswar1.Click += new System.EventHandler(this.txtAnswar1_Click);
-            this.txtAnswar1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAnswar1_KeyPress);
-            this.txtAnswar1.Leave += new System.EventHandler(this.txtAnswar1_Leave);
+            this.txtAnswer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.txtAnswer1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAnswer1.Enabled = false;
+            this.txtAnswer1.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAnswer1.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtAnswer1.Location = new System.Drawing.Point(6, 8);
+            this.txtAnswer1.Name = "txtAnswer1";
+            this.txtAnswer1.Size = new System.Drawing.Size(259, 20);
+            this.txtAnswer1.TabIndex = 0;
+            this.txtAnswer1.Text = "Answer";
+            this.txtAnswer1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAnswer1.Click += new System.EventHandler(this.txtAnswar1_Click);
+            this.txtAnswer1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAnswar1_KeyPress);
+            this.txtAnswer1.Leave += new System.EventHandler(this.txtAnswar1_Leave);
             // 
             // panel6
             // 
@@ -308,28 +308,28 @@
             // pannelAnswar2
             // 
             this.pannelAnswar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.pannelAnswar2.Controls.Add(this.txtAnswar2);
+            this.pannelAnswar2.Controls.Add(this.txtAnswer2);
             this.pannelAnswar2.Location = new System.Drawing.Point(325, 348);
             this.pannelAnswar2.Name = "pannelAnswar2";
             this.pannelAnswar2.Size = new System.Drawing.Size(270, 35);
             this.pannelAnswar2.TabIndex = 14;
             // 
-            // txtAnswar2
+            // txtAnswer2
             // 
-            this.txtAnswar2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.txtAnswar2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAnswar2.Enabled = false;
-            this.txtAnswar2.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAnswar2.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtAnswar2.Location = new System.Drawing.Point(6, 8);
-            this.txtAnswar2.Name = "txtAnswar2";
-            this.txtAnswar2.Size = new System.Drawing.Size(259, 20);
-            this.txtAnswar2.TabIndex = 0;
-            this.txtAnswar2.Text = "Answar";
-            this.txtAnswar2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtAnswar2.Click += new System.EventHandler(this.txtAnswar2_Click);
-            this.txtAnswar2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAnswar2_KeyPress);
-            this.txtAnswar2.Leave += new System.EventHandler(this.txtAnswar2_Leave);
+            this.txtAnswer2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.txtAnswer2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAnswer2.Enabled = false;
+            this.txtAnswer2.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAnswer2.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtAnswer2.Location = new System.Drawing.Point(6, 8);
+            this.txtAnswer2.Name = "txtAnswer2";
+            this.txtAnswer2.Size = new System.Drawing.Size(259, 20);
+            this.txtAnswer2.TabIndex = 0;
+            this.txtAnswer2.Text = "Answer";
+            this.txtAnswer2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAnswer2.Click += new System.EventHandler(this.txtAnswar2_Click);
+            this.txtAnswer2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAnswar2_KeyPress);
+            this.txtAnswer2.Leave += new System.EventHandler(this.txtAnswar2_Leave);
             // 
             // btnClose
             // 
@@ -588,8 +588,8 @@
         private System.Windows.Forms.Panel pannelAnswar1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel pannelAnswar2;
-        private System.Windows.Forms.TextBox txtAnswar1;
-        private System.Windows.Forms.TextBox txtAnswar2;
+        private System.Windows.Forms.TextBox txtAnswer1;
+        private System.Windows.Forms.TextBox txtAnswer2;
         private System.Windows.Forms.ComboBox cmbQues2;
         private System.Windows.Forms.PictureBox btnClose;
         private System.Windows.Forms.Label lblError;

@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="InventoryModel.UserMaster" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="InventoryModel.UserAuth" Width="1.5" PointX="3" PointY="1.875" />
         <AssociationConnector Association="InventoryModel.FK_UserAuth_UserMaster" />
+        <EntityTypeShape EntityType="InventoryModel.SecurityQuestion" Width="1.5" PointX="5.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

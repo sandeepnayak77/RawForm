@@ -29,5 +29,6 @@ namespace RawForms.Connection
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<UserAuth> UserAuths { get; set; }
+        public virtual DbSet<SecurityQuestion> SecurityQuestions { get; set; }
     }
 }

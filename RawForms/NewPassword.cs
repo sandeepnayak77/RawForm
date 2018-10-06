@@ -1,4 +1,6 @@
 ﻿using RawForms.AppUtil;
+using RawForms.Connection;
+using RawForms.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,8 @@ namespace RawForms
 {
     public partial class NewPassword : Form
     {
+        public string userName { get; set; }
+        public int userID { get; set; }
         public NewPassword()
         {
             InitializeComponent();
@@ -21,12 +25,13 @@ namespace RawForms
         private void NewPassword_Load(object sender, EventArgs e)
         {
             this.ActiveControl = btnUpdate;
+            txtUsername.Text = userName;
             lblError.Text = "";
         }
 
         private void txtPassword_Click(object sender, EventArgs e)
         {
-            if (txtPassword.Text.ToLower() == "newpassword" || txtPassword.Text.ToLower() == "password" || txtPassword.Text.ToLower() == "confirmpassword " || txtPassword.Text.ToLower() == "confirmnewpassword")
+            if (txtPassword.Text.Trim()== "NewPassword")
             {
                 txtPassword.UseSystemPasswordChar = true;
                 txtPassword.Text = "";
@@ -35,7 +40,7 @@ namespace RawForms
 
         private void txtPassword_Leave(object sender, EventArgs e)
         {
-            if (txtPassword.Text == "")
+            if (txtPassword.Text.Trim() == "" || ControlValidation.IsReserveWord(txtPassword.Text.Trim().ToLower()))
             {
                 txtPassword.UseSystemPasswordChar = false;
                 txtPassword.Text = "NewPassword";
@@ -44,7 +49,7 @@ namespace RawForms
 
         private void txtConfirmPassword_Click(object sender, EventArgs e)
         {
-            if (txtConfirmPassword.Text.ToLower() == "confirmnewpassword")
+            if (txtConfirmPassword.Text == "ConfirmNewPassword")
             {
                 txtConfirmPassword.UseSystemPasswordChar = true;
                 txtConfirmPassword.Text = "";
@@ -53,7 +58,7 @@ namespace RawForms
 
         private void txtConfirmPassword_Leave(object sender, EventArgs e)
         {
-            if (txtConfirmPassword.Text == "")
+            if (txtConfirmPassword.Text.Trim() == "" || ControlValidation.IsReserveWord(txtConfirmPassword.Text.Trim().ToLower()))
             {
                 txtConfirmPassword.UseSystemPasswordChar = false;
                 txtConfirmPassword.Text = "ConfirmNewPassword";
@@ -78,10 +83,24 @@ namespace RawForms
             }
             else
             {
-                MessageBox.Show("Password Reset Successfully!!!!");
-                Login loginform = new Login();
-                loginform.Show();
-                this.Hide();
+
+                var result = new Results();
+                result = UpdatePassword();
+                if(result.Result)
+                {
+                    MessageBox.Show("Password Reset Successfully!!!!");
+                    Login loginform = new Login();
+                    loginform.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    lblError.Text = result.Message;
+                }
+                
+
+
+                
             }
             
                
@@ -104,7 +123,42 @@ namespace RawForms
 
         private void panelnewPassword_Enter(object sender, EventArgs e)
         {
-            txtConfirmPassword.UseSystemPasswordChar = true;
+            txtPassword.UseSystemPasswordChar = true;
         }
+
+        private Results UpdatePassword()
+        {
+            var result = new Results();
+            try
+            {
+                var database = new InventoryEntities();
+               
+               var record = (from c in database.UserAuths where c.UserId == userID select c).FirstOrDefault();
+                if (record != null)
+                {
+                    record.Password = txtPassword.Text.Trim();
+                    database.SaveChanges();
+
+                }
+                else
+                {
+                    result.Message = "User not exists";
+                    result.Result = false;
+                    return result;
+                }
+
+                result.Result = true;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                return result;
+            }
+
+
+        }
+
     }
 }
+

@@ -21,6 +21,10 @@ namespace RawForms.Connection
         public Nullable<bool> IsActive { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
+        public Nullable<int> FirstQuestionID { get; set; }
+        public string FirstQuestionAnswer { get; set; }
+        public Nullable<int> SecondQuestionID { get; set; }
+        public string SecondQuestionAnswer { get; set; }
     
         public virtual UserMaster UserMaster { get; set; }
     }

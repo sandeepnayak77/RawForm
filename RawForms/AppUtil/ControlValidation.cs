@@ -41,7 +41,7 @@ namespace RawForms.AppUtil
             reservewords.Add("confirmpassword");
             reservewords.Add("newpassword");
             reservewords.Add("confirmnewpassword");
-            reservewords.Add("answar");
+            reservewords.Add("answer");
             reservewords.Add("mobileno");
             reservewords.Add("firstname");
             reservewords.Add("lastname");

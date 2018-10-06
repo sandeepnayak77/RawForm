@@ -78,6 +78,9 @@
     <Compile Include="Connection\Role.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Connection\SecurityQuestion.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Connection\UserAuth.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>

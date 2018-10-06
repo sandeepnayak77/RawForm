@@ -22,16 +22,18 @@ namespace RawForms
 
         private void Signup_Load(object sender, EventArgs e)
         {
-            cmbQues1.Items.Add("     --Select--");
-            cmbQues1.Items.Add("What is your village name ?");
-            cmbQues1.Items.Add("What is your father's name ?");
-            cmbQues1.SelectedIndex = 0;
-            cmbQues2.Items.Add("     --Select--");
-            cmbQues2.Items.Add("What is your village name ?");
-            cmbQues2.Items.Add("What is your father's name ?");
-            cmbQues2.SelectedIndex = 0;
+            //cmbQues1.Items.Add("     --Select--");
+            //cmbQues1.Items.Add("What is your village name ?");
+            //cmbQues1.Items.Add("What is your father's name ?");
+            //cmbQues1.SelectedIndex = 0;
+            //cmbQues2.Items.Add("     --Select--");
+            //cmbQues2.Items.Add("What is your village name ?");
+            //cmbQues2.Items.Add("What is your father's name ?");
+            //cmbQues2.SelectedIndex = 0;
+            
             this.ActiveControl = btnSignUp;
             lblError.Text = "";
+            BindQuestionToDropDown();
         }
 
 
@@ -145,14 +147,16 @@ namespace RawForms
         {
             if (cmbQues1.SelectedIndex > 0)
             {
-                txtAnswar1.Show();
-                txtAnswar1.Enabled = true;
+                txtAnswer1.Show();
+                txtAnswer1.Enabled = true;
+                //MessageBox.Show(Convert.ToInt32(cmbQues1.SelectedValue).ToString());
             }
 
             else
             {
-                txtAnswar1.Hide();
-                txtAnswar1.Enabled = false;
+                txtAnswer1.Hide();
+                txtAnswer1.Enabled = false;
+
             }
 
 
@@ -161,9 +165,9 @@ namespace RawForms
 
         private void txtAnswar1_Click(object sender, EventArgs e)
         {
-            if (txtAnswar1.Text == "Answar")
+            if (txtAnswer1.Text == "Answer")
             {
-                txtAnswar1.Text = "";
+                txtAnswer1.Text = "";
                 
             }
                 
@@ -171,9 +175,9 @@ namespace RawForms
 
         private void txtAnswar1_Leave(object sender, EventArgs e)
         {
-            if (txtAnswar1.Text == "")
+            if (txtAnswer1.Text == "")
             {
-                txtAnswar1.Text = "Answar";
+                txtAnswer1.Text = "Answer";
                 
             }
                 
@@ -183,23 +187,24 @@ namespace RawForms
         {
             if (cmbQues2.SelectedIndex > 0)
             {
-                txtAnswar2.Show();
-                txtAnswar2.Enabled = true;
-                
+                txtAnswer2.Show();
+                txtAnswer2.Enabled = true;
+                //MessageBox.Show(Convert.ToInt32(cmbQues2.SelectedValue).ToString());
+
             }
 
             else
             {
-                txtAnswar2.Hide();
-                txtAnswar2.Enabled = false;
+                txtAnswer2.Hide();
+                txtAnswer2.Enabled = false;
             }
         }
 
         private void txtAnswar2_Click(object sender, EventArgs e)
         {
-            if (txtAnswar2.Text == "Answar")
+            if (txtAnswer2.Text == "Answer")
             {
-                txtAnswar2.Text = "";
+                txtAnswer2.Text = "";
                 
             }
                 
@@ -207,9 +212,9 @@ namespace RawForms
 
         private void txtAnswar2_Leave(object sender, EventArgs e)
         {
-            if (txtAnswar2.Text == "")
+            if (txtAnswer2.Text == "")
             {
-                txtAnswar2.Text = "Answar";
+                txtAnswer2.Text = "Answer";
                 
             }
                 
@@ -360,21 +365,21 @@ namespace RawForms
             {
                 lblError.Text = "Select Security Question 1 !";
             }
-            else if (ControlValidation.Isblank(txtAnswar1.Text.Trim()) == true || ControlValidation.IsReserveWord(txtAnswar1.Text.Trim().ToLower()))
+            else if (ControlValidation.Isblank(txtAnswer1.Text.Trim()) == true || ControlValidation.IsReserveWord(txtAnswer1.Text.Trim().ToLower()))
             {
-                lblError.Text = "Enter Answar for Question1 !";
-                txtAnswar1.Text = "";
-                txtAnswar1.Focus();
+                lblError.Text = "Enter Answer for Question1 !";
+                txtAnswer1.Text = "";
+                txtAnswer1.Focus();
             }
             else if (cmbQues2.SelectedIndex == 0)
             {
                 lblError.Text = "Select Security Question 2 !";
             }
-            else if (ControlValidation.Isblank(txtAnswar2.Text.Trim()) == true || ControlValidation.IsReserveWord(txtAnswar2.Text.Trim().ToLower()))
+            else if (ControlValidation.Isblank(txtAnswer2.Text.Trim()) == true || ControlValidation.IsReserveWord(txtAnswer2.Text.Trim().ToLower()))
             {
-                lblError.Text = "Enter Answar for Question2 !";
-                txtAnswar2.Text = "";
-                txtAnswar2.Focus();
+                lblError.Text = "Enter Answer for Question2 !";
+                txtAnswer2.Text = "";
+                txtAnswer2.Focus();
             }
             else
             {
@@ -412,15 +417,43 @@ namespace RawForms
                 var count = (from c in database.UserAuths where c.UserName == txtUsername.Text.Trim() select c).Count();
                 if(count==0)
                 {
+                    //userMaster.CompanyName = "FFU";
+
                     userMaster.FirstName = txtFirstName.Text.Trim();
-                    userMaster.LastName = txtLastName.Text.Trim();
                     userMaster.MiddleName = txtMiddleName.Text.Trim();
+                    userMaster.LastName = txtLastName.Text.Trim();
+                    if (radioMale.Checked)
+                        userMaster.Gender = radioMale.Text.Trim();
+                    else if (radioFemale.Checked)
+                        userMaster.Gender = radioFemale.Text.Trim();
+                    else
+                        userMaster.Gender = "";
+                                    
                     userMaster.PhoneNumber = txtMobileNo.Text.Trim();
+                    userMaster.EmailId = txtEmail.Text.Trim();
+                    //userMaster.ZIP="FFU";
+                    //userMaster.Street = "FFU";
+                    //userMaster.Village = "FFU";
+                    //userMaster.Village = "FFU";
+                    //userMaster.District = 1;
+                    //userMaster.State = 1;
+                    userMaster.CreatedBy = 1;
+                    userMaster.CreatedOn = System.DateTime.Now;
+                    userMaster.DeletedFlag = false;
+
+
+
+
+
                     userAuth.UserName = txtUsername.Text.Trim();
                     userAuth.Password = txtPassword.Text.Trim();
+                    userAuth.FirstQuestionID = Convert.ToInt32(cmbQues1.SelectedValue);
+                    userAuth.FirstQuestionAnswer = txtAnswer1.Text.Trim();
+                    userAuth.SecondQuestionID = Convert.ToInt32(cmbQues2.SelectedValue);
+                    userAuth.SecondQuestionAnswer = txtAnswer2.Text.Trim();
                     userAuth.IsActive = true;
                     userAuth.CreatedBy = 1;
-                    userAuth.CreatedOn = System.DateTime.Today;
+                    userAuth.CreatedOn = System.DateTime.Now;
 
                     database.UserMasters.Add(userMaster);
                     database.UserAuths.Add(userAuth);
@@ -446,7 +479,37 @@ namespace RawForms
 
         }
 
+        private void BindQuestionToDropDown()
+        {
+            //InitializeComponent();
+            var database = new InventoryEntities();
+            var count = (from c in database.SecurityQuestions select c).Count();
+            var queslist1 = (from c in database.SecurityQuestions where c.QuestionID <= (count/2) select c).ToList();
+            var queslist2 = (from c in database.SecurityQuestions where c.QuestionID > (count / 2) select c).ToList();
 
-        
+
+            queslist1.Insert(0, new SecurityQuestion { QuestionID = 0, Question = "--Select--" });
+            
+            cmbQues1.ValueMember = "QuestionID";
+            cmbQues1.DisplayMember = "Question";
+            cmbQues1.DataSource = queslist1;
+
+
+            queslist2.Insert(0, new SecurityQuestion { QuestionID = 0, Question = "--Select--" });
+            
+            cmbQues2.ValueMember = "QuestionID";
+            cmbQues2.DisplayMember = "Question";
+            cmbQues2.DataSource = queslist2;
+
+
+
+
+
+
+
+        }
+
+
+
     }
 }
