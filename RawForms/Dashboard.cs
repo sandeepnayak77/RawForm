@@ -98,6 +98,13 @@ namespace RawForms
             LoadFormInPanel(new Inventory());
         }
 
-        
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+
+            
+            var login = new Login();
+            
+            login.ShowDialog(this);
+        }
     }
 }

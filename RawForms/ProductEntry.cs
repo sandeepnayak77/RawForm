@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RawForms.Connection;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,20 @@ namespace RawForms
         public ProductEntry()
         {
             InitializeComponent();
+        }
+        public void BindCatagories()
+        {
+            var database = new InventoryEntities();
+            var catagories = (from c in database.ProductCatagories select c).ToList();
+            catagories.Insert(0, new ProductCatagory { CatagoryID = 0, CatagoryName = "--Select Catagory--" });
+            cmbCatagory.DisplayMember = "CatagoryName";
+            cmbCatagory.ValueMember = "CatagoryID";
+            cmbCatagory.DataSource = catagories;
+        }
+
+        private void ProductEntry_Load(object sender, EventArgs e)
+        {
+            BindCatagories();
         }
     }
 }

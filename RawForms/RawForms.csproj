@@ -72,7 +72,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Connection\dbContext1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbContext.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Connection\Privilege.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\ProductCatagory.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\ProductUnit.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Connection\Role.cs">
@@ -164,7 +175,7 @@
     </EmbeddedResource>
     <EntityDeploy Include="Connection\dbContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>dbContext1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Connection\dbContext.edmx.diagram">
       <DependentUpon>dbContext.edmx</DependentUpon>

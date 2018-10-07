@@ -30,5 +30,7 @@ namespace RawForms.Connection
         public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<UserAuth> UserAuths { get; set; }
         public virtual DbSet<SecurityQuestion> SecurityQuestions { get; set; }
+        public virtual DbSet<ProductCatagory> ProductCatagories { get; set; }
+        public virtual DbSet<ProductUnit> ProductUnits { get; set; }
     }
 }

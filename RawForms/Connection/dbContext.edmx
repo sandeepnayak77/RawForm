@@ -15,6 +15,13 @@
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
         </EntityType>
+        <EntityType Name="SecurityQuestion">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question" Type="varchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="UserAuth">
           <Key>
             <PropertyRef Name="AuthId" />
@@ -31,12 +38,19 @@
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
         </EntityType>
-        <EntityType Name="SecurityQuestion">
+        <EntityType Name="ProductCatagory">
           <Key>
-            <PropertyRef Name="QuestionID" />
+            <PropertyRef Name="CatagoryID" />
           </Key>
-          <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Question" Type="varchar" MaxLength="500" />
+          <Property Name="CatagoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CatagoryName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductUnit">
+          <Key>
+            <PropertyRef Name="UnitID" />
+          </Key>
+          <Property Name="UnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnitName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -83,8 +97,10 @@
         </Association>
         <EntityContainer Name="InventoryModelStoreContainer">
           <EntitySet Name="Privilege" EntityType="Self.Privilege" Schema="Auth" store:Type="Tables" />
+          <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" Schema="Auth" store:Type="Tables" />
           <EntitySet Name="UserAuth" EntityType="Self.UserAuth" Schema="Auth" store:Type="Tables" />
-          <EntitySet Name="SecurityQuestion" EntityType="Self.SecurityQuestion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCatagory" EntityType="Self.ProductCatagory" Schema="Product" store:Type="Tables" />
+          <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" Schema="Product" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="User" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="User" store:Type="Tables" />
           <AssociationSet Name="FK_UserAuth_UserMaster" Association="Self.FK_UserAuth_UserMaster">
@@ -148,6 +164,8 @@
             <End Role="UserAuth" EntitySet="UserAuths" />
           </AssociationSet>
           <EntitySet Name="SecurityQuestions" EntityType="InventoryModel.SecurityQuestion" />
+          <EntitySet Name="ProductCatagories" EntityType="InventoryModel.ProductCatagory" />
+          <EntitySet Name="ProductUnits" EntityType="InventoryModel.ProductUnit" />
         </EntityContainer>
         <EntityType Name="UserAuth">
           <Key>
@@ -184,6 +202,20 @@
           </Key>
           <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Question" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ProductCatagory">
+          <Key>
+            <PropertyRef Name="CatagoryID" />
+          </Key>
+          <Property Name="CatagoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatagoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ProductUnit">
+          <Key>
+            <PropertyRef Name="UnitID" />
+          </Key>
+          <Property Name="UnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnitName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -260,7 +292,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="ProductCatagories">
+            <EntityTypeMapping TypeName="InventoryModel.ProductCatagory">
+              <MappingFragment StoreEntitySet="ProductCatagory">
+                <ScalarProperty Name="CatagoryName" ColumnName="CatagoryName" />
+                <ScalarProperty Name="CatagoryID" ColumnName="CatagoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductUnits">
+            <EntityTypeMapping TypeName="InventoryModel.ProductUnit">
+              <MappingFragment StoreEntitySet="ProductUnit">
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
