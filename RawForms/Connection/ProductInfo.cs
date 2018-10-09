@@ -12,21 +12,29 @@ namespace RawForms.Connection
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductCatagory
+    public partial class ProductInfo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductCatagory()
+        public ProductInfo()
         {
-            this.ProductTypes = new HashSet<ProductType>();
-            this.ProductInfoes = new HashSet<ProductInfo>();
+            this.ProductPrices = new HashSet<ProductPrice>();
         }
     
+        public int ProductID { get; set; }
         public int CatagoryID { get; set; }
-        public string CatagoryName { get; set; }
+        public int TypeID { get; set; }
+        public int SubTypeID { get; set; }
+        public int VariantID { get; set; }
+        public string Description { get; set; }
+        public string ProductCode { get; set; }
+        public int UnitID { get; set; }
     
+        public virtual ProductCatagory ProductCatagory { get; set; }
+        public virtual ProductSubType ProductSubType { get; set; }
+        public virtual ProductType ProductType { get; set; }
+        public virtual ProductUnit ProductUnit { get; set; }
+        public virtual ProductVariant ProductVariant { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductType> ProductTypes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductInfo> ProductInfoes { get; set; }
+        public virtual ICollection<ProductPrice> ProductPrices { get; set; }
     }
 }

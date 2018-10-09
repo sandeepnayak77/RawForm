@@ -83,7 +83,22 @@
     <Compile Include="Connection\ProductCatagory.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Connection\ProductInfo.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\ProductPrice.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\ProductSubType.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\ProductType.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Connection\ProductUnit.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connection\ProductVariant.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Connection\Role.cs">
@@ -98,12 +113,36 @@
     <Compile Include="Connection\UserMaster.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\AddNewProductType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\AddNewProductType.Designer.cs">
+      <DependentUpon>AddNewProductType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\AddNewSubType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\AddNewSubType.Designer.cs">
+      <DependentUpon>AddNewSubType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\AddNewUnit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\AddNewUnit.Designer.cs">
+      <DependentUpon>AddNewUnit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Results.cs" />
     <Compile Include="ForgotPassword.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ForgotPassword.Designer.cs">
       <DependentUpon>ForgotPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\AddNewCatagory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\AddNewCatagory.Designer.cs">
+      <DependentUpon>AddNewCatagory.cs</DependentUpon>
     </Compile>
     <Compile Include="NewPassword.cs">
       <SubType>Form</SubType>
@@ -146,8 +185,20 @@
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\AddNewProductType.resx">
+      <DependentUpon>AddNewProductType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\AddNewSubType.resx">
+      <DependentUpon>AddNewSubType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\AddNewUnit.resx">
+      <DependentUpon>AddNewUnit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ForgotPassword.resx">
       <DependentUpon>ForgotPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\AddNewCatagory.resx">
+      <DependentUpon>AddNewCatagory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewPassword.resx">
       <DependentUpon>NewPassword.cs</DependentUpon>

@@ -14,7 +14,16 @@ namespace RawForms.Connection
     
     public partial class ProductUnit
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ProductUnit()
+        {
+            this.ProductInfoes = new HashSet<ProductInfo>();
+        }
+    
         public int UnitID { get; set; }
         public string UnitName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductInfo> ProductInfoes { get; set; }
     }
 }
