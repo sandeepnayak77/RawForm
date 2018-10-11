@@ -16,17 +16,17 @@
         <EntityTypeShape EntityType="InventoryModel.ProductType" Width="1.5" PointX="9.625" PointY="6.625" />
         <AssociationConnector Association="InventoryModel.FK_ProductType_ProductCatagory" />
         <EntityTypeShape EntityType="InventoryModel.ProductInfo" Width="1.5" PointX="16.375" PointY="5.125" />
-        <EntityTypeShape EntityType="InventoryModel.ProductPrice" Width="1.5" PointX="18.625" PointY="5.875" />
         <EntityTypeShape EntityType="InventoryModel.ProductSubType" Width="1.5" PointX="11.875" PointY="11.125" />
-        <EntityTypeShape EntityType="InventoryModel.ProductVariant" Width="1.5" PointX="14.125" PointY="11.125" />
+        <EntityTypeShape EntityType="InventoryModel.ProductVarient" Width="1.5" PointX="14.125" PointY="11.125" />
         <AssociationConnector Association="InventoryModel.FK_ProductInfo_ProductCatagory" />
         <AssociationConnector Association="InventoryModel.FK_ProductInfo_ProductSubType" />
         <AssociationConnector Association="InventoryModel.FK_ProductInfo_ProductType" />
         <AssociationConnector Association="InventoryModel.FK_ProductInfo_ProductUnit" />
-        <AssociationConnector Association="InventoryModel.FK_ProductInfo_ProductVariant" />
-        <AssociationConnector Association="InventoryModel.FK_ProductPrice_ProductInfo" />
+        <AssociationConnector Association="InventoryModel.FK_ProductInfo_ProductVarient" />
         <AssociationConnector Association="InventoryModel.FK_ProductSubType_ProductType" />
-        <AssociationConnector Association="InventoryModel.FK_ProductVariant_ProductSubType" />
+        <AssociationConnector Association="InventoryModel.FK_ProductVarient_ProductSubType" />
+        <EntityTypeShape EntityType="InventoryModel.ProductPrice" Width="1.5" PointX="18.625" PointY="5.875" />
+        <AssociationConnector Association="InventoryModel.FK_ProductPrice_ProductInfo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

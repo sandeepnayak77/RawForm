@@ -18,7 +18,7 @@ namespace RawForms.Connection
         public ProductSubType()
         {
             this.ProductInfoes = new HashSet<ProductInfo>();
-            this.ProductVariants = new HashSet<ProductVariant>();
+            this.ProductVarients = new HashSet<ProductVarient>();
         }
     
         public int SubTypeID { get; set; }
@@ -29,6 +29,6 @@ namespace RawForms.Connection
         public virtual ICollection<ProductInfo> ProductInfoes { get; set; }
         public virtual ProductType ProductType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductVariant> ProductVariants { get; set; }
+        public virtual ICollection<ProductVarient> ProductVarients { get; set; }
     }
 }

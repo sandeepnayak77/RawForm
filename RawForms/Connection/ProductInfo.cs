@@ -24,7 +24,7 @@ namespace RawForms.Connection
         public int CatagoryID { get; set; }
         public int TypeID { get; set; }
         public int SubTypeID { get; set; }
-        public int VariantID { get; set; }
+        public int VarientID { get; set; }
         public string Description { get; set; }
         public string ProductCode { get; set; }
         public int UnitID { get; set; }
@@ -33,7 +33,7 @@ namespace RawForms.Connection
         public virtual ProductSubType ProductSubType { get; set; }
         public virtual ProductType ProductType { get; set; }
         public virtual ProductUnit ProductUnit { get; set; }
-        public virtual ProductVariant ProductVariant { get; set; }
+        public virtual ProductVarient ProductVarient { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
     }

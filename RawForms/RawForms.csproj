@@ -98,7 +98,7 @@
     <Compile Include="Connection\ProductUnit.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Connection\ProductVariant.cs">
+    <Compile Include="Connection\ProductVarient.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Connection\Role.cs">
@@ -130,6 +130,12 @@
     </Compile>
     <Compile Include="Dialog\AddNewUnit.Designer.cs">
       <DependentUpon>AddNewUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\AddNewVariant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\AddNewVariant.Designer.cs">
+      <DependentUpon>AddNewVariant.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Results.cs" />
     <Compile Include="ForgotPassword.cs">
@@ -193,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\AddNewUnit.resx">
       <DependentUpon>AddNewUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\AddNewVariant.resx">
+      <DependentUpon>AddNewVariant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ForgotPassword.resx">
       <DependentUpon>ForgotPassword.cs</DependentUpon>

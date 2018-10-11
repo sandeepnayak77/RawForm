@@ -12,17 +12,17 @@ namespace RawForms.Connection
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductVariant
+    public partial class ProductVarient
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductVariant()
+        public ProductVarient()
         {
             this.ProductInfoes = new HashSet<ProductInfo>();
         }
     
-        public int VariantID { get; set; }
+        public int VarientID { get; set; }
         public int SubTypeID { get; set; }
-        public string VariantName { get; set; }
+        public string VarientName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductInfo> ProductInfoes { get; set; }

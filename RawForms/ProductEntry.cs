@@ -1,12 +1,15 @@
-﻿using RawForms.Connection;
+﻿using RawForms.AppUtil;
+using RawForms.Connection;
 using RawForms.Dialog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -58,7 +61,16 @@ namespace RawForms
             cmbSubType.DataSource = subtypes;
         }
 
-
+        public void BindProductVariety()
+        {
+            var database = new InventoryEntities();
+            var subTypeID = Convert.ToInt32(cmbSubType.SelectedValue);
+            var varients = (from c in database.ProductVarients where c.SubTypeID == subTypeID select c).ToList();
+            varients.Insert(0, new ProductVarient { VarientID = 0, VarientName = "--Select Sub-Type --" });
+            cmbVariety.DisplayMember = "VarientName";
+            cmbVariety.ValueMember = "VarientID";
+            cmbVariety.DataSource = varients;
+        }
 
 
 
@@ -137,7 +149,7 @@ namespace RawForms
 
         private void btnSubTypeAdd_Click(object sender, EventArgs e)
         {
-            if (cmbProductType.SelectedIndex > 0)
+            if (cmbProductType.SelectedIndex > 0 && cmbCatagory.SelectedIndex > 0)
             {
                 var newSubType = new AddNewSubType();
                 newSubType.TypeID = Convert.ToInt32(cmbProductType.SelectedValue);
@@ -149,6 +161,54 @@ namespace RawForms
                 lblError.Text = "Select Type First";
                 lblError.ForeColor = Color.Red;
             }
+        }
+
+        private void cmbSubType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbSubType.SelectedIndex > 0)
+            {
+                cmbVariety.Enabled = true;
+                BindProductVariety();
+                lblError.Text = "";
+            }
+            else
+            {
+                cmbVariety.Text = "";
+                cmbVariety.Enabled = false;
+
+            }
+        }
+
+        private void btnVariety_Click(object sender, EventArgs e)
+        {
+            if (cmbSubType.SelectedIndex > 0 && cmbProductType.SelectedIndex > 0 && cmbCatagory.SelectedIndex > 0)
+            {
+                var newVarient = new AddNewVariant();
+                newVarient.SubTypeID = Convert.ToInt32(cmbSubType.SelectedValue);
+                newVarient.ShowDialog(this);
+                lblError.Text = "";
+            }
+            else
+            {
+                lblError.Text = "Select Sub-Type First";
+                lblError.ForeColor = Color.Red;
+            }
+        }
+
+        private void txtCostPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            ControlValidation.IsPrice(sender, e);
+        }
+
+        private void txtMRP_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ControlValidation.IsPrice(sender, e);
+        }
+
+        private void txtSalesPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ControlValidation.IsPrice(sender, e);
         }
     }
 }

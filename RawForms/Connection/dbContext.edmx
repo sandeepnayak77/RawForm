@@ -53,7 +53,7 @@
           <Property Name="CatagoryID" Type="int" Nullable="false" />
           <Property Name="TypeID" Type="int" Nullable="false" />
           <Property Name="SubTypeID" Type="int" Nullable="false" />
-          <Property Name="VariantID" Type="int" Nullable="false" />
+          <Property Name="VarientID" Type="int" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="200" />
           <Property Name="ProductCode" Type="varchar" MaxLength="50" />
           <Property Name="UnitID" Type="int" Nullable="false" />
@@ -64,9 +64,9 @@
           </Key>
           <Property Name="PriceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductID" Type="int" />
-          <Property Name="CostPrice" Type="money" />
-          <Property Name="MRP" Type="money" />
-          <Property Name="SalesPrice" Type="money" />
+          <Property Name="CostPrice" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="MRP" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="SalesPrice" Type="decimal" Precision="18" Scale="3" />
         </EntityType>
         <EntityType Name="ProductSubType">
           <Key>
@@ -91,13 +91,13 @@
           <Property Name="UnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UnitName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="ProductVariant">
+        <EntityType Name="ProductVarient">
           <Key>
-            <PropertyRef Name="VariantID" />
+            <PropertyRef Name="VarientID" />
           </Key>
-          <Property Name="VariantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VarientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubTypeID" Type="int" Nullable="false" />
-          <Property Name="VariantName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="VarientName" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -178,15 +178,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductInfo_ProductVariant">
-          <End Role="ProductVariant" Type="Self.ProductVariant" Multiplicity="1" />
+        <Association Name="FK_ProductInfo_ProductVarient">
+          <End Role="ProductVarient" Type="Self.ProductVarient" Multiplicity="1" />
           <End Role="ProductInfo" Type="Self.ProductInfo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ProductVariant">
-              <PropertyRef Name="VariantID" />
+            <Principal Role="ProductVarient">
+              <PropertyRef Name="VarientID" />
             </Principal>
             <Dependent Role="ProductInfo">
-              <PropertyRef Name="VariantID" />
+              <PropertyRef Name="VarientID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -226,14 +226,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductVariant_ProductSubType">
+        <Association Name="FK_ProductVarient_ProductSubType">
           <End Role="ProductSubType" Type="Self.ProductSubType" Multiplicity="1" />
-          <End Role="ProductVariant" Type="Self.ProductVariant" Multiplicity="*" />
+          <End Role="ProductVarient" Type="Self.ProductVarient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductSubType">
               <PropertyRef Name="SubTypeID" />
             </Principal>
-            <Dependent Role="ProductVariant">
+            <Dependent Role="ProductVarient">
               <PropertyRef Name="SubTypeID" />
             </Dependent>
           </ReferentialConstraint>
@@ -260,7 +260,7 @@
           <EntitySet Name="ProductSubType" EntityType="Self.ProductSubType" Schema="Product" store:Type="Tables" />
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="Product" store:Type="Tables" />
           <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" Schema="Product" store:Type="Tables" />
-          <EntitySet Name="ProductVariant" EntityType="Self.ProductVariant" Schema="Product" store:Type="Tables" />
+          <EntitySet Name="ProductVarient" EntityType="Self.ProductVarient" Schema="Product" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="User" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="User" store:Type="Tables" />
           <AssociationSet Name="FK_ProductInfo_ProductCatagory" Association="Self.FK_ProductInfo_ProductCatagory">
@@ -279,8 +279,8 @@
             <End Role="ProductUnit" EntitySet="ProductUnit" />
             <End Role="ProductInfo" EntitySet="ProductInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductInfo_ProductVariant" Association="Self.FK_ProductInfo_ProductVariant">
-            <End Role="ProductVariant" EntitySet="ProductVariant" />
+          <AssociationSet Name="FK_ProductInfo_ProductVarient" Association="Self.FK_ProductInfo_ProductVarient">
+            <End Role="ProductVarient" EntitySet="ProductVarient" />
             <End Role="ProductInfo" EntitySet="ProductInfo" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductPrice_ProductInfo" Association="Self.FK_ProductPrice_ProductInfo">
@@ -295,9 +295,9 @@
             <End Role="ProductCatagory" EntitySet="ProductCatagory" />
             <End Role="ProductType" EntitySet="ProductType" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductVariant_ProductSubType" Association="Self.FK_ProductVariant_ProductSubType">
+          <AssociationSet Name="FK_ProductVarient_ProductSubType" Association="Self.FK_ProductVarient_ProductSubType">
             <End Role="ProductSubType" EntitySet="ProductSubType" />
-            <End Role="ProductVariant" EntitySet="ProductVariant" />
+            <End Role="ProductVarient" EntitySet="ProductVarient" />
           </AssociationSet>
           <AssociationSet Name="FK_UserAuth_UserMaster" Association="Self.FK_UserAuth_UserMaster">
             <End Role="UserMaster" EntitySet="UserMaster" />
@@ -368,9 +368,8 @@
             <End Role="ProductType" EntitySet="ProductTypes" />
           </AssociationSet>
           <EntitySet Name="ProductInfoes" EntityType="InventoryModel.ProductInfo" />
-          <EntitySet Name="ProductPrices" EntityType="InventoryModel.ProductPrice" />
           <EntitySet Name="ProductSubTypes" EntityType="InventoryModel.ProductSubType" />
-          <EntitySet Name="ProductVariants" EntityType="InventoryModel.ProductVariant" />
+          <EntitySet Name="ProductVarients" EntityType="InventoryModel.ProductVarient" />
           <AssociationSet Name="FK_ProductInfo_ProductCatagory" Association="InventoryModel.FK_ProductInfo_ProductCatagory">
             <End Role="ProductCatagory" EntitySet="ProductCatagories" />
             <End Role="ProductInfo" EntitySet="ProductInfoes" />
@@ -387,21 +386,22 @@
             <End Role="ProductUnit" EntitySet="ProductUnits" />
             <End Role="ProductInfo" EntitySet="ProductInfoes" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductInfo_ProductVariant" Association="InventoryModel.FK_ProductInfo_ProductVariant">
-            <End Role="ProductVariant" EntitySet="ProductVariants" />
+          <AssociationSet Name="FK_ProductInfo_ProductVarient" Association="InventoryModel.FK_ProductInfo_ProductVarient">
+            <End Role="ProductVarient" EntitySet="ProductVarients" />
             <End Role="ProductInfo" EntitySet="ProductInfoes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductPrice_ProductInfo" Association="InventoryModel.FK_ProductPrice_ProductInfo">
-            <End Role="ProductInfo" EntitySet="ProductInfoes" />
-            <End Role="ProductPrice" EntitySet="ProductPrices" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductSubType_ProductType" Association="InventoryModel.FK_ProductSubType_ProductType">
             <End Role="ProductType" EntitySet="ProductTypes" />
             <End Role="ProductSubType" EntitySet="ProductSubTypes" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductVariant_ProductSubType" Association="InventoryModel.FK_ProductVariant_ProductSubType">
+          <AssociationSet Name="FK_ProductVarient_ProductSubType" Association="InventoryModel.FK_ProductVarient_ProductSubType">
             <End Role="ProductSubType" EntitySet="ProductSubTypes" />
-            <End Role="ProductVariant" EntitySet="ProductVariants" />
+            <End Role="ProductVarient" EntitySet="ProductVarients" />
+          </AssociationSet>
+          <EntitySet Name="ProductPrices" EntityType="InventoryModel.ProductPrice" />
+          <AssociationSet Name="FK_ProductPrice_ProductInfo" Association="InventoryModel.FK_ProductPrice_ProductInfo">
+            <End Role="ProductInfo" EntitySet="ProductInfoes" />
+            <End Role="ProductPrice" EntitySet="ProductPrices" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="UserAuth">
@@ -488,7 +488,7 @@
           <Property Name="CatagoryID" Type="Int32" Nullable="false" />
           <Property Name="TypeID" Type="Int32" Nullable="false" />
           <Property Name="SubTypeID" Type="Int32" Nullable="false" />
-          <Property Name="VariantID" Type="Int32" Nullable="false" />
+          <Property Name="VarientID" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="ProductCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UnitID" Type="Int32" Nullable="false" />
@@ -496,19 +496,8 @@
           <NavigationProperty Name="ProductSubType" Relationship="InventoryModel.FK_ProductInfo_ProductSubType" FromRole="ProductInfo" ToRole="ProductSubType" />
           <NavigationProperty Name="ProductType" Relationship="InventoryModel.FK_ProductInfo_ProductType" FromRole="ProductInfo" ToRole="ProductType" />
           <NavigationProperty Name="ProductUnit" Relationship="InventoryModel.FK_ProductInfo_ProductUnit" FromRole="ProductInfo" ToRole="ProductUnit" />
-          <NavigationProperty Name="ProductVariant" Relationship="InventoryModel.FK_ProductInfo_ProductVariant" FromRole="ProductInfo" ToRole="ProductVariant" />
+          <NavigationProperty Name="ProductVarient" Relationship="InventoryModel.FK_ProductInfo_ProductVarient" FromRole="ProductInfo" ToRole="ProductVarient" />
           <NavigationProperty Name="ProductPrices" Relationship="InventoryModel.FK_ProductPrice_ProductInfo" FromRole="ProductInfo" ToRole="ProductPrice" />
-        </EntityType>
-        <EntityType Name="ProductPrice">
-          <Key>
-            <PropertyRef Name="PriceID" />
-          </Key>
-          <Property Name="PriceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductID" Type="Int32" />
-          <Property Name="CostPrice" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="MRP" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="SalesPrice" Type="Decimal" Precision="19" Scale="4" />
-          <NavigationProperty Name="ProductInfo" Relationship="InventoryModel.FK_ProductPrice_ProductInfo" FromRole="ProductPrice" ToRole="ProductInfo" />
         </EntityType>
         <EntityType Name="ProductSubType">
           <Key>
@@ -519,17 +508,17 @@
           <Property Name="SubTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ProductInfoes" Relationship="InventoryModel.FK_ProductInfo_ProductSubType" FromRole="ProductSubType" ToRole="ProductInfo" />
           <NavigationProperty Name="ProductType" Relationship="InventoryModel.FK_ProductSubType_ProductType" FromRole="ProductSubType" ToRole="ProductType" />
-          <NavigationProperty Name="ProductVariants" Relationship="InventoryModel.FK_ProductVariant_ProductSubType" FromRole="ProductSubType" ToRole="ProductVariant" />
+          <NavigationProperty Name="ProductVarients" Relationship="InventoryModel.FK_ProductVarient_ProductSubType" FromRole="ProductSubType" ToRole="ProductVarient" />
         </EntityType>
-        <EntityType Name="ProductVariant">
+        <EntityType Name="ProductVarient">
           <Key>
-            <PropertyRef Name="VariantID" />
+            <PropertyRef Name="VarientID" />
           </Key>
-          <Property Name="VariantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VarientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubTypeID" Type="Int32" Nullable="false" />
-          <Property Name="VariantName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ProductInfoes" Relationship="InventoryModel.FK_ProductInfo_ProductVariant" FromRole="ProductVariant" ToRole="ProductInfo" />
-          <NavigationProperty Name="ProductSubType" Relationship="InventoryModel.FK_ProductVariant_ProductSubType" FromRole="ProductVariant" ToRole="ProductSubType" />
+          <Property Name="VarientName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProductInfoes" Relationship="InventoryModel.FK_ProductInfo_ProductVarient" FromRole="ProductVarient" ToRole="ProductInfo" />
+          <NavigationProperty Name="ProductSubType" Relationship="InventoryModel.FK_ProductVarient_ProductSubType" FromRole="ProductVarient" ToRole="ProductSubType" />
         </EntityType>
         <Association Name="FK_ProductInfo_ProductCatagory">
           <End Type="InventoryModel.ProductCatagory" Role="ProductCatagory" Multiplicity="1" />
@@ -579,27 +568,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductInfo_ProductVariant">
-          <End Type="InventoryModel.ProductVariant" Role="ProductVariant" Multiplicity="1" />
+        <Association Name="FK_ProductInfo_ProductVarient">
+          <End Type="InventoryModel.ProductVarient" Role="ProductVarient" Multiplicity="1" />
           <End Type="InventoryModel.ProductInfo" Role="ProductInfo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ProductVariant">
-              <PropertyRef Name="VariantID" />
+            <Principal Role="ProductVarient">
+              <PropertyRef Name="VarientID" />
             </Principal>
             <Dependent Role="ProductInfo">
-              <PropertyRef Name="VariantID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductPrice_ProductInfo">
-          <End Type="InventoryModel.ProductInfo" Role="ProductInfo" Multiplicity="0..1" />
-          <End Type="InventoryModel.ProductPrice" Role="ProductPrice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductInfo">
-              <PropertyRef Name="ProductID" />
-            </Principal>
-            <Dependent Role="ProductPrice">
-              <PropertyRef Name="ProductID" />
+              <PropertyRef Name="VarientID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -615,15 +592,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductVariant_ProductSubType">
+        <Association Name="FK_ProductVarient_ProductSubType">
           <End Type="InventoryModel.ProductSubType" Role="ProductSubType" Multiplicity="1" />
-          <End Type="InventoryModel.ProductVariant" Role="ProductVariant" Multiplicity="*" />
+          <End Type="InventoryModel.ProductVarient" Role="ProductVarient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductSubType">
               <PropertyRef Name="SubTypeID" />
             </Principal>
-            <Dependent Role="ProductVariant">
+            <Dependent Role="ProductVarient">
               <PropertyRef Name="SubTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductPrice">
+          <Key>
+            <PropertyRef Name="PriceID" />
+          </Key>
+          <Property Name="PriceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="CostPrice" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="MRP" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="SalesPrice" Type="Decimal" Precision="18" Scale="3" />
+          <NavigationProperty Name="ProductInfo" Relationship="InventoryModel.FK_ProductPrice_ProductInfo" FromRole="ProductPrice" ToRole="ProductInfo" />
+        </EntityType>
+        <Association Name="FK_ProductPrice_ProductInfo">
+          <End Type="InventoryModel.ProductInfo" Role="ProductInfo" Multiplicity="0..1" />
+          <End Type="InventoryModel.ProductPrice" Role="ProductPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductInfo">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductPrice">
+              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -733,22 +733,11 @@
                 <ScalarProperty Name="UnitID" ColumnName="UnitID" />
                 <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="VariantID" ColumnName="VariantID" />
+                <ScalarProperty Name="VarientID" ColumnName="VarientID" />
                 <ScalarProperty Name="SubTypeID" ColumnName="SubTypeID" />
                 <ScalarProperty Name="TypeID" ColumnName="TypeID" />
                 <ScalarProperty Name="CatagoryID" ColumnName="CatagoryID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductPrices">
-            <EntityTypeMapping TypeName="InventoryModel.ProductPrice">
-              <MappingFragment StoreEntitySet="ProductPrice">
-                <ScalarProperty Name="SalesPrice" ColumnName="SalesPrice" />
-                <ScalarProperty Name="MRP" ColumnName="MRP" />
-                <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="PriceID" ColumnName="PriceID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -761,12 +750,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductVariants">
-            <EntityTypeMapping TypeName="InventoryModel.ProductVariant">
-              <MappingFragment StoreEntitySet="ProductVariant">
-                <ScalarProperty Name="VariantName" ColumnName="VariantName" />
+          <EntitySetMapping Name="ProductVarients">
+            <EntityTypeMapping TypeName="InventoryModel.ProductVarient">
+              <MappingFragment StoreEntitySet="ProductVarient">
+                <ScalarProperty Name="VarientName" ColumnName="VarientName" />
                 <ScalarProperty Name="SubTypeID" ColumnName="SubTypeID" />
-                <ScalarProperty Name="VariantID" ColumnName="VariantID" />
+                <ScalarProperty Name="VarientID" ColumnName="VarientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPrices">
+            <EntityTypeMapping TypeName="InventoryModel.ProductPrice">
+              <MappingFragment StoreEntitySet="ProductPrice">
+                <ScalarProperty Name="SalesPrice" ColumnName="SalesPrice" />
+                <ScalarProperty Name="MRP" ColumnName="MRP" />
+                <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="PriceID" ColumnName="PriceID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

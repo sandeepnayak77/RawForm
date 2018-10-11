@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RawForms.AppUtil
 {
@@ -13,6 +15,8 @@ namespace RawForms.AppUtil
         static Regex alphanumeric = new Regex("^[a-zA-Z0-9]*$");
         static Regex email = new Regex(@"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$", RegexOptions.IgnoreCase);
         static Regex mobileno = new Regex(@"^\d{10}$");
+        //static Regex price = new Regex(@"^[+-]?[0-9]*(\.[0-9]*)?([Ee][+-]?[0-9]*)?$");
+        
 
         public static bool Isblank(string inputString)
         {
@@ -55,7 +59,44 @@ namespace RawForms.AppUtil
             return result;
         }
 
-        
+        /*public static bool IsValidPrice(string inputstring)
+        {
+            return price.IsMatch(inputstring);
+            //double dummy;
+            //return return double.TryParse(inputstring, System.Globalization.NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out dummy);
+        }*/
+
+        public static void IsPrice(object sender, KeyPressEventArgs e)
+        {
+            string senderText = (sender as TextBox).Text;
+            string senderName = (sender as TextBox).Name;
+            string[] splitByDecimal = senderText.Split('.');
+            int cursorPosition = (sender as TextBox).SelectionStart;
+
+            if (!char.IsControl(e.KeyChar)
+                && !char.IsDigit(e.KeyChar)
+                && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+
+            if (e.KeyChar == '.'
+                && senderText.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+
+
+            if (!char.IsControl(e.KeyChar)
+                && senderText.IndexOf('.') < cursorPosition
+                && splitByDecimal.Length > 1
+                && splitByDecimal[1].Length == 2)
+            {
+                e.Handled = true;
+            }
+        }
+
 
     }
 }
