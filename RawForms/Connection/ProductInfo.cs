@@ -32,8 +32,8 @@ namespace RawForms.Connection
         public virtual ProductCatagory ProductCatagory { get; set; }
         public virtual ProductSubType ProductSubType { get; set; }
         public virtual ProductType ProductType { get; set; }
-        public virtual ProductUnit ProductUnit { get; set; }
         public virtual ProductVarient ProductVarient { get; set; }
+        public virtual ProductUnit ProductUnit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
     }

@@ -15,7 +15,7 @@ namespace RawForms.Connection
     public partial class ProductPrice
     {
         public int PriceID { get; set; }
-        public Nullable<int> ProductID { get; set; }
+        public int ProductID { get; set; }
         public Nullable<decimal> CostPrice { get; set; }
         public Nullable<decimal> MRP { get; set; }
         public Nullable<decimal> SalesPrice { get; set; }

@@ -137,6 +137,7 @@
     <Compile Include="Dialog\AddNewVariant.Designer.cs">
       <DependentUpon>AddNewVariant.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Money.cs" />
     <Compile Include="Entities\Results.cs" />
     <Compile Include="ForgotPassword.cs">
       <SubType>Form</SubType>

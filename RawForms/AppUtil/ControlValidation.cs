@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RawForms.Entities;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -59,12 +60,16 @@ namespace RawForms.AppUtil
             return result;
         }
 
-        /*public static bool IsValidPrice(string inputstring)
+        public static Money IsValidPrice(string inputstring)
         {
-            return price.IsMatch(inputstring);
-            //double dummy;
-            //return return double.TryParse(inputstring, System.Globalization.NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out dummy);
-        }*/
+            //return price.IsMatch(inputstring);
+            var result = new Money();
+            double dummy=0.00;
+            bool isValid = double.TryParse(inputstring, System.Globalization.NumberStyles.Currency, CultureInfo.GetCultureInfo("en-US"), out dummy);
+            result.Result = isValid;
+            result.Price = dummy;
+            return result;
+        }
 
         public static void IsPrice(object sender, KeyPressEventArgs e)
         {
