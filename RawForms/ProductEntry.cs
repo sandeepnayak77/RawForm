@@ -101,6 +101,7 @@ namespace RawForms
                 {
                     var productInfo = new ProductInfo();
                     var prodPrice = new ProductPrice();
+                    var productStock = new ProductStock();
 
                     productInfo.CatagoryID = catID;
                     productInfo.TypeID = typeID;
@@ -114,6 +115,9 @@ namespace RawForms
                     prodPrice.MRP = dec_mrp;
                     prodPrice.SalesPrice = dec_cp;
                     prodPrice.ProductID = productInfo.ProductID;
+
+                    productStock.ProductID = productInfo.ProductID;
+                    productStock.Stock = 0;
                     
                     database.ProductInfoes.Add(productInfo);
                     database.ProductPrices.Add(prodPrice);

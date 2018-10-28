@@ -27,6 +27,8 @@
         <EntityTypeShape EntityType="InventoryModel.ProductUnit" Width="1.5" PointX="8.375" PointY="1.25" />
         <AssociationConnector Association="InventoryModel.FK_ProductInfo_ProductUnit" />
         <AssociationConnector Association="InventoryModel.FK_ProductPrice_ProductInfo" />
+        <EntityTypeShape EntityType="InventoryModel.ProductStock" Width="1.5" PointX="18.625" PointY="9.125" />
+        <AssociationConnector Association="InventoryModel.FK_ProductStock_ProductInfo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

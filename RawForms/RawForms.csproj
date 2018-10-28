@@ -89,6 +89,9 @@
     <Compile Include="Connection\ProductPrice.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Connection\ProductStock.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Connection\ProductSubType.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
@@ -189,6 +192,12 @@
     <Compile Include="Signup.Designer.cs">
       <DependentUpon>Signup.cs</DependentUpon>
     </Compile>
+    <Compile Include="StockEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockEntry.Designer.cs">
+      <DependentUpon>StockEntry.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +242,9 @@
     </Compile>
     <EmbeddedResource Include="Signup.resx">
       <DependentUpon>Signup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockEntry.resx">
+      <DependentUpon>StockEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Connection\dbContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

@@ -68,6 +68,14 @@
           <Property Name="MRP" Type="decimal" Precision="18" Scale="3" />
           <Property Name="SalesPrice" Type="decimal" Precision="18" Scale="3" />
         </EntityType>
+        <EntityType Name="ProductStock">
+          <Key>
+            <PropertyRef Name="StockID" />
+          </Key>
+          <Property Name="StockID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Stock" Type="decimal" Precision="18" Scale="3" />
+        </EntityType>
         <EntityType Name="ProductSubType">
           <Key>
             <PropertyRef Name="SubTypeID" />
@@ -202,6 +210,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductStock_ProductInfo">
+          <End Role="ProductInfo" Type="Self.ProductInfo" Multiplicity="1" />
+          <End Role="ProductStock" Type="Self.ProductStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductInfo">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductStock">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductSubType_ProductType">
           <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
           <End Role="ProductSubType" Type="Self.ProductSubType" Multiplicity="*" />
@@ -257,6 +277,7 @@
           <EntitySet Name="ProductCatagory" EntityType="Self.ProductCatagory" Schema="Product" store:Type="Tables" />
           <EntitySet Name="ProductInfo" EntityType="Self.ProductInfo" Schema="Product" store:Type="Tables" />
           <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="Product" store:Type="Tables" />
+          <EntitySet Name="ProductStock" EntityType="Self.ProductStock" Schema="Product" store:Type="Tables" />
           <EntitySet Name="ProductSubType" EntityType="Self.ProductSubType" Schema="Product" store:Type="Tables" />
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="Product" store:Type="Tables" />
           <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" Schema="Product" store:Type="Tables" />
@@ -286,6 +307,10 @@
           <AssociationSet Name="FK_ProductPrice_ProductInfo" Association="Self.FK_ProductPrice_ProductInfo">
             <End Role="ProductInfo" EntitySet="ProductInfo" />
             <End Role="ProductPrice" EntitySet="ProductPrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductStock_ProductInfo" Association="Self.FK_ProductStock_ProductInfo">
+            <End Role="ProductInfo" EntitySet="ProductInfo" />
+            <End Role="ProductStock" EntitySet="ProductStock" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductSubType_ProductType" Association="Self.FK_ProductSubType_ProductType">
             <End Role="ProductType" EntitySet="ProductType" />
@@ -403,6 +428,11 @@
             <End Role="ProductInfo" EntitySet="ProductInfoes" />
             <End Role="ProductPrice" EntitySet="ProductPrices" />
           </AssociationSet>
+          <EntitySet Name="ProductStocks" EntityType="InventoryModel.ProductStock" />
+          <AssociationSet Name="FK_ProductStock_ProductInfo" Association="InventoryModel.FK_ProductStock_ProductInfo">
+            <End Role="ProductInfo" EntitySet="ProductInfoes" />
+            <End Role="ProductStock" EntitySet="ProductStocks" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UserAuth">
           <Key>
@@ -490,6 +520,7 @@
           <NavigationProperty Name="ProductVarient" Relationship="InventoryModel.FK_ProductInfo_ProductVarient" FromRole="ProductInfo" ToRole="ProductVarient" />
           <NavigationProperty Name="ProductUnit" Relationship="InventoryModel.FK_ProductInfo_ProductUnit" FromRole="ProductInfo" ToRole="ProductUnit" />
           <NavigationProperty Name="ProductPrices" Relationship="InventoryModel.FK_ProductPrice_ProductInfo" FromRole="ProductInfo" ToRole="ProductPrice" />
+          <NavigationProperty Name="ProductStocks" Relationship="InventoryModel.FK_ProductStock_ProductInfo" FromRole="ProductInfo" ToRole="ProductStock" />
         </EntityType>
         <EntityType Name="ProductSubType">
           <Key>
@@ -623,6 +654,27 @@
               <PropertyRef Name="ProductID" />
             </Principal>
             <Dependent Role="ProductPrice">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductStock">
+          <Key>
+            <PropertyRef Name="StockID" />
+          </Key>
+          <Property Name="StockID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Stock" Type="Decimal" Precision="18" Scale="3" />
+          <NavigationProperty Name="ProductInfo" Relationship="InventoryModel.FK_ProductStock_ProductInfo" FromRole="ProductStock" ToRole="ProductInfo" />
+        </EntityType>
+        <Association Name="FK_ProductStock_ProductInfo">
+          <End Type="InventoryModel.ProductInfo" Role="ProductInfo" Multiplicity="1" />
+          <End Type="InventoryModel.ProductStock" Role="ProductStock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductInfo">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductStock">
               <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
@@ -767,6 +819,15 @@
               <MappingFragment StoreEntitySet="ProductUnit">
                 <ScalarProperty Name="UnitName" ColumnName="UnitName" />
                 <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductStocks">
+            <EntityTypeMapping TypeName="InventoryModel.ProductStock">
+              <MappingFragment StoreEntitySet="ProductStock">
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="StockID" ColumnName="StockID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

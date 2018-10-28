@@ -18,7 +18,9 @@ namespace RawForms
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Login());
             //Application.Run(new NewPassword());
-            Application.Run(new ProductEntry());
+            //Application.Run(new ProductEntry());
+            Application.Run(new StockEntry());
+
         }
     }
 }
