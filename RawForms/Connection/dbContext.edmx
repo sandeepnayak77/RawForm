@@ -75,6 +75,7 @@
           <Property Name="StockID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="Stock" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
         <EntityType Name="ProductSubType">
           <Key>
@@ -106,6 +107,38 @@
           <Property Name="VarientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubTypeID" Type="int" Nullable="false" />
           <Property Name="VarientName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockChild">
+          <Key>
+            <PropertyRef Name="StockChildID" />
+          </Key>
+          <Property Name="StockChildID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockID" Type="int" Nullable="false" />
+          <Property Name="OpeningBalance" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="ClosingBalance" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="LastUpdated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TransactionDetail">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="TranctionTypeID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="OpeningBalance" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="ClosingBalance" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="BillID" Type="int" />
+        </EntityType>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="TransactionTypeID" />
+          </Key>
+          <Property Name="TransactionTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransactionTypeName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -258,6 +291,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_StockChild_ProductStock">
+          <End Role="ProductStock" Type="Self.ProductStock" Multiplicity="1" />
+          <End Role="StockChild" Type="Self.StockChild" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductStock">
+              <PropertyRef Name="StockID" />
+            </Principal>
+            <Dependent Role="StockChild">
+              <PropertyRef Name="StockID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionDetail_ProductInfo">
+          <End Role="ProductInfo" Type="Self.ProductInfo" Multiplicity="1" />
+          <End Role="TransactionDetail" Type="Self.TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductInfo">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionDetail_TransactionType">
+          <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
+          <End Role="TransactionDetail" Type="Self.TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="TransactionTypeID" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="TranctionTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserAuth_UserMaster">
           <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
           <End Role="UserAuth" Type="Self.UserAuth" Multiplicity="*" />
@@ -282,6 +351,9 @@
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="Product" store:Type="Tables" />
           <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" Schema="Product" store:Type="Tables" />
           <EntitySet Name="ProductVarient" EntityType="Self.ProductVarient" Schema="Product" store:Type="Tables" />
+          <EntitySet Name="StockChild" EntityType="Self.StockChild" Schema="Transaction" store:Type="Tables" />
+          <EntitySet Name="TransactionDetail" EntityType="Self.TransactionDetail" Schema="Transaction" store:Type="Tables" />
+          <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="Transaction" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="User" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="User" store:Type="Tables" />
           <AssociationSet Name="FK_ProductInfo_ProductCatagory" Association="Self.FK_ProductInfo_ProductCatagory">
@@ -323,6 +395,18 @@
           <AssociationSet Name="FK_ProductVarient_ProductSubType" Association="Self.FK_ProductVarient_ProductSubType">
             <End Role="ProductSubType" EntitySet="ProductSubType" />
             <End Role="ProductVarient" EntitySet="ProductVarient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockChild_ProductStock" Association="Self.FK_StockChild_ProductStock">
+            <End Role="ProductStock" EntitySet="ProductStock" />
+            <End Role="StockChild" EntitySet="StockChild" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionDetail_ProductInfo" Association="Self.FK_TransactionDetail_ProductInfo">
+            <End Role="ProductInfo" EntitySet="ProductInfo" />
+            <End Role="TransactionDetail" EntitySet="TransactionDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionDetail_TransactionType" Association="Self.FK_TransactionDetail_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionType" />
+            <End Role="TransactionDetail" EntitySet="TransactionDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_UserAuth_UserMaster" Association="Self.FK_UserAuth_UserMaster">
             <End Role="UserMaster" EntitySet="UserMaster" />
@@ -429,9 +513,24 @@
             <End Role="ProductPrice" EntitySet="ProductPrices" />
           </AssociationSet>
           <EntitySet Name="ProductStocks" EntityType="InventoryModel.ProductStock" />
+          <EntitySet Name="StockChilds" EntityType="InventoryModel.StockChild" />
           <AssociationSet Name="FK_ProductStock_ProductInfo" Association="InventoryModel.FK_ProductStock_ProductInfo">
             <End Role="ProductInfo" EntitySet="ProductInfoes" />
             <End Role="ProductStock" EntitySet="ProductStocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockChild_ProductStock" Association="InventoryModel.FK_StockChild_ProductStock">
+            <End Role="ProductStock" EntitySet="ProductStocks" />
+            <End Role="StockChild" EntitySet="StockChilds" />
+          </AssociationSet>
+          <EntitySet Name="TransactionTypes" EntityType="InventoryModel.TransactionType" />
+          <EntitySet Name="TransactionDetails" EntityType="InventoryModel.TransactionDetail" />
+          <AssociationSet Name="FK_TransactionDetail_ProductInfo" Association="InventoryModel.FK_TransactionDetail_ProductInfo">
+            <End Role="ProductInfo" EntitySet="ProductInfoes" />
+            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionDetail_TransactionType" Association="InventoryModel.FK_TransactionDetail_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionTypes" />
+            <End Role="TransactionDetail" EntitySet="TransactionDetails" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="UserAuth">
@@ -521,6 +620,7 @@
           <NavigationProperty Name="ProductUnit" Relationship="InventoryModel.FK_ProductInfo_ProductUnit" FromRole="ProductInfo" ToRole="ProductUnit" />
           <NavigationProperty Name="ProductPrices" Relationship="InventoryModel.FK_ProductPrice_ProductInfo" FromRole="ProductInfo" ToRole="ProductPrice" />
           <NavigationProperty Name="ProductStocks" Relationship="InventoryModel.FK_ProductStock_ProductInfo" FromRole="ProductInfo" ToRole="ProductStock" />
+          <NavigationProperty Name="TransactionDetails" Relationship="InventoryModel.FK_TransactionDetail_ProductInfo" FromRole="ProductInfo" ToRole="TransactionDetail" />
         </EntityType>
         <EntityType Name="ProductSubType">
           <Key>
@@ -665,7 +765,20 @@
           <Property Name="StockID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="Stock" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ProductInfo" Relationship="InventoryModel.FK_ProductStock_ProductInfo" FromRole="ProductStock" ToRole="ProductInfo" />
+          <NavigationProperty Name="StockChilds" Relationship="InventoryModel.FK_StockChild_ProductStock" FromRole="ProductStock" ToRole="StockChild" />
+        </EntityType>
+        <EntityType Name="StockChild">
+          <Key>
+            <PropertyRef Name="StockChildID" />
+          </Key>
+          <Property Name="StockChildID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockID" Type="Int32" Nullable="false" />
+          <Property Name="OpeningBalance" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="ClosingBalance" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ProductStock" Relationship="InventoryModel.FK_StockChild_ProductStock" FromRole="StockChild" ToRole="ProductStock" />
         </EntityType>
         <Association Name="FK_ProductStock_ProductInfo">
           <End Type="InventoryModel.ProductInfo" Role="ProductInfo" Multiplicity="1" />
@@ -676,6 +789,67 @@
             </Principal>
             <Dependent Role="ProductStock">
               <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockChild_ProductStock">
+          <End Type="InventoryModel.ProductStock" Role="ProductStock" Multiplicity="1" />
+          <End Type="InventoryModel.StockChild" Role="StockChild" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductStock">
+              <PropertyRef Name="StockID" />
+            </Principal>
+            <Dependent Role="StockChild">
+              <PropertyRef Name="StockID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TransactionType">
+          <Key>
+            <PropertyRef Name="TransactionTypeID" />
+          </Key>
+          <Property Name="TransactionTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TransactionDetails" Relationship="InventoryModel.FK_TransactionDetail_TransactionType" FromRole="TransactionType" ToRole="TransactionDetail" />
+        </EntityType>
+        <EntityType Name="TransactionDetail">
+          <Key>
+            <PropertyRef Name="TransactionID" />
+          </Key>
+          <Property Name="TransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="TranctionTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="OpeningBalance" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="ClosingBalance" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="BillID" Type="Int32" />
+          <NavigationProperty Name="ProductInfo" Relationship="InventoryModel.FK_TransactionDetail_ProductInfo" FromRole="TransactionDetail" ToRole="ProductInfo" />
+          <NavigationProperty Name="TransactionType" Relationship="InventoryModel.FK_TransactionDetail_TransactionType" FromRole="TransactionDetail" ToRole="TransactionType" />
+        </EntityType>
+        <Association Name="FK_TransactionDetail_ProductInfo">
+          <End Type="InventoryModel.ProductInfo" Role="ProductInfo" Multiplicity="1" />
+          <End Type="InventoryModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductInfo">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TransactionDetail_TransactionType">
+          <End Type="InventoryModel.TransactionType" Role="TransactionType" Multiplicity="1" />
+          <End Type="InventoryModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionType">
+              <PropertyRef Name="TransactionTypeID" />
+            </Principal>
+            <Dependent Role="TransactionDetail">
+              <PropertyRef Name="TranctionTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -825,9 +999,45 @@
           <EntitySetMapping Name="ProductStocks">
             <EntityTypeMapping TypeName="InventoryModel.ProductStock">
               <MappingFragment StoreEntitySet="ProductStock">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="Stock" ColumnName="Stock" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="StockID" ColumnName="StockID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockChilds">
+            <EntityTypeMapping TypeName="InventoryModel.StockChild">
+              <MappingFragment StoreEntitySet="StockChild">
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="ClosingBalance" ColumnName="ClosingBalance" />
+                <ScalarProperty Name="OpeningBalance" ColumnName="OpeningBalance" />
+                <ScalarProperty Name="StockID" ColumnName="StockID" />
+                <ScalarProperty Name="StockChildID" ColumnName="StockChildID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionTypes">
+            <EntityTypeMapping TypeName="InventoryModel.TransactionType">
+              <MappingFragment StoreEntitySet="TransactionType">
+                <ScalarProperty Name="TransactionTypeName" ColumnName="TransactionTypeName" />
+                <ScalarProperty Name="TransactionTypeID" ColumnName="TransactionTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionDetails">
+            <EntityTypeMapping TypeName="InventoryModel.TransactionDetail">
+              <MappingFragment StoreEntitySet="TransactionDetail">
+                <ScalarProperty Name="BillID" ColumnName="BillID" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="ClosingBalance" ColumnName="ClosingBalance" />
+                <ScalarProperty Name="OpeningBalance" ColumnName="OpeningBalance" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="TranctionTypeID" ColumnName="TranctionTypeID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

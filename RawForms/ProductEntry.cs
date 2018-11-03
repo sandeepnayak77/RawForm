@@ -102,6 +102,7 @@ namespace RawForms
                     var productInfo = new ProductInfo();
                     var prodPrice = new ProductPrice();
                     var productStock = new ProductStock();
+                    var stockChild = new StockChild();
 
                     productInfo.CatagoryID = catID;
                     productInfo.TypeID = typeID;
@@ -113,14 +114,21 @@ namespace RawForms
 
                     prodPrice.CostPrice = dec_cp;
                     prodPrice.MRP = dec_mrp;
-                    prodPrice.SalesPrice = dec_cp;
+                    prodPrice.SalesPrice = dec_sp;
                     prodPrice.ProductID = productInfo.ProductID;
 
                     productStock.ProductID = productInfo.ProductID;
                     productStock.Stock = 0;
+
+                    stockChild.StockID = productStock.StockID;
+                    stockChild.OpeningBalance = productStock.Stock;
+                    stockChild.ClosingBalance = productStock.Stock;
+                    stockChild.LastUpdated = System.DateTime.Now;
                     
                     database.ProductInfoes.Add(productInfo);
                     database.ProductPrices.Add(prodPrice);
+                    database.ProductStocks.Add(productStock);
+                    database.StockChilds.Add(stockChild);
 
                     database.SaveChanges();
                     result.Result = true;
@@ -444,6 +452,11 @@ namespace RawForms
         private void cmbVariety_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetProductInfo();
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

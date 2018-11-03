@@ -22,6 +22,8 @@ namespace RawForms
         {
          var v= AppTheme.SetAppTheme();
             this.panelVerticalMenu.BackColor = System.Drawing.Color.FromArgb(v[0], v[1], v[2]);
+            this.ResizeRedraw = true;
+
         }
         //functions for Moving the windows screen
 
@@ -88,6 +90,8 @@ namespace RawForms
             formObj.Dock = DockStyle.Fill;
             this.panelContainer.Controls.Add(formObj);
             this.panelContainer.Tag = formObj;
+            //formObj.StartPosition = FormStartPosition.CenterParent;
+            //formObj.Location = new Point( (panelContainer.Width-formObj.Width) / 2 , (panelContainer.Height - formObj.Height) / 2);
             formObj.Show();
 
 
@@ -101,10 +105,10 @@ namespace RawForms
         private void btnInventory_Click(object sender, EventArgs e)
         {
 
-            
-            var login = new Login();
-            
-            login.ShowDialog(this);
+            LoadFormInPanel(new ProductEntry());
+            //var login = new Login();
+
+            //login.ShowDialog(this);
         }
     }
 }

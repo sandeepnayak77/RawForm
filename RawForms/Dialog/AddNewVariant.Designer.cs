@@ -132,6 +132,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddNewVariant";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddNewVariant";
             this.Load += new System.EventHandler(this.AddNewVariant_Load);
             this.panel1.ResumeLayout(false);

@@ -38,5 +38,8 @@ namespace RawForms.Connection
         public virtual DbSet<ProductPrice> ProductPrices { get; set; }
         public virtual DbSet<ProductUnit> ProductUnits { get; set; }
         public virtual DbSet<ProductStock> ProductStocks { get; set; }
+        public virtual DbSet<StockChild> StockChilds { get; set; }
+        public virtual DbSet<TransactionType> TransactionTypes { get; set; }
+        public virtual DbSet<TransactionDetail> TransactionDetails { get; set; }
     }
 }

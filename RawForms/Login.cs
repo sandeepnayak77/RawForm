@@ -153,5 +153,10 @@ namespace RawForms
         {
             txtPassword_Click(sender, e);
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

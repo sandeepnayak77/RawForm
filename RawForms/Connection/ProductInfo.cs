@@ -19,6 +19,7 @@ namespace RawForms.Connection
         {
             this.ProductPrices = new HashSet<ProductPrice>();
             this.ProductStocks = new HashSet<ProductStock>();
+            this.TransactionDetails = new HashSet<TransactionDetail>();
         }
     
         public int ProductID { get; set; }
@@ -39,5 +40,7 @@ namespace RawForms.Connection
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductStock> ProductStocks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionDetail> TransactionDetails { get; set; }
     }
 }

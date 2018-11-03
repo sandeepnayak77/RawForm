@@ -38,7 +38,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.btnInventory = new System.Windows.Forms.Button();
+            this.btnProductEntry = new System.Windows.Forms.Button();
             this.panelTitleBar = new System.Windows.Forms.Panel();
             this.btnMin = new System.Windows.Forms.PictureBox();
             this.btnMax = new System.Windows.Forms.PictureBox();
@@ -67,7 +67,7 @@
             this.panelVerticalMenu.Controls.Add(this.button4);
             this.panelVerticalMenu.Controls.Add(this.button3);
             this.panelVerticalMenu.Controls.Add(this.button2);
-            this.panelVerticalMenu.Controls.Add(this.btnInventory);
+            this.panelVerticalMenu.Controls.Add(this.btnProductEntry);
             this.panelVerticalMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelVerticalMenu.Location = new System.Drawing.Point(0, 0);
             this.panelVerticalMenu.Name = "panelVerticalMenu";
@@ -206,23 +206,23 @@
             this.button2.Text = "Inventory";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // btnInventory
+            // btnProductEntry
             // 
-            this.btnInventory.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnInventory.FlatAppearance.BorderSize = 0;
-            this.btnInventory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventory.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInventory.ForeColor = System.Drawing.Color.White;
-            this.btnInventory.Image = ((System.Drawing.Image)(resources.GetObject("btnInventory.Image")));
-            this.btnInventory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInventory.Location = new System.Drawing.Point(0, 99);
-            this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(250, 40);
-            this.btnInventory.TabIndex = 1;
-            this.btnInventory.Text = "Inventory";
-            this.btnInventory.UseVisualStyleBackColor = true;
-            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
+            this.btnProductEntry.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnProductEntry.FlatAppearance.BorderSize = 0;
+            this.btnProductEntry.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnProductEntry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProductEntry.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProductEntry.ForeColor = System.Drawing.Color.White;
+            this.btnProductEntry.Image = ((System.Drawing.Image)(resources.GetObject("btnProductEntry.Image")));
+            this.btnProductEntry.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnProductEntry.Location = new System.Drawing.Point(0, 99);
+            this.btnProductEntry.Name = "btnProductEntry";
+            this.btnProductEntry.Size = new System.Drawing.Size(250, 40);
+            this.btnProductEntry.TabIndex = 1;
+            this.btnProductEntry.Text = "Product Entry";
+            this.btnProductEntry.UseVisualStyleBackColor = true;
+            this.btnProductEntry.Click += new System.EventHandler(this.btnInventory_Click);
             // 
             // panelTitleBar
             // 
@@ -233,7 +233,7 @@
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitleBar.Location = new System.Drawing.Point(250, 0);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(1050, 50);
+            this.panelTitleBar.Size = new System.Drawing.Size(1050, 47);
             this.panelTitleBar.TabIndex = 1;
             this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
             // 
@@ -279,9 +279,9 @@
             this.panelContainer.Controls.Add(this.textBox1);
             this.panelContainer.Controls.Add(this.pictureBox1);
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContainer.Location = new System.Drawing.Point(250, 50);
+            this.panelContainer.Location = new System.Drawing.Point(250, 47);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(1050, 600);
+            this.panelContainer.Size = new System.Drawing.Size(1050, 603);
             this.panelContainer.TabIndex = 2;
             // 
             // textBox1
@@ -339,7 +339,7 @@
         private System.Windows.Forms.PictureBox btnMax;
         private System.Windows.Forms.PictureBox btnClose;
         private System.Windows.Forms.PictureBox btnMin;
-        private System.Windows.Forms.Button btnInventory;
+        private System.Windows.Forms.Button btnProductEntry;
         private System.Windows.Forms.Button btnInventoryMenu;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;

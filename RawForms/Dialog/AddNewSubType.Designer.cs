@@ -132,6 +132,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddNewSubType";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddNewSubType";
             this.Load += new System.EventHandler(this.AddNewSubType_Load);
             this.panel1.ResumeLayout(false);

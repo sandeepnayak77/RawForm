@@ -18,7 +18,9 @@ namespace RawForms
             InitializeComponent();
             AutoCompleteText();
         }
+
         Dictionary<String, Int32> pidDictionary = new Dictionary<String, Int32>();
+
         public void BindUnits()
         {
             var database = new InventoryEntities();
@@ -28,6 +30,7 @@ namespace RawForms
             cmbUnit.ValueMember = "UnitID";
             cmbUnit.DataSource = units;
         }
+
         public void GetProductRecord(int productID)
         {
             bool recordresult = false;
@@ -146,13 +149,7 @@ namespace RawForms
             //dataGridView1.Rows.Add(recordlist);
             //dataGridView1.data
         }
-
-
-
-
-
-
-            
+                    
         public void PopulateGrid()
         {
             var database = new InventoryEntities();
@@ -207,7 +204,7 @@ namespace RawForms
                         select new
                         {
                             c.ProductID,
-                            details = g.VarientName + " " + f.SubTypeName + " " + e.TypeName + "   MRP = " + i.MRP,
+                            details = e.TypeName + " " + f.SubTypeName + " " + g.VarientName + "   MRP = " + i.MRP,
 
                         }).FirstOrDefault();
             txtSearch.Text = list.details;
@@ -222,7 +219,6 @@ namespace RawForms
             }
             
         }
-
 
         public void AutoCompleteText()
         {
@@ -245,7 +241,7 @@ namespace RawForms
                         select new
                         {
                             c.ProductID,
-                            details = g.VarientName+ " "+ f.SubTypeName+ " " + e.TypeName + "   MRP = "+ i.MRP,
+                            details = e.TypeName + " "+ f.SubTypeName + " "+g.VarientName+"   MRP = "+ i.MRP,
                             
                         });
 
@@ -259,6 +255,79 @@ namespace RawForms
             txtSearch.AutoCompleteCustomSource = coll;
             
         }
+
+        public void StockUpdae()
+        {
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                int _prodID = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
+                int _stockID = Convert.ToInt32(dataGridView1.Rows[i].Cells["StockID"].Value);
+                decimal _stock, _ob, _cb, _buyQty, _unitPrice, _totalPrice;
+                var database = new InventoryEntities();
+                var list = (from c in database.ProductStocks
+                            join d in database.StockChilds on c.StockID equals d.StockID
+                            where c.ProductID == _prodID
+                            select new
+                            {
+                                c.Stock,
+                                d.OpeningBalance,
+                                d.ClosingBalance,
+                            }).FirstOrDefault();
+
+                var txnTypelist = (from c in database.TransactionTypes
+                               where c.TransactionTypeName == "Buy"
+                               select new
+                               {
+                                   c.TransactionTypeID
+                               }).FirstOrDefault();
+
+                int _txnType = txnTypelist.TransactionTypeID;
+
+                _stock =(decimal)list.Stock;
+                _buyQty = Convert.ToDecimal(dataGridView1.Rows[i].Cells["NewStock"].Value);
+                _unitPrice= Convert.ToDecimal(dataGridView1.Rows[i].Cells["CostPrice"].Value);
+                _totalPrice = _unitPrice * _buyQty;
+
+                _ob = _stock;
+                _cb= _stock + _buyQty;
+
+                var txnDetail = new TransactionDetail();
+               
+                txnDetail.ProductID = _prodID;
+                txnDetail.TranctionTypeID = _txnType;
+                txnDetail.Quantity = _buyQty;
+                txnDetail.UnitPrice = _unitPrice;
+                txnDetail.TotalPrice = _totalPrice;
+                txnDetail.OpeningBalance = _ob;
+                txnDetail.ClosingBalance = _cb;
+                txnDetail.UpdatedOn = System.DateTime.Now;
+                txnDetail.BillID = 1;
+
+                database.TransactionDetails.Add(txnDetail);
+
+                var stocklist = (from c in database.ProductStocks
+                                 where c.StockID == _stockID
+                                 select c).FirstOrDefault();
+
+                stocklist.Stock = _cb;
+
+                var stockchildlist = (from c in database.StockChilds
+                                 where c.StockID == _stockID
+                                 select c).FirstOrDefault();
+                stockchildlist.OpeningBalance = _cb;
+                stockchildlist.ClosingBalance = _cb;
+
+                database.SaveChanges();
+
+
+            }
+
+        }
+
+
+
+
+
 
         private void StockEntry_Load(object sender, EventArgs e)
         {
@@ -337,20 +406,48 @@ namespace RawForms
             {
                 if (e.ColumnIndex == this.Delete.Index)
                 {
-                    dataGridView1.Rows.Remove(dataGridView1.Rows[e.RowIndex]);
+                    if((MessageBox.Show("Are you Sure to Delete Row ???", "Delete Row", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                    {
+                        dataGridView1.Rows.Remove(dataGridView1.Rows[e.RowIndex]);
+                    }
+                    
                 }
             }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+           /* if (e.RowIndex >= 0)
             {
                 if (e.ColumnIndex == this.Delete.Index)
                 {
                     dataGridView1.Rows.Remove(dataGridView1.Rows[e.RowIndex]);
+                    
                 }
+            }*/
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
+            if ((MessageBox.Show("Are you Sure to Clear All Row ???", "Clear All Data", MessageBoxButtons.YesNo) == DialogResult.Yes))
+            {
+                dataGridView1.Rows.Clear();
+                dataGridView1.Refresh();
             }
+            
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            StockUpdae();
+            //dataGridView1.Dispose();
+           dataGridView1.Rows.Clear();
         }
     }
 }

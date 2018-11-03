@@ -12,21 +12,18 @@ namespace RawForms.Connection
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductStock
+    public partial class TransactionType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductStock()
+        public TransactionType()
         {
-            this.StockChilds = new HashSet<StockChild>();
+            this.TransactionDetails = new HashSet<TransactionDetail>();
         }
     
-        public int StockID { get; set; }
-        public int ProductID { get; set; }
-        public Nullable<decimal> Stock { get; set; }
-        public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public int TransactionTypeID { get; set; }
+        public string TransactionTypeName { get; set; }
     
-        public virtual ProductInfo ProductInfo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StockChild> StockChilds { get; set; }
+        public virtual ICollection<TransactionDetail> TransactionDetails { get; set; }
     }
 }
