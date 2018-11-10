@@ -83,7 +83,10 @@ namespace RawForms
         {
             if (this.panelContainer.Controls.Count > 0)
             {
-                this.panelContainer.Controls.RemoveAt(0);
+                for(int i = 0; i < this.panelContainer.Controls.Count; i++)
+                    this.panelContainer.Controls.RemoveAt(i);
+
+
             }
             Form formObj = formsender as Form;
             formObj.TopLevel = false;
@@ -99,16 +102,37 @@ namespace RawForms
 
         private void btnInventoryMenu_Click(object sender, EventArgs e)
         {
+            var v = AppTheme.SetAppTheme();
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(v[0], v[1], v[2]);
+            lblTitleBar.Text = "Inventory";
             LoadFormInPanel(new Inventory());
         }
 
-        private void btnInventory_Click(object sender, EventArgs e)
+        private void btnProductEntry_Click(object sender, EventArgs e)
         {
-
+            var v = AppTheme.SetAppTheme();
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(v[0], v[1], v[2]);
+            lblTitleBar.Text = "Product Entry";
             LoadFormInPanel(new ProductEntry());
             //var login = new Login();
 
             //login.ShowDialog(this);
+        }
+
+        private void btnStockEntry_Click(object sender, EventArgs e)
+        {
+            var v = AppTheme.SetAppTheme();
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(v[0], v[1], v[2]);
+            lblTitleBar.Text = "Stock Entry";
+            LoadFormInPanel(new StockEntry());
+        }
+
+        private void btnSales_Click(object sender, EventArgs e)
+        {
+            var v = AppTheme.SetAppTheme();
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(v[0], v[1], v[2]);
+            lblTitleBar.Text = "Sales";
+            LoadFormInPanel(new ProductSale());
         }
     }
 }

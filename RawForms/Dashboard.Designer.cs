@@ -36,15 +36,15 @@
             this.button5 = new System.Windows.Forms.Button();
             this.btnSlide = new System.Windows.Forms.PictureBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSales = new System.Windows.Forms.Button();
+            this.btnStockEntry = new System.Windows.Forms.Button();
             this.btnProductEntry = new System.Windows.Forms.Button();
             this.panelTitleBar = new System.Windows.Forms.Panel();
+            this.lblTitleBar = new System.Windows.Forms.Label();
             this.btnMin = new System.Windows.Forms.PictureBox();
             this.btnMax = new System.Windows.Forms.PictureBox();
             this.btnClose = new System.Windows.Forms.PictureBox();
             this.panelContainer = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelVerticalMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSlide)).BeginInit();
@@ -65,8 +65,8 @@
             this.panelVerticalMenu.Controls.Add(this.button5);
             this.panelVerticalMenu.Controls.Add(this.btnSlide);
             this.panelVerticalMenu.Controls.Add(this.button4);
-            this.panelVerticalMenu.Controls.Add(this.button3);
-            this.panelVerticalMenu.Controls.Add(this.button2);
+            this.panelVerticalMenu.Controls.Add(this.btnSales);
+            this.panelVerticalMenu.Controls.Add(this.btnStockEntry);
             this.panelVerticalMenu.Controls.Add(this.btnProductEntry);
             this.panelVerticalMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelVerticalMenu.Location = new System.Drawing.Point(0, 0);
@@ -172,39 +172,41 @@
             this.button4.Text = "Inventory";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnSales
             // 
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(0, 191);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(250, 40);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Inventory";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnSales.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSales.FlatAppearance.BorderSize = 0;
+            this.btnSales.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSales.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSales.ForeColor = System.Drawing.Color.White;
+            this.btnSales.Image = ((System.Drawing.Image)(resources.GetObject("btnSales.Image")));
+            this.btnSales.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSales.Location = new System.Drawing.Point(0, 191);
+            this.btnSales.Name = "btnSales";
+            this.btnSales.Size = new System.Drawing.Size(250, 40);
+            this.btnSales.TabIndex = 1;
+            this.btnSales.Text = "Sales";
+            this.btnSales.UseVisualStyleBackColor = true;
+            this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
             // 
-            // button2
+            // btnStockEntry
             // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(0, 145);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(250, 40);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Inventory";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnStockEntry.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStockEntry.FlatAppearance.BorderSize = 0;
+            this.btnStockEntry.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnStockEntry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStockEntry.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStockEntry.ForeColor = System.Drawing.Color.White;
+            this.btnStockEntry.Image = ((System.Drawing.Image)(resources.GetObject("btnStockEntry.Image")));
+            this.btnStockEntry.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStockEntry.Location = new System.Drawing.Point(0, 145);
+            this.btnStockEntry.Name = "btnStockEntry";
+            this.btnStockEntry.Size = new System.Drawing.Size(250, 40);
+            this.btnStockEntry.TabIndex = 1;
+            this.btnStockEntry.Text = "Stock Entry";
+            this.btnStockEntry.UseVisualStyleBackColor = true;
+            this.btnStockEntry.Click += new System.EventHandler(this.btnStockEntry_Click);
             // 
             // btnProductEntry
             // 
@@ -222,11 +224,12 @@
             this.btnProductEntry.TabIndex = 1;
             this.btnProductEntry.Text = "Product Entry";
             this.btnProductEntry.UseVisualStyleBackColor = true;
-            this.btnProductEntry.Click += new System.EventHandler(this.btnInventory_Click);
+            this.btnProductEntry.Click += new System.EventHandler(this.btnProductEntry_Click);
             // 
             // panelTitleBar
             // 
             this.panelTitleBar.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelTitleBar.Controls.Add(this.lblTitleBar);
             this.panelTitleBar.Controls.Add(this.btnMin);
             this.panelTitleBar.Controls.Add(this.btnMax);
             this.panelTitleBar.Controls.Add(this.btnClose);
@@ -236,6 +239,17 @@
             this.panelTitleBar.Size = new System.Drawing.Size(1050, 47);
             this.panelTitleBar.TabIndex = 1;
             this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
+            // 
+            // lblTitleBar
+            // 
+            this.lblTitleBar.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleBar.ForeColor = System.Drawing.Color.White;
+            this.lblTitleBar.Location = new System.Drawing.Point(98, 7);
+            this.lblTitleBar.Name = "lblTitleBar";
+            this.lblTitleBar.Size = new System.Drawing.Size(590, 37);
+            this.lblTitleBar.TabIndex = 2;
+            this.lblTitleBar.Text = "uiiii";
+            this.lblTitleBar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnMin
             // 
@@ -276,7 +290,6 @@
             // panelContainer
             // 
             this.panelContainer.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelContainer.Controls.Add(this.textBox1);
             this.panelContainer.Controls.Add(this.pictureBox1);
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContainer.Location = new System.Drawing.Point(250, 47);
@@ -284,19 +297,10 @@
             this.panelContainer.Size = new System.Drawing.Size(1050, 603);
             this.panelContainer.TabIndex = 2;
             // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(125, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(179, 31);
-            this.textBox1.TabIndex = 1;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 134);
+            this.pictureBox1.Location = new System.Drawing.Point(243, 119);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(247, 139);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -323,7 +327,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
             this.panelContainer.ResumeLayout(false);
-            this.panelContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -344,9 +347,9 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnSales;
+        private System.Windows.Forms.Button btnStockEntry;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblTitleBar;
     }
 }

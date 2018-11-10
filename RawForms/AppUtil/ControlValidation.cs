@@ -33,10 +33,12 @@ namespace RawForms.AppUtil
             
             return email.IsMatch(inputEmail);
         }
+
         public static bool IsValidMobileNo(string inputMobileNo)
         {
             return mobileno.IsMatch(inputMobileNo);
         }
+
         public static bool IsReserveWord(string inputstring)
         {
             bool result = false;
@@ -102,6 +104,11 @@ namespace RawForms.AppUtil
             }
         }
 
+        public static void DisableGridSort(DataGridView dgv, DataGridViewColumnSortMode sortMode)
+        {
+            foreach (DataGridViewColumn col in dgv.Columns)
+                col.SortMode = sortMode;
+        }
 
     }
 }

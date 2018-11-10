@@ -20,7 +20,7 @@ namespace RawForms
             //Application.Run(new NewPassword());
             //Application.Run(new ProductEntry());
             //Application.Run(new StockEntry());
-
+            //Application.Run(new ProductSale());
         }
     }
 }

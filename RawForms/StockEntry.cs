@@ -1,4 +1,5 @@
-﻿using RawForms.Connection;
+﻿using RawForms.AppUtil;
+using RawForms.Connection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace RawForms
         }
 
         Dictionary<String, Int32> pidDictionary = new Dictionary<String, Int32>();
+        Bitmap bmp;
 
         public void BindUnits()
         {
@@ -65,24 +67,36 @@ namespace RawForms
                                   j.Stock,
                                   j.StockID
                               });
+            decimal _stock = 0;
+            if (txtNewStock.Text.Trim() == "")
+            {
+                _stock = 0;
+            }
+            else
+            {
+                _stock = Convert.ToDecimal(txtNewStock.Text.Trim());
+            }
 
             foreach (var row in recordlist)
             {
-                if(dataGridView1.RowCount >0 )
+                if (dataGridView1.RowCount > 0)
                 {
                     //foreach(DataGridViewRow r in dataGridView1.Rows)
-                    for(int i =0; i < dataGridView1.RowCount; i++)
+                    for (int i = 0; i < dataGridView1.RowCount; i++)
                     {
                         int prodID = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
-                        if(prodID==row.ProductID)
+                        if (prodID == row.ProductID)
                         {
                             recordresult = true;
                             dataGridView1.Rows[i].Cells[15].Value = txtNewStock.Text.Trim();
+                            decimal total = _stock * (decimal)dataGridView1.Rows[i].Cells[16].Value;
+                            dataGridView1.Rows[i].Cells[19].Value = total;
                         }
 
                     }
-                    if(recordresult==false)
+                    if (recordresult == false)
                     {
+                        decimal total = _stock * (decimal)row.CostPrice;
                         DataGridViewRow grow = new DataGridViewRow();
                         grow.CreateCells(dataGridView1);
                         grow.Cells[0].Value = row.ProductID;
@@ -104,13 +118,17 @@ namespace RawForms
                         grow.Cells[16].Value = row.CostPrice;
                         grow.Cells[17].Value = row.MRP;
                         grow.Cells[18].Value = row.SalesPrice;
-                        grow.Cells[19].Value = "Delete";
-                        dataGridView1.Rows.Add(grow);
+                        grow.Cells[19].Value = total;
+                        grow.Cells[20].Value = "Delete";
+                        dataGridView1.Rows.Insert(dataGridView1.RowCount - 1, grow);
+                        //dataGridView1.Rows.Add(grow);
                     }
-                    
+
                 }
                 else
                 {
+
+                    decimal total = _stock * (decimal)row.CostPrice;
                     DataGridViewRow grow = new DataGridViewRow();
                     grow.CreateCells(dataGridView1);
                     grow.Cells[0].Value = row.ProductID;
@@ -132,24 +150,28 @@ namespace RawForms
                     grow.Cells[16].Value = row.CostPrice;
                     grow.Cells[17].Value = row.MRP;
                     grow.Cells[18].Value = row.SalesPrice;
-                    grow.Cells[19].Value = "Delete";
+                    grow.Cells[19].Value = total;
+                    grow.Cells[20].Value = "Delete";
                     dataGridView1.Rows.Add(grow);
+                    dataGridView1.AllowUserToAddRows = false;
+                    dataGridView1.Rows.Add();
+                    
                 }
             }
 
-            
+
             //dataGridView1.DataSource = recordlist;
             //DataTable dt = new DataTable();
             //DataView dv = (DataView)dataGridView1.DataSource;
             //dt = dv.Table.DataSet.Tables[0];
-            
-            
-            
+
+
+
 
             //dataGridView1.Rows.Add(recordlist);
             //dataGridView1.data
         }
-                    
+
         public void PopulateGrid()
         {
             var database = new InventoryEntities();
@@ -200,7 +222,7 @@ namespace RawForms
                         join h in database.ProductUnits on c.UnitID equals h.UnitID
                         join i in database.ProductPrices on c.ProductID equals i.ProductID
                         join j in database.ProductStocks on c.ProductID equals j.ProductID
-                        where c.ProductID==productID
+                        where c.ProductID == productID
                         select new
                         {
                             c.ProductID,
@@ -208,16 +230,16 @@ namespace RawForms
 
                         }).FirstOrDefault();
             txtSearch.Text = list.details;
-            if(dataGridView1.CurrentRow.Cells["NewStock"].Value == null)
+            if (dataGridView1.CurrentRow.Cells["NewStock"].Value == null)
             {
                 txtNewStock.Text = "";
             }
             else
             {
                 txtNewStock.Text = Convert.ToString(dataGridView1.CurrentRow.Cells["NewStock"].Value);
-                
+
             }
-            
+
         }
 
         public void AutoCompleteText()
@@ -241,8 +263,8 @@ namespace RawForms
                         select new
                         {
                             c.ProductID,
-                            details = e.TypeName + " "+ f.SubTypeName + " "+g.VarientName+"   MRP = "+ i.MRP,
-                            
+                            details = e.TypeName + " " + f.SubTypeName + " " + g.VarientName + "   MRP = " + i.MRP,
+
                         });
 
             //coll.AddRange(list.ToArray());
@@ -251,14 +273,14 @@ namespace RawForms
                 pidDictionary.Add(item.details, item.ProductID);
                 coll.Add(item.details.ToString());
             }
-            
+
             txtSearch.AutoCompleteCustomSource = coll;
-            
+
         }
 
         public void StockUpdae()
         {
-            for (int i = 0; i < dataGridView1.RowCount; i++)
+            for (int i = 0; i < dataGridView1.RowCount-1; i++)
             {
                 int _prodID = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
                 int _stockID = Convert.ToInt32(dataGridView1.Rows[i].Cells["StockID"].Value);
@@ -275,24 +297,24 @@ namespace RawForms
                             }).FirstOrDefault();
 
                 var txnTypelist = (from c in database.TransactionTypes
-                               where c.TransactionTypeName == "Buy"
-                               select new
-                               {
-                                   c.TransactionTypeID
-                               }).FirstOrDefault();
+                                   where c.TransactionTypeName == "Buy"
+                                   select new
+                                   {
+                                       c.TransactionTypeID
+                                   }).FirstOrDefault();
 
                 int _txnType = txnTypelist.TransactionTypeID;
 
-                _stock =(decimal)list.Stock;
+                _stock = Convert.ToDecimal(list.Stock);
                 _buyQty = Convert.ToDecimal(dataGridView1.Rows[i].Cells["NewStock"].Value);
-                _unitPrice= Convert.ToDecimal(dataGridView1.Rows[i].Cells["CostPrice"].Value);
+                _unitPrice = Convert.ToDecimal(dataGridView1.Rows[i].Cells["CostPrice"].Value);
                 _totalPrice = _unitPrice * _buyQty;
 
                 _ob = _stock;
-                _cb= _stock + _buyQty;
+                _cb = _stock + _buyQty;
 
                 var txnDetail = new TransactionDetail();
-               
+
                 txnDetail.ProductID = _prodID;
                 txnDetail.TranctionTypeID = _txnType;
                 txnDetail.Quantity = _buyQty;
@@ -312,8 +334,8 @@ namespace RawForms
                 stocklist.Stock = _cb;
 
                 var stockchildlist = (from c in database.StockChilds
-                                 where c.StockID == _stockID
-                                 select c).FirstOrDefault();
+                                      where c.StockID == _stockID
+                                      select c).FirstOrDefault();
                 stockchildlist.OpeningBalance = _cb;
                 stockchildlist.ClosingBalance = _cb;
 
@@ -325,7 +347,34 @@ namespace RawForms
         }
 
 
+        public void GrandTotalCalculation()
+        {
+            if(dataGridView1.RowCount>1)
+            {
+                decimal _grandTotal = 0;
+                int i;
+                for (i = 0; i <= dataGridView1.RowCount - 2; i++)
+                {
 
+                    _grandTotal += Convert.ToDecimal(dataGridView1.Rows[i].Cells[19].Value);
+
+                }
+                dataGridView1.Rows[i].Cells[19].Value = _grandTotal.ToString();
+                dataGridView1.Rows[i].Cells[18].Value = "Grand Total";
+            }
+            
+        }
+
+        public void PrintPreview()
+        {
+            
+            int height = dataGridView1.Height;
+            dataGridView1.Height = dataGridView1.RowCount * dataGridView1.RowTemplate.Height * 2;
+            bmp = new Bitmap(dataGridView1.Width, dataGridView1.Height);
+            dataGridView1.DrawToBitmap(bmp,new Rectangle(0, 0, dataGridView1.Width, dataGridView1.Height));
+            dataGridView1.Height = height;
+            printPreviewDialogStockEntry.ShowDialog();
+        }
 
 
 
@@ -333,33 +382,12 @@ namespace RawForms
         {
             dataGridView1.AutoGenerateColumns = false;
             BindUnits();
-            
-            //PopulateGrid();
-            /* for (int i = 0; i < dataGridView1.RowCount; i++)
-             {
-                 try
-                 {
-                     int str1 = Convert.ToInt32((dataGridView1.Rows[i].Cells["UnitID"]).Value);
-                     int j = 5;
-
-
-                     (dataGridView1.Rows[i].Cells["cmbUnit"] as DataGridViewComboBoxCell).Value=str1;
-                     //(dataGridView1.Rows[i].Cells[6] as DataGridViewComboBoxCell).Value = "real";
-                     // dgShuffle.Rows[i].Cells[6].Value = "real";
-                 }
-                 catch(Exception ex)
-                 {
-
-                 }
-
-
-             }*/
-
+            ControlValidation.DisableGridSort(this.dataGridView1, DataGridViewColumnSortMode.NotSortable);
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnadd_Click(object sender, EventArgs e)
@@ -371,60 +399,61 @@ namespace RawForms
                 GetProductRecord(productID);
                 txtSearch.Text = "";
                 txtNewStock.Text = "";
+                txtSearch.Focus();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            
-            
-            
+
+
+
         }
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             try
             {
-                
+
                 if (dataGridView1.CurrentRow.Index != -1)
                 {
                     int productID = Convert.ToInt32(dataGridView1.CurrentRow.Cells["ProductID"].Value);
                     GetProductKey(productID);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("No Record Found"+ex.ToString());
+                MessageBox.Show("No Record Found" + ex.ToString());
             }
-            
-            
+
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0 && e.RowIndex != dataGridView1.RowCount-1)
             {
                 if (e.ColumnIndex == this.Delete.Index)
                 {
-                    if((MessageBox.Show("Are you Sure to Delete Row ???", "Delete Row", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                    if ((MessageBox.Show("Are you Sure to Delete Row ???", "Delete Row", MessageBoxButtons.YesNo) == DialogResult.Yes))
                     {
                         dataGridView1.Rows.Remove(dataGridView1.Rows[e.RowIndex]);
                     }
-                    
+
                 }
             }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-           /* if (e.RowIndex >= 0)
-            {
-                if (e.ColumnIndex == this.Delete.Index)
-                {
-                    dataGridView1.Rows.Remove(dataGridView1.Rows[e.RowIndex]);
-                    
-                }
-            }*/
+            /* if (e.RowIndex >= 0)
+             {
+                 if (e.ColumnIndex == this.Delete.Index)
+                 {
+                     dataGridView1.Rows.Remove(dataGridView1.Rows[e.RowIndex]);
+
+                 }
+             }*/
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -440,14 +469,69 @@ namespace RawForms
                 dataGridView1.Rows.Clear();
                 dataGridView1.Refresh();
             }
-            
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            StockUpdae();
+            //StockUpdae();
             //dataGridView1.Dispose();
-           dataGridView1.Rows.Clear();
+            //dataGridView1.Rows.Clear();
+            PrintPreview();
+        }
+
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            bool result = false;
+            for (int i = 0; i < dataGridView1.ColumnCount; i++)
+            {
+                //if (dataGridView1.Columns[i].Name == "NewStock" || dataGridView1.Columns[i].Name == "CostPrice" || dataGridView1.Columns[i].Name == "MRP" || dataGridView1.Columns[i].Name == " SalesPrice")
+                if (dataGridView1.CurrentCell.ColumnIndex == 15 || dataGridView1.CurrentCell.ColumnIndex == 16 || dataGridView1.CurrentCell.ColumnIndex == 17 || dataGridView1.CurrentCell.ColumnIndex == 18)
+                {
+
+                    result = true;
+                    break;
+                }
+            }
+
+
+            if (result)
+            {
+                DataGridViewTextBoxEditingControl tb = (DataGridViewTextBoxEditingControl)e.Control;
+                tb.KeyPress += new KeyPressEventHandler(ControlValidation.IsPrice);
+
+                e.Control.KeyPress += new KeyPressEventHandler(ControlValidation.IsPrice);
+            }
+
+
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.RowCount > 0)
+            {
+                if (e.ColumnIndex == 15)
+                {
+                    dataGridView1.CurrentRow.Cells[19].Value = Convert.ToDecimal(dataGridView1.CurrentRow.Cells[15].Value) * Convert.ToDecimal(dataGridView1.CurrentRow.Cells[16].Value);
+                }
+                GrandTotalCalculation();
+            }
+
+        }
+
+        private void dataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            GrandTotalCalculation();
+        }
+
+        private void dataGridView1_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            GrandTotalCalculation();
+        }
+
+        private void printDocumentStockEntry_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(bmp,0,0);
         }
     }
 }
