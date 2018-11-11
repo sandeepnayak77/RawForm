@@ -157,6 +157,7 @@ namespace RawForms
             txtMRP.Text = "";
             txtSalesPrice.Text = "";
             cmbUnit.SelectedIndex = 0;
+            lblError.Text = "";
 
         }
 
@@ -440,8 +441,13 @@ namespace RawForms
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            ClearControls();
-            cmbVariety.SelectedIndex = 0;
+            if(cmbVariety.SelectedIndex >= 0)
+            {
+                ClearControls();
+                cmbVariety.SelectedIndex = 0;
+                
+            }
+            
         }
 
 

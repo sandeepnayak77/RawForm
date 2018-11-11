@@ -85,11 +85,13 @@ namespace RawForms
                     for (int i = 0; i < dataGridView1.RowCount; i++)
                     {
                         int prodID = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
+                        
                         if (prodID == row.ProductID)
                         {
+                            decimal _costP = (decimal)dataGridView1.Rows[i].Cells[16].Value;
                             recordresult = true;
                             dataGridView1.Rows[i].Cells[15].Value = txtNewStock.Text.Trim();
-                            decimal total = _stock * (decimal)dataGridView1.Rows[i].Cells[16].Value;
+                            decimal total = _stock * _costP;
                             dataGridView1.Rows[i].Cells[19].Value = total;
                         }
 
@@ -482,6 +484,8 @@ namespace RawForms
 
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
+
+            // Decimal Validation for the gridview cell newstock costPrice MRP and Sales Price
             bool result = false;
             for (int i = 0; i < dataGridView1.ColumnCount; i++)
             {
@@ -510,7 +514,7 @@ namespace RawForms
         {
             if (dataGridView1.RowCount > 0)
             {
-                if (e.ColumnIndex == 15)
+                if (e.ColumnIndex == 15 || e.ColumnIndex == 16)
                 {
                     dataGridView1.CurrentRow.Cells[19].Value = Convert.ToDecimal(dataGridView1.CurrentRow.Cells[15].Value) * Convert.ToDecimal(dataGridView1.CurrentRow.Cells[16].Value);
                 }

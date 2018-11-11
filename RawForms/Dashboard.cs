@@ -23,6 +23,7 @@ namespace RawForms
          var v= AppTheme.SetAppTheme();
             this.panelVerticalMenu.BackColor = System.Drawing.Color.FromArgb(v[0], v[1], v[2]);
             this.ResizeRedraw = true;
+            lblTitleBar.Text = "";
 
         }
         //functions for Moving the windows screen
@@ -78,7 +79,11 @@ namespace RawForms
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-
+        private void lblTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
         private void LoadFormInPanel(object formsender)
         {
             if (this.panelContainer.Controls.Count > 0)
@@ -134,5 +139,7 @@ namespace RawForms
             lblTitleBar.Text = "Sales";
             LoadFormInPanel(new ProductSale());
         }
+
+        
     }
 }

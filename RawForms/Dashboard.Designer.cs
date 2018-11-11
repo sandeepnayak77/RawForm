@@ -250,6 +250,7 @@
             this.lblTitleBar.TabIndex = 2;
             this.lblTitleBar.Text = "uiiii";
             this.lblTitleBar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblTitleBar_MouseDown);
             // 
             // btnMin
             // 
