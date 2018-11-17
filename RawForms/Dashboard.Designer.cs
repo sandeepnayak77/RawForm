@@ -248,7 +248,7 @@
             this.lblTitleBar.Name = "lblTitleBar";
             this.lblTitleBar.Size = new System.Drawing.Size(590, 37);
             this.lblTitleBar.TabIndex = 2;
-            this.lblTitleBar.Text = "uiiii";
+            this.lblTitleBar.Text = "Title";
             this.lblTitleBar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblTitleBar_MouseDown);
             // 
