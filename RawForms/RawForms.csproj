@@ -54,6 +54,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Services" />
@@ -220,11 +221,13 @@
     <Compile Include="Reports\Bill_Report.Designer.cs">
       <DependentUpon>Bill_Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="Signup.cs">
+    <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="RepositoryContracts\IGenericRepository.cs" />
+    <Compile Include="UserRegistration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Signup.Designer.cs">
-      <DependentUpon>Signup.cs</DependentUpon>
+    <Compile Include="UserRegistration.Designer.cs">
+      <DependentUpon>UserRegistration.cs</DependentUpon>
     </Compile>
     <Compile Include="StockEntry.cs">
       <SubType>Form</SubType>
@@ -281,8 +284,8 @@
       <DependentUpon>Bill_Report.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Report1.rdlc" />
-    <EmbeddedResource Include="Signup.resx">
-      <DependentUpon>Signup.cs</DependentUpon>
+    <EmbeddedResource Include="UserRegistration.resx">
+      <DependentUpon>UserRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockEntry.resx">
       <DependentUpon>StockEntry.cs</DependentUpon>
@@ -323,5 +326,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
