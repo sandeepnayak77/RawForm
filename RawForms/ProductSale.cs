@@ -386,5 +386,10 @@ namespace RawForms
             decimal _currStock = GetCurrentStock(productID);
             txtCurrentStock.Text = _currStock.ToString();
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

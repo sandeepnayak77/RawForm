@@ -36,17 +36,16 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblProduct = new System.Windows.Forms.Label();
             this.btnadd = new System.Windows.Forms.Button();
+            this.txtCurrentStock = new System.Windows.Forms.TextBox();
             this.txtQuantity = new System.Windows.Forms.TextBox();
+            this.lblCurrentStock = new System.Windows.Forms.Label();
             this.lblQuantity = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.timerSales = new System.Windows.Forms.Timer(this.components);
-            this.dataGridViewSale = new System.Windows.Forms.DataGridView();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.lblCurrentStock = new System.Windows.Forms.Label();
-            this.txtCurrentStock = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.dataGridViewSale = new System.Windows.Forms.DataGridView();
             this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CatagoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +65,7 @@
             this.SalesPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.timerSales = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -134,12 +134,34 @@
             this.btnadd.UseVisualStyleBackColor = false;
             this.btnadd.Click += new System.EventHandler(this.btnadd_Click);
             // 
+            // txtCurrentStock
+            // 
+            this.txtCurrentStock.BackColor = System.Drawing.SystemColors.Control;
+            this.txtCurrentStock.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtCurrentStock.ForeColor = System.Drawing.Color.Green;
+            this.txtCurrentStock.Location = new System.Drawing.Point(152, 60);
+            this.txtCurrentStock.Name = "txtCurrentStock";
+            this.txtCurrentStock.ReadOnly = true;
+            this.txtCurrentStock.Size = new System.Drawing.Size(100, 20);
+            this.txtCurrentStock.TabIndex = 33;
+            // 
             // txtQuantity
             // 
             this.txtQuantity.Location = new System.Drawing.Point(152, 36);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(100, 20);
             this.txtQuantity.TabIndex = 33;
+            // 
+            // lblCurrentStock
+            // 
+            this.lblCurrentStock.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentStock.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.lblCurrentStock.Location = new System.Drawing.Point(12, 58);
+            this.lblCurrentStock.Name = "lblCurrentStock";
+            this.lblCurrentStock.Size = new System.Drawing.Size(119, 23);
+            this.lblCurrentStock.TabIndex = 32;
+            this.lblCurrentStock.Text = "Current Stock";
+            this.lblCurrentStock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblQuantity
             // 
@@ -162,6 +184,51 @@
             this.panel2.Size = new System.Drawing.Size(1001, 56);
             this.panel2.TabIndex = 1;
             // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(185, 12);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(193, 37);
+            this.btnSave.TabIndex = 30;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Location = new System.Drawing.Point(623, 12);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(193, 37);
+            this.btnExit.TabIndex = 31;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(405, 12);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(193, 37);
+            this.btnCancel.TabIndex = 32;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.dataGridViewSale);
@@ -170,12 +237,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1001, 352);
             this.panel3.TabIndex = 2;
-            // 
-            // timerSales
-            // 
-            this.timerSales.Enabled = true;
-            this.timerSales.Interval = 1000;
-            this.timerSales.Tick += new System.EventHandler(this.timerSales_Tick);
             // 
             // dataGridViewSale
             // 
@@ -229,72 +290,6 @@
             this.dataGridViewSale.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSale_CellValueChanged);
             this.dataGridViewSale.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewSale_EditingControlShowing);
             this.dataGridViewSale.DoubleClick += new System.EventHandler(this.dataGridViewSale_DoubleClick);
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(185, 12);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(193, 37);
-            this.btnSave.TabIndex = 30;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            // 
-            // btnExit
-            // 
-            this.btnExit.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(623, 12);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(193, 37);
-            this.btnExit.TabIndex = 31;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(405, 12);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(193, 37);
-            this.btnCancel.TabIndex = 32;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // lblCurrentStock
-            // 
-            this.lblCurrentStock.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentStock.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.lblCurrentStock.Location = new System.Drawing.Point(12, 58);
-            this.lblCurrentStock.Name = "lblCurrentStock";
-            this.lblCurrentStock.Size = new System.Drawing.Size(119, 23);
-            this.lblCurrentStock.TabIndex = 32;
-            this.lblCurrentStock.Text = "Current Stock";
-            this.lblCurrentStock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtCurrentStock
-            // 
-            this.txtCurrentStock.BackColor = System.Drawing.SystemColors.Control;
-            this.txtCurrentStock.Cursor = System.Windows.Forms.Cursors.Default;
-            this.txtCurrentStock.ForeColor = System.Drawing.Color.Green;
-            this.txtCurrentStock.Location = new System.Drawing.Point(152, 60);
-            this.txtCurrentStock.Name = "txtCurrentStock";
-            this.txtCurrentStock.ReadOnly = true;
-            this.txtCurrentStock.Size = new System.Drawing.Size(100, 20);
-            this.txtCurrentStock.TabIndex = 33;
             // 
             // ProductID
             // 
@@ -440,6 +435,12 @@
             this.Delete.Name = "Delete";
             this.Delete.Text = "Delete";
             this.Delete.Width = 50;
+            // 
+            // timerSales
+            // 
+            this.timerSales.Enabled = true;
+            this.timerSales.Interval = 1000;
+            this.timerSales.Tick += new System.EventHandler(this.timerSales_Tick);
             // 
             // ProductSale
             // 
