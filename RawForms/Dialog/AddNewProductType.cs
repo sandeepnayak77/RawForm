@@ -64,7 +64,18 @@ namespace RawForms.Dialog
                 var result = AddNewType();
                 if (result.Result == true)
                 {
-                    ProductEntry prodEntry = (ProductEntry)Owner;
+                  /*  ProductEntry obj = null;
+                    foreach( Object objj in Owner.Controls)
+                    {
+                        var test = (Panel)objj;
+                        if (test.AccessibilityObject.Name == "Product Entry"){
+                            obj = (ProductEntry)test.AccessibilityObject;
+                        }
+                    }
+                    //Owner.Controls.*/
+
+
+                    ProductEntry prodEntry = (ProductEntry)Owner.ActiveControl;
                     prodEntry.BindProductType();
                     txtProductType.Text = "";
                     lblError.Text = result.Message;

@@ -74,7 +74,7 @@ namespace RawForms.Dialog
                 var result = AddUnit();
                 if (result.Result == true)
                 {
-                    ProductEntry prodEntry = (ProductEntry)Owner;
+                    ProductEntry prodEntry = (ProductEntry)Owner.ActiveControl;
                     prodEntry.BindUnits();
 
                     lblError.Text = result.Message;

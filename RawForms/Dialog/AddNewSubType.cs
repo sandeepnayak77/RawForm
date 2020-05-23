@@ -74,7 +74,7 @@ namespace RawForms.Dialog
                 var result = AddNewType();
                 if (result.Result == true)
                 {
-                    ProductEntry prodEntry = (ProductEntry)Owner;
+                    ProductEntry prodEntry = (ProductEntry)Owner.ActiveControl;
                     prodEntry.BindProductSubType();
                     txtSubType.Text = "";
                     lblError.Text = result.Message;

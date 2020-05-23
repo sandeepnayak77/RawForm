@@ -78,7 +78,7 @@ namespace RawForms
                 var result = AddCatagory();
                 if (result.Result == true)
                 {
-                    ProductEntry prodEntry = (ProductEntry) Owner;
+                    ProductEntry prodEntry = (ProductEntry) Owner.ActiveControl;
                     prodEntry.BindCatagories();
 
                     lblError.Text = result.Message;

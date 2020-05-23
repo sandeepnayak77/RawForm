@@ -40,6 +40,10 @@ namespace RawForms.Connection
         public virtual DbSet<ProductStock> ProductStocks { get; set; }
         public virtual DbSet<StockChild> StockChilds { get; set; }
         public virtual DbSet<TransactionType> TransactionTypes { get; set; }
+        public virtual DbSet<BillInfo> BillInfoes { get; set; }
+        public virtual DbSet<BillType> BillTypes { get; set; }
+        public virtual DbSet<CustomerInfo> CustomerInfoes { get; set; }
         public virtual DbSet<TransactionDetail> TransactionDetails { get; set; }
+        public virtual DbSet<TempBill> TempBills { get; set; }
     }
 }

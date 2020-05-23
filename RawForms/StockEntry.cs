@@ -325,7 +325,7 @@ namespace RawForms
                 txnDetail.OpeningBalance = _ob;
                 txnDetail.ClosingBalance = _cb;
                 txnDetail.UpdatedOn = System.DateTime.Now;
-                txnDetail.BillID = 1;
+                txnDetail.BillNumber = "XXXXX";
 
                 database.TransactionDetails.Add(txnDetail);
 
@@ -476,10 +476,10 @@ namespace RawForms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //StockUpdae();
+            StockUpdae();
             //dataGridView1.Dispose();
-            //dataGridView1.Rows.Clear();
-            PrintPreview();
+            dataGridView1.Rows.Clear();
+            //PrintPreview();
         }
 
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

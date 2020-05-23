@@ -80,7 +80,7 @@ namespace RawForms.Dialog
                 var result = AddNewVariety();
                 if (result.Result == true)
                 {
-                    ProductEntry prodEntry = (ProductEntry)Owner;
+                    ProductEntry prodEntry = (ProductEntry)Owner.ActiveControl;
                     prodEntry.BindProductVariety();
                     txtVariety.Text = "";
                     lblError.Text = result.Message;

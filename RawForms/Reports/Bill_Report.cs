@@ -16,5 +16,11 @@ namespace RawForms.Reports
         {
             InitializeComponent();
         }
+
+        private void Bill_Report_Load(object sender, EventArgs e)
+        {
+
+            this.reportViewer1.RefreshReport();
+        }
     }
 }
