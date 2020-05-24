@@ -8,19 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RawForms.Reports
+namespace RawForms
 {
-    public partial class Bill_Report : Form
+    public partial class Form1 : Form
     {
-        public Bill_Report()
+        public Form1()
         {
             InitializeComponent();
         }
 
-        private void Bill_Report_Load(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
 
-            this.reportViewer1.RefreshReport();
+        }
+
+        private void lblProduct_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

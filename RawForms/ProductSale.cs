@@ -1,5 +1,8 @@
-﻿using RawForms.AppUtil;
+﻿using Microsoft.Reporting.WinForms;
+using RawForms.AppUtil;
 using RawForms.Connection;
+using RawForms.Entities;
+using RawForms.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static RawForms.Reports.CustomerBillForm;
 
 namespace RawForms
 {
@@ -267,6 +271,7 @@ namespace RawForms
         {
             dataGridViewSale.AutoGenerateColumns = false;
            ControlValidation.DisableGridSort(this.dataGridViewSale, DataGridViewColumnSortMode.NotSortable);
+            
         }
 
         private void timerSales_Tick(object sender, EventArgs e)
@@ -389,7 +394,108 @@ namespace RawForms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            ProductTempSale();
+            //var tb = new testRunner();
+            //tb.ShowDialog(this);  
+            List<CustomerBillProduct> billProdList = new List<CustomerBillProduct>();
+            billProdList.Clear();
+            
+            CustomerBillForm cust = new CustomerBillForm();
+         
+            for (int i = 0; i <= dataGridViewSale.RowCount - 2; i++)
+            {
+                billProdList.Add(new CustomerBillProduct {
+                    Productdesc = Convert.ToString(dataGridViewSale.Rows[i].Cells["Description"].Value),
+                    Productprice = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["SalesPrice"].Value),
+                    Productunit = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["Quantity"].Value),
+                    Totalprice = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["Total"].Value)
+                });
+                
+                
+             
+
+                
+
+
+
+            }
+            
+            var customerBillData = new CustomerBillData();
+            customerBillData.gstn = "dfs";
+            customerBillData.billData = billProdList;
+            cust.showBill(customerBillData);
+            cust.ShowDialog(this);
 
         }
+
+
+
+
+
+
+
+        public void ProductTempSale()
+        {
+            for (int i = 0; i < dataGridViewSale.RowCount - 1; i++)
+            {
+                int _prodID = Convert.ToInt32(dataGridViewSale.Rows[i].Cells[0].Value);
+                //int _stockID = Convert.ToInt32(dataGridViewSale.Rows[i].Cells["StockID"].Value);
+                string _prodDescription = Convert.ToString(dataGridViewSale.Rows[i].Cells["Description"].Value);
+                decimal _stock, _ob, _cb, _saleQty, _unitPrice, _totalPrice;
+                var database = new InventoryEntities();
+               /* var list = (from c in database.ProductStocks
+                            join d in database.StockChilds on c.StockID equals d.StockID
+                            where c.ProductID == _prodID
+                            select new
+                            {
+                                c.Stock,
+                                d.OpeningBalance,
+                                d.ClosingBalance,
+                            }).FirstOrDefault();*/
+
+                var txnTypelist = (from c in database.TransactionTypes
+                                   where c.TransactionTypeName == "Sell"
+                                   select new
+                                   {
+                                       c.TransactionTypeID
+                                   }).FirstOrDefault();
+
+                int _txnType = txnTypelist.TransactionTypeID;
+
+                //_stock = Convert.ToDecimal(list.Stock);
+                _saleQty = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["Quantity"].Value);
+                _unitPrice = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["SalesPrice"].Value);
+                _totalPrice = _unitPrice * _saleQty;
+
+                //_ob = _stock;
+                //_cb = _stock - _saleQty;
+
+                var tempBill = new TempBill();
+
+
+                tempBill.BillNumber = "XXXXX";
+                tempBill.ProductID = _prodID;
+                tempBill.ProductDesc = _prodDescription;
+                tempBill.Quantity = _saleQty;
+                tempBill.UnitPrice = _unitPrice;
+                tempBill.TotalPrice = _totalPrice;
+                
+                //tempBill.UpdatedOn = System.DateTime.Now;
+               
+
+                database.TempBills.Add(tempBill);
+                database.SaveChanges();
+
+
+            }
+
+        }
+
+        public void CallBackFromReport(int i)
+        {
+            MessageBox.Show("Please enter First Name!" + i);
+        }
+
+
     }
 }
