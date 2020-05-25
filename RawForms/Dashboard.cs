@@ -17,6 +17,11 @@ namespace RawForms
         public Dashboard()
         {
             InitializeComponent();
+            Rectangle screen = Screen.PrimaryScreen.WorkingArea;
+            int w = Width >= screen.Width ? screen.Width : (screen.Width + Width) / 2;
+            int h = Height >= screen.Height ? screen.Height : (screen.Height + Height) / 2;
+            this.Location = new Point((screen.Width - w) / 2, (screen.Height - h) / 2);
+            this.Size = new Size(w, h);
         }
         private void Dashboard_Load(object sender, EventArgs e)
         {
@@ -24,7 +29,7 @@ namespace RawForms
             this.panelVerticalMenu.BackColor = System.Drawing.Color.FromArgb(v[0], v[1], v[2]);
             this.ResizeRedraw = true;
             lblTitleBar.Text = "";
-
+            
         }
         //functions for Moving the windows screen
 
@@ -54,6 +59,7 @@ namespace RawForms
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
+            Login.ClearLoginCache();
         }
 
         private void btnMax_Click(object sender, EventArgs e)
@@ -140,6 +146,9 @@ namespace RawForms
             LoadFormInPanel(new ProductSale());
         }
 
-        
+        private void Dashboard_Shown(object sender, EventArgs e)
+        {
+            Login.ValidateLogin();
+        }
     }
 }

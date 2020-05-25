@@ -1,4 +1,7 @@
 ﻿using RawForms.AppUtil;
+using RawForms.Connection;
+using RawForms.Repositories;
+using RawForms.RepositoryContracts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,14 +11,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.Caching;
 
 namespace RawForms
 {
     public partial class Login : Form
     {
+        private static MemoryCache _userInfoCache = MemoryCache.Default;
+        private IGenericRepository<UserAuth> _userAuthRepository;
         public Login()
         {
             InitializeComponent();
+            this._userAuthRepository = new GenericRepository<UserAuth>();
         }
 
         
@@ -77,6 +84,7 @@ namespace RawForms
         {
             lblPasswordError.Text = "";
             lblUsernameError.Text = "";
+            lblLoginError.Text = string.Empty;
             //this.Focus();
             this.ActiveControl = lblLoginMessage;
         }
@@ -85,7 +93,7 @@ namespace RawForms
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Signup signupform = new Signup();
+            UserRegistration signupform = new UserRegistration();
             signupform.Show();
             this.Hide();
         }
@@ -114,12 +122,24 @@ namespace RawForms
             }
             else
             {
+
+                //After Password Validation Successful
+                var login = _userAuthRepository.GetAll().Where(x => x.UserName == txtUsername.Text && x.Password == txtPassword.Text).FirstOrDefault();
+                if (login !=null)
+                {
+                    CacheItemPolicy policy = new CacheItemPolicy();
+                    policy.AbsoluteExpiration = DateTimeOffset.Now.AddHours(12);
+                    _userInfoCache.Add("userinfo", login, policy);
+                    //Dashboard dashboardfrm = new Dashboard();
+                    //dashboardfrm.Show();
+                    this.Hide();                    
+                }
+                else
+                {
+                    lblLoginError.Text = "Invalid UserId and Password!";                    
+                }
                 lblUsernameError.Text = "";
                 lblPasswordError.Text = "";
-                //After Password Validation Successful
-                Dashboard dashboardfrm = new Dashboard();
-                dashboardfrm.Show();
-                this.Hide();
             }
                 
             
@@ -158,5 +178,26 @@ namespace RawForms
         {
             this.Close();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public static void ClearLoginCache()
+        {
+            _userInfoCache.Dispose();
+        }
+        public static void ValidateLogin()
+        {
+           var result= _userInfoCache.Get("userinfo");
+            if (result ==null)
+            {
+                Login log = new Login();
+                log.ShowDialog();
+            }
+            
+        }
+        
     }
 }
