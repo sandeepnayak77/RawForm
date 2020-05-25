@@ -23,6 +23,8 @@ namespace RawForms.Dialog
         }
         private void CustomerDetails_Load(object sender, EventArgs e)
         {
+            lblError.Text = "";
+            lblError.ForeColor = Color.Red;
             lblBillNoView.Text = billnumber;
         }
 
@@ -45,10 +47,14 @@ namespace RawForms.Dialog
                 {
                     custDetails.custAddress = "XXXX";
                 }
+                else
+                {
+                    custDetails.custAddress = txtAddress.Text;
+                }
                 custDetails.custName = txtCustomerName.Text;
                 this.Hide();
                 CustomerBillForm cust = new CustomerBillForm();
-                cust.showBill(custBillInfoData);
+                cust.showBill(custBillInfoData,custDetails);
                 cust.ShowDialog(this);
                 this.Close();
             }

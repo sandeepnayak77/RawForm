@@ -40,7 +40,7 @@ namespace RawForms.Reports
         }
 
 
-        public void showBill(CustomerBillData cusBill)
+        public void showBill(CustomerBillData cusBill, CustomerInfoDetails custInfo)
         {            
             rs.Name = "DataSetCustBillProd";
             rs.Value = cusBill.billData;
@@ -51,6 +51,8 @@ namespace RawForms.Reports
             this.reportViewerCustBill.LocalReport.ReportEmbeddedResource = "RawForms.Reports.CustomerBill.rdlc";            
             ReportParameterCollection rp = new ReportParameterCollection();
             rp.Add(new ReportParameter("gstNumber", cusBill.gstn));
+            rp.Add(new ReportParameter("custName", custInfo.custName));
+            rp.Add(new ReportParameter("custAddress", custInfo.custAddress));
             this.reportViewerCustBill.LocalReport.SetParameters(rp);
             this.reportViewerCustBill.RefreshReport();
         }

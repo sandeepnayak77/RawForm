@@ -14,8 +14,8 @@ namespace RawForms.Entities
     
     public class CustomerBillData
     {
-        public string name { get; set; }
-        public string address { get; set; }
+        public string shopName { get; set; }
+        public string shopAddress { get; set; }
         public string gstn { get; set; }
         public string billNo { get; set; }
         public List<CustomerBillProduct> billData { get; set; }
