@@ -343,7 +343,10 @@
       <DependentUpon>dbContext.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\RawForms.Entities.CustomerBillData.datasource" />
+    <None Include="Properties\DataSources\RawForms.Entities.CustomerBillProduct.datasource" />
     <None Include="Properties\DataSources\RawForms.Reports.CustomerBillForm+CustomerBillProduct.datasource" />
+    <None Include="Properties\DataSources\RawForms.Reports.CustomerBillForm.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

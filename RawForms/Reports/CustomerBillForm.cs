@@ -16,6 +16,7 @@ namespace RawForms.Reports
     {
         ReportDataSource rs = new ReportDataSource();
         CustomerBillData customerBillData = new CustomerBillData();
+        string _billNo = string.Empty;
         
         public CustomerBillForm()
         {
@@ -40,40 +41,35 @@ namespace RawForms.Reports
 
 
         public void showBill(CustomerBillData cusBill)
-        {
-            
+        {            
             rs.Name = "DataSetCustBillProd";
             rs.Value = cusBill.billData;
+            _billNo = cusBill.billNo;
+
             this.reportViewerCustBill.LocalReport.DataSources.Clear();
             this.reportViewerCustBill.LocalReport.DataSources.Add(rs);
-            this.reportViewerCustBill.LocalReport.ReportEmbeddedResource = "RawForms.Reports.CustomerBill.rdlc";
-            
+            this.reportViewerCustBill.LocalReport.ReportEmbeddedResource = "RawForms.Reports.CustomerBill.rdlc";            
             ReportParameterCollection rp = new ReportParameterCollection();
             rp.Add(new ReportParameter("gstNumber", cusBill.gstn));
             this.reportViewerCustBill.LocalReport.SetParameters(rp);
-
-
-
-
             this.reportViewerCustBill.RefreshReport();
-
-
-
-
-
-
         }
      
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             var ps = new ProductSale();
-            ps.CallBackFromReport(1);
+            ps.CallBackFromReport(_billNo);
+            //this.Close();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+
+
+        
     }
 }

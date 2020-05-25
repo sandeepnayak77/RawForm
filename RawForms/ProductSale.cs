@@ -18,6 +18,8 @@ namespace RawForms
 {
     public partial class ProductSale : Form
     {
+        public string _globalBillNo = "";
+        
         public ProductSale()
         {
             
@@ -375,11 +377,12 @@ namespace RawForms
         {
             if (dataGridViewSale.RowCount > 0)
             {
-                if (e.ColumnIndex == 13)//if Quantity Changed
+                if (e.ColumnIndex == 13)//Column index 13 in no of Quantity & if this Changed
                 {
                     //Total = Sales Price * Quantity
                     dataGridViewSale.CurrentRow.Cells[17].Value = Convert.ToDecimal(dataGridViewSale.CurrentRow.Cells[13].Value) * Convert.ToDecimal(dataGridViewSale.CurrentRow.Cells[16].Value);
                 }
+                // To Calculate Grand Total Value of sales Product
                 SalesTotalCalculation();
             }
         }
@@ -395,37 +398,10 @@ namespace RawForms
         private void btnSave_Click(object sender, EventArgs e)
         {
             ProductTempSale();
+            SendProductinfForBill();
             //var tb = new testRunner();
             //tb.ShowDialog(this);  
-            List<CustomerBillProduct> billProdList = new List<CustomerBillProduct>();
-            billProdList.Clear();
             
-            CustomerBillForm cust = new CustomerBillForm();
-         
-            for (int i = 0; i <= dataGridViewSale.RowCount - 2; i++)
-            {
-                billProdList.Add(new CustomerBillProduct {
-                    Productdesc = Convert.ToString(dataGridViewSale.Rows[i].Cells["Description"].Value),
-                    Productprice = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["SalesPrice"].Value),
-                    Productunit = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["Quantity"].Value),
-                    Totalprice = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["Total"].Value)
-                });
-                
-                
-             
-
-                
-
-
-
-            }
-            
-            var customerBillData = new CustomerBillData();
-            customerBillData.gstn = "dfs";
-            customerBillData.billData = billProdList;
-            cust.showBill(customerBillData);
-            cust.ShowDialog(this);
-
         }
 
 
@@ -436,14 +412,93 @@ namespace RawForms
 
         public void ProductTempSale()
         {
+            _globalBillNo = GetBillNumber();
             for (int i = 0; i < dataGridViewSale.RowCount - 1; i++)
             {
                 int _prodID = Convert.ToInt32(dataGridViewSale.Rows[i].Cells[0].Value);
-                //int _stockID = Convert.ToInt32(dataGridViewSale.Rows[i].Cells["StockID"].Value);
                 string _prodDescription = Convert.ToString(dataGridViewSale.Rows[i].Cells["Description"].Value);
-                decimal _stock, _ob, _cb, _saleQty, _unitPrice, _totalPrice;
+                decimal _saleQty, _unitPrice, _totalPrice;
                 var database = new InventoryEntities();
-               /* var list = (from c in database.ProductStocks
+                var txnTypelist = (from c in database.TransactionTypes
+                                   where c.TransactionTypeName == "Sell"
+                                   select new
+                                   {
+                                       c.TransactionTypeID
+                                   }).FirstOrDefault();
+                int _txnType = txnTypelist.TransactionTypeID;
+                _saleQty = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["Quantity"].Value);
+                _unitPrice = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["SalesPrice"].Value);
+                _totalPrice = _unitPrice * _saleQty;
+                var tempBill = new TempBill();
+                tempBill.BillNumber = _globalBillNo;
+                tempBill.ProductID = _prodID;
+                tempBill.ProductDesc = _prodDescription;
+                tempBill.Quantity = _saleQty;
+                tempBill.UnitPrice = _unitPrice;
+                tempBill.TotalPrice = _totalPrice;
+                database.TempBills.Add(tempBill);
+                database.SaveChanges();
+            }
+
+        }
+
+        public void SendProductinfForBill()
+        {
+            List<CustomerBillProduct> billProdList = new List<CustomerBillProduct>();
+            billProdList.Clear();
+
+            CustomerBillForm cust = new CustomerBillForm();
+
+            for (int i = 0; i <= dataGridViewSale.RowCount - 2; i++) //count-2 because one header and one grand total at last row
+            {
+
+                var custBillProduct = new CustomerBillProduct
+                {
+                    Productdesc = Convert.ToString(dataGridViewSale.Rows[i].Cells["Description"].Value),
+                    Productprice = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["SalesPrice"].Value),
+                    Productunit = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["Quantity"].Value),
+                    Totalprice = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["Total"].Value)
+                };
+                billProdList.Add(custBillProduct);
+
+            }
+
+            var customerBillData = new CustomerBillData();
+            customerBillData.gstn = "GST043621987PS";
+            customerBillData.billNo = _globalBillNo;
+            customerBillData.billData = billProdList;
+            cust.showBill(customerBillData);
+            cust.ShowDialog(this);
+            
+        }
+
+
+        public void ProductFinalSale(string localbillNo)
+        {
+            var database = new InventoryEntities();
+            var productIds = (from c in database.TempBills
+                              join d in database.ProductStocks on c.ProductID equals d.ProductID
+                              join e in database.StockChilds on d.StockID equals e.StockID
+                              where c.BillNumber == localbillNo
+                              select new
+                              {
+                                  c.ProductID,
+                                  c.Quantity,
+                                  c.UnitPrice,
+                                  d.StockID
+
+                              }); ;
+            int _noofProd = productIds.Count();
+
+
+            //for (int i = 0; i < _noofProd ; i++)
+            foreach(var prodId in productIds.ToList())
+            {
+                var _prodID = Convert.ToInt32(prodId.ProductID.ToString());
+                int _stockID = Convert.ToInt32(prodId.StockID.ToString());
+                decimal _stock, _ob, _cb, _sellQty, _unitPrice, _totalPrice;
+                
+                var list = (from c in database.ProductStocks
                             join d in database.StockChilds on c.StockID equals d.StockID
                             where c.ProductID == _prodID
                             select new
@@ -451,7 +506,7 @@ namespace RawForms
                                 c.Stock,
                                 d.OpeningBalance,
                                 d.ClosingBalance,
-                            }).FirstOrDefault();*/
+                            }).FirstOrDefault();
 
                 var txnTypelist = (from c in database.TransactionTypes
                                    where c.TransactionTypeName == "Sell"
@@ -462,38 +517,68 @@ namespace RawForms
 
                 int _txnType = txnTypelist.TransactionTypeID;
 
-                //_stock = Convert.ToDecimal(list.Stock);
-                _saleQty = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["Quantity"].Value);
-                _unitPrice = Convert.ToDecimal(dataGridViewSale.Rows[i].Cells["SalesPrice"].Value);
-                _totalPrice = _unitPrice * _saleQty;
+                _stock = Convert.ToDecimal(list.Stock);
+                _sellQty = Convert.ToDecimal(prodId.Quantity.ToString());
+                _unitPrice = Convert.ToDecimal(prodId.UnitPrice.ToString());
+                _totalPrice = _unitPrice * _sellQty;
 
-                //_ob = _stock;
-                //_cb = _stock - _saleQty;
+                _ob = _stock;
+                _cb = _stock - _sellQty;
 
-                var tempBill = new TempBill();
+                var txnDetail = new TransactionDetail();
 
+                txnDetail.ProductID = _prodID;
+                txnDetail.TranctionTypeID = _txnType;
+                txnDetail.Quantity = _sellQty;
+                txnDetail.UnitPrice = _unitPrice;
+                txnDetail.TotalPrice = _totalPrice;
+                txnDetail.OpeningBalance = _ob;
+                txnDetail.ClosingBalance = _cb;
+                txnDetail.UpdatedOn = System.DateTime.Now;
+                txnDetail.BillNumber = localbillNo;
 
-                tempBill.BillNumber = "XXXXX";
-                tempBill.ProductID = _prodID;
-                tempBill.ProductDesc = _prodDescription;
-                tempBill.Quantity = _saleQty;
-                tempBill.UnitPrice = _unitPrice;
-                tempBill.TotalPrice = _totalPrice;
-                
-                //tempBill.UpdatedOn = System.DateTime.Now;
-               
+                database.TransactionDetails.Add(txnDetail);
 
-                database.TempBills.Add(tempBill);
+                var stocklist = (from c in database.ProductStocks
+                                 where c.StockID == _stockID
+                                 select c).FirstOrDefault();
+
+                stocklist.Stock = _cb;
+
+                var stockchildlist = (from c in database.StockChilds
+                                      where c.StockID == _stockID
+                                      select c).FirstOrDefault();
+                stockchildlist.OpeningBalance = _cb;
+                stockchildlist.ClosingBalance = _cb;
+
                 database.SaveChanges();
 
-
+                TempBillClear(localbillNo);
             }
-
         }
 
-        public void CallBackFromReport(int i)
+        public string GetBillNumber()
         {
-            MessageBox.Show("Please enter First Name!" + i);
+
+            return "SELLXXXXX";
+        }
+
+        public void TempBillClear(string _billNo)
+        {
+            var database = new InventoryEntities();
+            var tempProdRecords = (from c in database.TempBills
+                                   where c.BillNumber == _billNo
+                                   select c);
+            database.TempBills.RemoveRange(tempProdRecords);
+            database.SaveChanges();
+            
+
+        }
+        public void CallBackFromReport(string billno)
+        {
+            MessageBox.Show("Please enter First Name!" + billno);
+ 
+            ProductFinalSale(billno);
         }
 
 
