@@ -52,6 +52,9 @@ namespace RawForms.Dialog
                     custDetails.custAddress = txtAddress.Text;
                 }
                 custDetails.custName = txtCustomerName.Text;
+                custDetails.custMobile = "9999999999";
+                custDetails.custEmail = "abc@gmail.com";
+                custDetails.custDiscount = 0;
                 this.Hide();
                 CustomerBillForm cust = new CustomerBillForm();
                 cust.showBill(custBillInfoData,custDetails);

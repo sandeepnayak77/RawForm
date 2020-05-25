@@ -41,6 +41,7 @@
         <AssociationConnector Association="InventoryModel.FK_BillInfo_CustomerInfo" />
         <AssociationConnector Association="InventoryModel.FK_TransactionDetail_TransactionType" />
         <EntityTypeShape EntityType="InventoryModel.TempBill" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="InventoryModel.ShopInfo" Width="1.5" PointX="7.375" PointY="9.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

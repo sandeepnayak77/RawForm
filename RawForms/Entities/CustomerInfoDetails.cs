@@ -11,5 +11,7 @@ namespace RawForms.Entities
         public string custName { get; set; }
         public string custAddress { get; set; }
         public string custMobile { get; set; }
+        public string custEmail { get; set; }
+        public decimal custDiscount { get; set; }
     }
 }

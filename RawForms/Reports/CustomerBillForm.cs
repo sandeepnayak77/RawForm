@@ -16,6 +16,7 @@ namespace RawForms.Reports
     {
         ReportDataSource rs = new ReportDataSource();
         CustomerBillData customerBillData = new CustomerBillData();
+        CustomerInfoDetails customerInfoDetails = new CustomerInfoDetails();
         string _billNo = string.Empty;
         
         public CustomerBillForm()
@@ -41,7 +42,9 @@ namespace RawForms.Reports
 
 
         public void showBill(CustomerBillData cusBill, CustomerInfoDetails custInfo)
-        {            
+        {
+            customerBillData = cusBill;
+            customerInfoDetails = custInfo;
             rs.Name = "DataSetCustBillProd";
             rs.Value = cusBill.billData;
             _billNo = cusBill.billNo;
@@ -61,7 +64,7 @@ namespace RawForms.Reports
         private void btnSave_Click(object sender, EventArgs e)
         {
             var ps = new ProductSale();
-            ps.CallBackFromReport(_billNo);
+            ps.CallBackFromReport(_billNo, customerBillData, customerInfoDetails);
             //this.Close();
         }
 

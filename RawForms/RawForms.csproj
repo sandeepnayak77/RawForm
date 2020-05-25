@@ -142,6 +142,9 @@
     <Compile Include="Connection\SecurityQuestion.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Connection\ShopInfo.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Connection\StockChild.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>

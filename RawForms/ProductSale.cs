@@ -20,7 +20,8 @@ namespace RawForms
     public partial class ProductSale : Form
     {
         public string _globalBillNo = "";
-        
+        CustomerBillData customerBillData = new CustomerBillData();
+        CustomerInfoDetails customerInfoDetails = new CustomerInfoDetails();
         public ProductSale()
         {
             
@@ -284,11 +285,20 @@ namespace RawForms
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if ((MessageBox.Show("Are you Sure to Clear All Row ???", "Clear All Data", MessageBoxButtons.YesNo) == DialogResult.Yes))
+            if(dataGridViewSale.RowCount>1)
             {
-                dataGridViewSale.Rows.Clear();
-                dataGridViewSale.Refresh();
+                if ((MessageBox.Show("Are you Sure to Clear All Row ???", "Clear All Data", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                {
+                    dataGridViewSale.Rows.Clear();
+                    dataGridViewSale.Refresh();
+                }
+
             }
+            else
+            {
+                MessageBox.Show("No Record(s) to Clear!!!");
+            }
+            
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -298,16 +308,25 @@ namespace RawForms
 
         private void btnadd_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 int productID;
-                productID = pidDictionary[txtProductName.Text.Trim()];
-                GetProductRecord(productID);
-                SalesTotalCalculation();
-                txtProductName.Text = "";
-                txtQuantity.Text = "";
-                txtCurrentStock.Text = "";
-                txtProductName.Focus();
+                if(Convert.ToDecimal(txtCurrentStock.Text.ToString())>= Convert.ToDecimal(txtQuantity.Text.ToString()))
+                {
+                    productID = pidDictionary[txtProductName.Text.Trim()];
+                    GetProductRecord(productID);
+                    SalesTotalCalculation();
+                    txtProductName.Text = "";
+                    txtQuantity.Text = "";
+                    txtCurrentStock.Text = "";
+                    txtProductName.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("Not Enough Stock Plase Check");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -323,8 +342,17 @@ namespace RawForms
                 {
                     if ((MessageBox.Show("Are you Sure to Delete Row ???", "Delete Row", MessageBoxButtons.YesNo) == DialogResult.Yes))
                     {
-                        dataGridViewSale.Rows.Remove(dataGridViewSale.Rows[e.RowIndex]);
-                        GridRowArrange();
+                        if(dataGridViewSale.RowCount==2)
+                        {
+                            dataGridViewSale.Rows.Remove(dataGridViewSale.Rows[0]);
+                            dataGridViewSale.Rows.Remove(dataGridViewSale.Rows[0]);
+                        }
+                        else
+                        {
+                            dataGridViewSale.Rows.Remove(dataGridViewSale.Rows[e.RowIndex]);
+                            GridRowArrange();
+                        }
+                        
                     }
 
                 }
@@ -390,16 +418,30 @@ namespace RawForms
 
         private void txtProductName_Leave(object sender, EventArgs e)
         {
-            int productID = pidDictionary[txtProductName.Text.Trim()];
+            if(txtProductName.Text.Trim()!="")
+            {
+                int productID = pidDictionary[txtProductName.Text.Trim()];
+                decimal _currStock = GetCurrentStock(productID);
+                txtCurrentStock.Text = _currStock.ToString();
+            }
+            
 
-            decimal _currStock = GetCurrentStock(productID);
-            txtCurrentStock.Text = _currStock.ToString();
+            
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            ProductTempSale();
-            SendProductinfForBill();
+            if(dataGridViewSale.RowCount>1)
+            {
+                ProductTempSale();
+                SendProductinfForBill();
+            }
+            else
+            {
+                MessageBox.Show("No Record(s) to Proceed Further!!!");
+            }
+            
             //var tb = new testRunner();
             //tb.ShowDialog(this);  
             
@@ -477,6 +519,10 @@ namespace RawForms
 
         public void ProductFinalSale(string localbillNo)
         {
+            decimal _stock, _ob, _cb, _sellQty, _unitPrice, _totalPrice, _sumTotal = 0;
+            int _prodID;
+            int _stockID;
+
             var database = new InventoryEntities();
             var productIds = (from c in database.TempBills
                               join d in database.ProductStocks on c.ProductID equals d.ProductID
@@ -496,9 +542,9 @@ namespace RawForms
             //for (int i = 0; i < _noofProd ; i++)
             foreach(var prodId in productIds.ToList())
             {
-                var _prodID = Convert.ToInt32(prodId.ProductID.ToString());
-                int _stockID = Convert.ToInt32(prodId.StockID.ToString());
-                decimal _stock, _ob, _cb, _sellQty, _unitPrice, _totalPrice;
+                 _prodID = Convert.ToInt32(prodId.ProductID.ToString());
+                 _stockID = Convert.ToInt32(prodId.StockID.ToString());
+                
                 
                 var list = (from c in database.ProductStocks
                             join d in database.StockChilds on c.StockID equals d.StockID
@@ -523,7 +569,7 @@ namespace RawForms
                 _sellQty = Convert.ToDecimal(prodId.Quantity.ToString());
                 _unitPrice = Convert.ToDecimal(prodId.UnitPrice.ToString());
                 _totalPrice = _unitPrice * _sellQty;
-
+                _sumTotal += _totalPrice;
                 _ob = _stock;
                 _cb = _stock - _sellQty;
 
@@ -555,8 +601,11 @@ namespace RawForms
 
                 database.SaveChanges();
 
-                TempBillClear(localbillNo);
+               
             }
+            TempBillClear(localbillNo);
+            CustomerEntry(localbillNo, _sumTotal, customerBillData, customerInfoDetails);
+
         }
 
         public string GetBillNumber()
@@ -606,13 +655,46 @@ namespace RawForms
             
 
         }
-        public void CallBackFromReport(string billno)
+        public void CallBackFromReport(string billno, CustomerBillData cusBill, CustomerInfoDetails custInfo)
         {
             MessageBox.Show("Please enter First Name!" + billno);
+            customerBillData = cusBill;
+            customerInfoDetails = custInfo;
  
             ProductFinalSale(billno);
         }
 
+        public void CustomerEntry(string billNo, decimal sumTotal, CustomerBillData cusBill, CustomerInfoDetails custInfo)
+        {
+            var database = new InventoryEntities();
+            var billTypeIDList = (from c in database.BillTypes
+                                  where c.BillTypeName == "Cash"
+                                  select new
+                                  {
+                                      c.BillTypeID
 
+                                  }).FirstOrDefault();
+
+            var custInfoTable = new CustomerInfo();
+            var billInfoTable = new BillInfo();
+            custInfoTable.CustomerName = custInfo.custName;
+            custInfoTable.CustomerAddress = custInfo.custAddress;
+            custInfoTable.Mobile = custInfo.custMobile;
+            custInfoTable.Email = custInfo.custEmail;
+            database.CustomerInfoes.Add(custInfoTable);
+
+
+            billInfoTable.BillNumber = billNo;
+            billInfoTable.BillTypeID = billTypeIDList.BillTypeID;//Cash or Credit Bill
+            billInfoTable.TotalAmount = sumTotal;
+            billInfoTable.Discount = custInfo.custDiscount;
+            billInfoTable.BillDate = DateTime.Now.Date;
+            billInfoTable.UpdatedOn = DateTime.Now;
+            billInfoTable.CustomerInfo = custInfoTable;
+            //database.CustomerInfoes.Add(custInfoTable);
+            database.BillInfoes.Add(billInfoTable);
+            database.SaveChanges();
+
+        }
     }
 }
