@@ -559,8 +559,38 @@ namespace RawForms
 
         public string GetBillNumber()
         {
+            StringBuilder sb = new StringBuilder();
+            string billString = "SLS";
+            DateTime todaysDate = DateTime.Now.Date;
+            string day = DateTime.Now.ToString("dd");
+            string month = DateTime.Now.ToString("MM");
+            string year = DateTime.Now.ToString("yyyy");
+            int latestBill = 0;
+            var database = new InventoryEntities();
+            var txnTypelist = (from c in database.TransactionTypes
+                               where c.TransactionTypeName == "Sell"
+                               select new
+                               {
+                                   c.TransactionTypeID
+                               }).FirstOrDefault();
+            int txnType = txnTypelist.TransactionTypeID;
+            var billcount = (from c in database.TransactionDetails
+                             where c.TranctionTypeID == txnType
+                             select new
+                             {
+                                 c.BillNumber
 
-            return "SELLXXXXX";
+                             }).Distinct() ;
+            latestBill = billcount.Count() + 1;
+            string strLatestBill = String.Format("{0:D6}", latestBill);
+            sb.Append(billString);
+            sb.Append(year);
+            sb.Append(month);
+            sb.Append(day);
+            sb.Append(strLatestBill);
+            billString = sb.ToString();
+
+            return billString;
         }
 
         public void TempBillClear(string _billNo)
