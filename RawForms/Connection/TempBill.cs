@@ -12,20 +12,14 @@ namespace RawForms.Connection
     using System;
     using System.Collections.Generic;
     
-    public partial class TransactionDetail
+    public partial class TempBill
     {
-        public int TransactionID { get; set; }
-        public int ProductID { get; set; }
-        public int TranctionTypeID { get; set; }
+        public int TempID { get; set; }
+        public string BillNumber { get; set; }
+        public Nullable<int> ProductID { get; set; }
+        public string ProductDesc { get; set; }
         public Nullable<decimal> Quantity { get; set; }
         public Nullable<decimal> UnitPrice { get; set; }
         public Nullable<decimal> TotalPrice { get; set; }
-        public Nullable<decimal> OpeningBalance { get; set; }
-        public Nullable<decimal> ClosingBalance { get; set; }
-        public Nullable<System.DateTime> UpdatedOn { get; set; }
-        public string BillNumber { get; set; }
-    
-        public virtual ProductInfo ProductInfo { get; set; }
-        public virtual TransactionType TransactionType { get; set; }
     }
 }

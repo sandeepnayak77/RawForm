@@ -282,6 +282,7 @@ namespace RawForms
 
         public void StockUpdae()
         {
+            string strBillNo = GetBillNumber();
             for (int i = 0; i < dataGridView1.RowCount-1; i++)
             {
                 int _prodID = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
@@ -325,7 +326,7 @@ namespace RawForms
                 txnDetail.OpeningBalance = _ob;
                 txnDetail.ClosingBalance = _cb;
                 txnDetail.UpdatedOn = System.DateTime.Now;
-                txnDetail.BillID = 1;
+                txnDetail.BillNumber = strBillNo;
 
                 database.TransactionDetails.Add(txnDetail);
 
@@ -476,10 +477,10 @@ namespace RawForms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //StockUpdae();
+            StockUpdae();
             //dataGridView1.Dispose();
-            //dataGridView1.Rows.Clear();
-            PrintPreview();
+            dataGridView1.Rows.Clear();
+            //PrintPreview();
         }
 
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -537,5 +538,46 @@ namespace RawForms
         {
             e.Graphics.DrawImage(bmp,0,0);
         }
+
+
+        public string GetBillNumber()
+        {
+            StringBuilder sb = new StringBuilder();
+            string billString = "SLB";
+            DateTime todaysDate = DateTime.Now.Date;
+            string day = DateTime.Now.ToString("dd");
+            string month = DateTime.Now.ToString("MM");
+            string year = DateTime.Now.ToString("yyyy");
+            int latestBill = 0;
+            var database = new InventoryEntities();
+            var txnTypelist = (from c in database.TransactionTypes
+                               where c.TransactionTypeName == "Buy"
+                               select new
+                               {
+                                   c.TransactionTypeID
+                               }).FirstOrDefault();
+            int txnType = txnTypelist.TransactionTypeID;
+            var billcount = (from c in database.TransactionDetails
+                             where c.TranctionTypeID == txnType
+                             select new
+                             {
+                                 c.BillNumber
+
+                             }).Distinct();
+            latestBill = billcount.Count() + 1;
+            string strLatestBill = String.Format("{0:D6}", latestBill);
+            sb.Append(billString);
+            sb.Append(year);
+            sb.Append(month);
+            sb.Append(day);
+            sb.Append(strLatestBill);
+            billString = sb.ToString();
+
+            return billString;
+        }
+
+
+
+
     }
 }

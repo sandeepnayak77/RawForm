@@ -1,6 +1,6 @@
 ﻿namespace RawForms
 {
-    partial class ProductSale
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -28,23 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtProductName = new System.Windows.Forms.TextBox();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblProduct = new System.Windows.Forms.Label();
-            this.btnadd = new System.Windows.Forms.Button();
             this.txtCurrentStock = new System.Windows.Forms.TextBox();
-            this.txtQuantity = new System.Windows.Forms.TextBox();
             this.lblCurrentStock = new System.Windows.Forms.Label();
             this.lblQuantity = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridViewSale = new System.Windows.Forms.DataGridView();
             this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CatagoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,46 +56,37 @@
             this.SalesPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.timerSales = new System.Windows.Forms.Timer(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnCancle = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSale)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.txtProductName);
+            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.lblDate);
             this.panel1.Controls.Add(this.lblProduct);
-            this.panel1.Controls.Add(this.btnadd);
             this.panel1.Controls.Add(this.txtCurrentStock);
-            this.panel1.Controls.Add(this.txtQuantity);
             this.panel1.Controls.Add(this.lblCurrentStock);
             this.panel1.Controls.Add(this.lblQuantity);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1001, 87);
-            this.panel1.TabIndex = 0;
-            // 
-            // txtProductName
-            // 
-            this.txtProductName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.txtProductName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtProductName.Location = new System.Drawing.Point(152, 9);
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(560, 20);
-            this.txtProductName.TabIndex = 30;
-            this.txtProductName.Leave += new System.EventHandler(this.txtProductName_Leave);
+            this.panel1.Size = new System.Drawing.Size(912, 87);
+            this.panel1.TabIndex = 1;
             // 
             // lblDate
             // 
             this.lblDate.Dock = System.Windows.Forms.DockStyle.Right;
             this.lblDate.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(773, 0);
+            this.lblDate.Location = new System.Drawing.Point(718, 0);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(228, 87);
+            this.lblDate.Size = new System.Drawing.Size(194, 87);
             this.lblDate.TabIndex = 31;
             this.lblDate.Text = "Date";
             this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -112,27 +94,13 @@
             // lblProduct
             // 
             this.lblProduct.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProduct.Location = new System.Drawing.Point(34, 9);
+            this.lblProduct.Location = new System.Drawing.Point(364, 0);
             this.lblProduct.Name = "lblProduct";
-            this.lblProduct.Size = new System.Drawing.Size(112, 23);
+            this.lblProduct.Size = new System.Drawing.Size(220, 41);
             this.lblProduct.TabIndex = 31;
-            this.lblProduct.Text = "Product Name";
+            this.lblProduct.Text = "Bill Preview";
             this.lblProduct.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnadd
-            // 
-            this.btnadd.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnadd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnadd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnadd.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnadd.ForeColor = System.Drawing.Color.White;
-            this.btnadd.Location = new System.Drawing.Point(272, 32);
-            this.btnadd.Name = "btnadd";
-            this.btnadd.Size = new System.Drawing.Size(65, 26);
-            this.btnadd.TabIndex = 34;
-            this.btnadd.Text = "Add";
-            this.btnadd.UseVisualStyleBackColor = false;
-            this.btnadd.Click += new System.EventHandler(this.btnadd_Click);
+            this.lblProduct.Click += new System.EventHandler(this.lblProduct_Click);
             // 
             // txtCurrentStock
             // 
@@ -145,13 +113,6 @@
             this.txtCurrentStock.Size = new System.Drawing.Size(100, 20);
             this.txtCurrentStock.TabIndex = 33;
             // 
-            // txtQuantity
-            // 
-            this.txtQuantity.Location = new System.Drawing.Point(152, 36);
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(100, 20);
-            this.txtQuantity.TabIndex = 33;
-            // 
             // lblCurrentStock
             // 
             this.lblCurrentStock.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -160,83 +121,18 @@
             this.lblCurrentStock.Name = "lblCurrentStock";
             this.lblCurrentStock.Size = new System.Drawing.Size(119, 23);
             this.lblCurrentStock.TabIndex = 32;
-            this.lblCurrentStock.Text = "Current Stock";
+            this.lblCurrentStock.Text = "Customer Name";
             this.lblCurrentStock.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblQuantity
             // 
             this.lblQuantity.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuantity.Location = new System.Drawing.Point(48, 36);
+            this.lblQuantity.Location = new System.Drawing.Point(48, 32);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(83, 23);
             this.lblQuantity.TabIndex = 32;
-            this.lblQuantity.Text = "Quantity";
+            this.lblQuantity.Text = "BillNo : ";
             this.lblQuantity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnSave);
-            this.panel2.Controls.Add(this.btnExit);
-            this.panel2.Controls.Add(this.btnCancel);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 439);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1001, 56);
-            this.panel2.TabIndex = 1;
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(185, 12);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(193, 37);
-            this.btnSave.TabIndex = 30;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(623, 12);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(193, 37);
-            this.btnExit.TabIndex = 31;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(405, 12);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(193, 37);
-            this.btnCancel.TabIndex = 32;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.dataGridViewSale);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 87);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1001, 352);
-            this.panel3.TabIndex = 2;
             // 
             // dataGridViewSale
             // 
@@ -244,14 +140,14 @@
             this.dataGridViewSale.AllowUserToDeleteRows = false;
             this.dataGridViewSale.AllowUserToResizeColumns = false;
             this.dataGridViewSale.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewSale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewSale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewSale.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductID,
             this.CatagoryID,
@@ -272,24 +168,20 @@
             this.SalesPrice,
             this.Total,
             this.Delete});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewSale.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewSale.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewSale.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewSale.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewSale.Location = new System.Drawing.Point(0, 87);
             this.dataGridViewSale.Name = "dataGridViewSale";
             this.dataGridViewSale.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewSale.Size = new System.Drawing.Size(1001, 352);
-            this.dataGridViewSale.TabIndex = 28;
-            this.dataGridViewSale.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSale_CellContentClick);
-            this.dataGridViewSale.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSale_CellValueChanged);
-            this.dataGridViewSale.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewSale_EditingControlShowing);
-            this.dataGridViewSale.DoubleClick += new System.EventHandler(this.dataGridViewSale_DoubleClick);
+            this.dataGridViewSale.Size = new System.Drawing.Size(912, 467);
+            this.dataGridViewSale.TabIndex = 29;
             // 
             // ProductID
             // 
@@ -436,29 +328,86 @@
             this.Delete.Text = "Delete";
             this.Delete.Width = 50;
             // 
-            // timerSales
+            // panel2
             // 
-            this.timerSales.Enabled = true;
-            this.timerSales.Interval = 1000;
-            this.timerSales.Tick += new System.EventHandler(this.timerSales_Tick);
+            this.panel2.Controls.Add(this.btnOk);
+            this.panel2.Controls.Add(this.btnCancle);
+            this.panel2.Controls.Add(this.btnEdit);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 498);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(912, 56);
+            this.panel2.TabIndex = 30;
             // 
-            // ProductSale
+            // btnOk
+            // 
+            this.btnOk.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOk.ForeColor = System.Drawing.Color.White;
+            this.btnOk.Location = new System.Drawing.Point(185, 12);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(193, 37);
+            this.btnOk.TabIndex = 30;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = false;
+            // 
+            // btnCancle
+            // 
+            this.btnCancle.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCancle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancle.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancle.ForeColor = System.Drawing.Color.White;
+            this.btnCancle.Location = new System.Drawing.Point(623, 12);
+            this.btnCancle.Name = "btnCancle";
+            this.btnCancle.Size = new System.Drawing.Size(193, 37);
+            this.btnCancle.TabIndex = 31;
+            this.btnCancle.Text = "Cancel";
+            this.btnCancle.UseVisualStyleBackColor = false;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(405, 12);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(193, 37);
+            this.btnEdit.TabIndex = 32;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.textBox1.ForeColor = System.Drawing.Color.Green;
+            this.textBox1.Location = new System.Drawing.Point(125, 35);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 34;
+            // 
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1001, 495);
-            this.Controls.Add(this.panel3);
+            this.ClientSize = new System.Drawing.Size(912, 554);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.dataGridViewSale);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ProductSale";
-            this.Text = "ProductSale";
-            this.Load += new System.EventHandler(this.ProductSale_Load);
+            this.Name = "Form1";
+            this.Text = "Salepreview";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSale)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -466,21 +415,12 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblProduct;
-        private System.Windows.Forms.Button btnadd;
-        private System.Windows.Forms.TextBox txtQuantity;
-        private System.Windows.Forms.Label lblQuantity;
-        private System.Windows.Forms.Timer timerSales;
-        private System.Windows.Forms.DataGridView dataGridViewSale;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtCurrentStock;
         private System.Windows.Forms.Label lblCurrentStock;
+        private System.Windows.Forms.Label lblQuantity;
+        private System.Windows.Forms.DataGridView dataGridViewSale;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CatagoryID;
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeID;
@@ -500,5 +440,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SalesPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnCancle;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

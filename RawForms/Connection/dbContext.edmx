@@ -108,6 +108,36 @@
           <Property Name="SubTypeID" Type="int" Nullable="false" />
           <Property Name="VarientName" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="BillInfo">
+          <Key>
+            <PropertyRef Name="BillID" />
+          </Key>
+          <Property Name="BillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillNumber" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="BillTypeID" Type="int" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="BillDate" Type="datetime" />
+          <Property Name="UpdatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="BillType">
+          <Key>
+            <PropertyRef Name="BillTypeID" />
+          </Key>
+          <Property Name="BillTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerInfo">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="30" />
+          <Property Name="CustomerAddress" Type="varchar" MaxLength="200" />
+          <Property Name="Mobile" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="StockChild">
           <Key>
             <PropertyRef Name="StockChildID" />
@@ -117,6 +147,18 @@
           <Property Name="OpeningBalance" Type="decimal" Precision="18" Scale="3" />
           <Property Name="ClosingBalance" Type="decimal" Precision="18" Scale="3" />
           <Property Name="LastUpdated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TempBill">
+          <Key>
+            <PropertyRef Name="TempID" />
+          </Key>
+          <Property Name="TempID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillNumber" Type="varchar" MaxLength="50" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="ProductDesc" Type="varchar" MaxLength="50" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="3" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="3" />
         </EntityType>
         <EntityType Name="TransactionDetail">
           <Key>
@@ -131,7 +173,7 @@
           <Property Name="OpeningBalance" Type="decimal" Precision="18" Scale="3" />
           <Property Name="ClosingBalance" Type="decimal" Precision="18" Scale="3" />
           <Property Name="UpdatedOn" Type="datetime" />
-          <Property Name="BillID" Type="int" />
+          <Property Name="BillNumber" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TransactionType">
           <Key>
@@ -148,6 +190,20 @@
           <Property Name="RoleName" Type="varchar" MaxLength="50" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ShopInfo">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopName" Type="varchar" MaxLength="50" />
+          <Property Name="ShopAddress" Type="varchar" MaxLength="200" />
+          <Property Name="ZIP" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Dist" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
+          <Property Name="Gstn" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
@@ -171,6 +227,30 @@
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="DeletedFlag" Type="bit" />
         </EntityType>
+        <Association Name="FK_BillInfo_BillType">
+          <End Role="BillType" Type="Self.BillType" Multiplicity="0..1" />
+          <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillType">
+              <PropertyRef Name="BillTypeID" />
+            </Principal>
+            <Dependent Role="BillInfo">
+              <PropertyRef Name="BillTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillInfo_CustomerInfo">
+          <End Role="CustomerInfo" Type="Self.CustomerInfo" Multiplicity="0..1" />
+          <End Role="BillInfo" Type="Self.BillInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="BillInfo">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductInfo_ProductCatagory">
           <End Role="ProductCatagory" Type="Self.ProductCatagory" Multiplicity="1" />
           <End Role="ProductInfo" Type="Self.ProductInfo" Multiplicity="*" />
@@ -351,11 +431,24 @@
           <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="Product" store:Type="Tables" />
           <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" Schema="Product" store:Type="Tables" />
           <EntitySet Name="ProductVarient" EntityType="Self.ProductVarient" Schema="Product" store:Type="Tables" />
+          <EntitySet Name="BillInfo" EntityType="Self.BillInfo" Schema="Transaction" store:Type="Tables" />
+          <EntitySet Name="BillType" EntityType="Self.BillType" Schema="Transaction" store:Type="Tables" />
+          <EntitySet Name="CustomerInfo" EntityType="Self.CustomerInfo" Schema="Transaction" store:Type="Tables" />
           <EntitySet Name="StockChild" EntityType="Self.StockChild" Schema="Transaction" store:Type="Tables" />
+          <EntitySet Name="TempBill" EntityType="Self.TempBill" Schema="Transaction" store:Type="Tables" />
           <EntitySet Name="TransactionDetail" EntityType="Self.TransactionDetail" Schema="Transaction" store:Type="Tables" />
           <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="Transaction" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="User" store:Type="Tables" />
+          <EntitySet Name="ShopInfo" EntityType="Self.ShopInfo" Schema="User" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="User" store:Type="Tables" />
+          <AssociationSet Name="FK_BillInfo_BillType" Association="Self.FK_BillInfo_BillType">
+            <End Role="BillType" EntitySet="BillType" />
+            <End Role="BillInfo" EntitySet="BillInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillInfo_CustomerInfo" Association="Self.FK_BillInfo_CustomerInfo">
+            <End Role="CustomerInfo" EntitySet="CustomerInfo" />
+            <End Role="BillInfo" EntitySet="BillInfo" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductInfo_ProductCatagory" Association="Self.FK_ProductInfo_ProductCatagory">
             <End Role="ProductCatagory" EntitySet="ProductCatagory" />
             <End Role="ProductInfo" EntitySet="ProductInfo" />
@@ -523,16 +616,29 @@
             <End Role="StockChild" EntitySet="StockChilds" />
           </AssociationSet>
           <EntitySet Name="TransactionTypes" EntityType="InventoryModel.TransactionType" />
+          <EntitySet Name="BillInfoes" EntityType="InventoryModel.BillInfo" />
+          <EntitySet Name="BillTypes" EntityType="InventoryModel.BillType" />
+          <EntitySet Name="CustomerInfoes" EntityType="InventoryModel.CustomerInfo" />
           <EntitySet Name="TransactionDetails" EntityType="InventoryModel.TransactionDetail" />
           <AssociationSet Name="FK_TransactionDetail_ProductInfo" Association="InventoryModel.FK_TransactionDetail_ProductInfo">
             <End Role="ProductInfo" EntitySet="ProductInfoes" />
             <End Role="TransactionDetail" EntitySet="TransactionDetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_BillInfo_BillType" Association="InventoryModel.FK_BillInfo_BillType">
+            <End Role="BillType" EntitySet="BillTypes" />
+            <End Role="BillInfo" EntitySet="BillInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillInfo_CustomerInfo" Association="InventoryModel.FK_BillInfo_CustomerInfo">
+            <End Role="CustomerInfo" EntitySet="CustomerInfoes" />
+            <End Role="BillInfo" EntitySet="BillInfoes" />
+          </AssociationSet>
           <AssociationSet Name="FK_TransactionDetail_TransactionType" Association="InventoryModel.FK_TransactionDetail_TransactionType">
             <End Role="TransactionType" EntitySet="TransactionTypes" />
             <End Role="TransactionDetail" EntitySet="TransactionDetails" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="TempBills" EntityType="InventoryModel.TempBill" />
+          <EntitySet Name="ShopInfoes" EntityType="InventoryModel.ShopInfo" />
+          </EntityContainer>
         <EntityType Name="UserAuth">
           <Key>
             <PropertyRef Name="AuthId" />
@@ -812,6 +918,40 @@
           <Property Name="TransactionTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TransactionDetails" Relationship="InventoryModel.FK_TransactionDetail_TransactionType" FromRole="TransactionType" ToRole="TransactionDetail" />
         </EntityType>
+        <EntityType Name="BillInfo">
+          <Key>
+            <PropertyRef Name="BillID" />
+          </Key>
+          <Property Name="BillID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="BillTypeID" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="BillDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BillType" Relationship="InventoryModel.FK_BillInfo_BillType" FromRole="BillInfo" ToRole="BillType" />
+          <NavigationProperty Name="CustomerInfo" Relationship="InventoryModel.FK_BillInfo_CustomerInfo" FromRole="BillInfo" ToRole="CustomerInfo" />
+        </EntityType>
+        <EntityType Name="BillType">
+          <Key>
+            <PropertyRef Name="BillTypeID" />
+          </Key>
+          <Property Name="BillTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BillInfoes" Relationship="InventoryModel.FK_BillInfo_BillType" FromRole="BillType" ToRole="BillInfo" />
+        </EntityType>
+        <EntityType Name="CustomerInfo">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BillInfoes" Relationship="InventoryModel.FK_BillInfo_CustomerInfo" FromRole="CustomerInfo" ToRole="BillInfo" />
+        </EntityType>
         <EntityType Name="TransactionDetail">
           <Key>
             <PropertyRef Name="TransactionID" />
@@ -825,7 +965,7 @@
           <Property Name="OpeningBalance" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="ClosingBalance" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <Property Name="BillID" Type="Int32" />
+          <Property Name="BillNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ProductInfo" Relationship="InventoryModel.FK_TransactionDetail_ProductInfo" FromRole="TransactionDetail" ToRole="ProductInfo" />
           <NavigationProperty Name="TransactionType" Relationship="InventoryModel.FK_TransactionDetail_TransactionType" FromRole="TransactionDetail" ToRole="TransactionType" />
         </EntityType>
@@ -841,6 +981,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BillInfo_BillType">
+          <End Type="InventoryModel.BillType" Role="BillType" Multiplicity="0..1" />
+          <End Type="InventoryModel.BillInfo" Role="BillInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillType">
+              <PropertyRef Name="BillTypeID" />
+            </Principal>
+            <Dependent Role="BillInfo">
+              <PropertyRef Name="BillTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillInfo_CustomerInfo">
+          <End Type="InventoryModel.CustomerInfo" Role="CustomerInfo" Multiplicity="0..1" />
+          <End Type="InventoryModel.BillInfo" Role="BillInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerInfo">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="BillInfo">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TransactionDetail_TransactionType">
           <End Type="InventoryModel.TransactionType" Role="TransactionType" Multiplicity="1" />
           <End Type="InventoryModel.TransactionDetail" Role="TransactionDetail" Multiplicity="*" />
@@ -853,7 +1017,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="TempBill">
+          <Key>
+            <PropertyRef Name="TempID" />
+          </Key>
+          <Property Name="TempID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="ProductDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="3" />
+        </EntityType>
+        <EntityType Name="ShopInfo">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShopAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ZIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dist" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gstn" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1025,10 +1215,43 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BillInfoes">
+            <EntityTypeMapping TypeName="InventoryModel.BillInfo">
+              <MappingFragment StoreEntitySet="BillInfo">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="BillDate" ColumnName="BillDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="BillTypeID" ColumnName="BillTypeID" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
+                <ScalarProperty Name="BillID" ColumnName="BillID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillTypes">
+            <EntityTypeMapping TypeName="InventoryModel.BillType">
+              <MappingFragment StoreEntitySet="BillType">
+                <ScalarProperty Name="BillTypeName" ColumnName="BillTypeName" />
+                <ScalarProperty Name="BillTypeID" ColumnName="BillTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerInfoes">
+            <EntityTypeMapping TypeName="InventoryModel.CustomerInfo">
+              <MappingFragment StoreEntitySet="CustomerInfo">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TransactionDetails">
             <EntityTypeMapping TypeName="InventoryModel.TransactionDetail">
               <MappingFragment StoreEntitySet="TransactionDetail">
-                <ScalarProperty Name="BillID" ColumnName="BillID" />
+                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="ClosingBalance" ColumnName="ClosingBalance" />
                 <ScalarProperty Name="OpeningBalance" ColumnName="OpeningBalance" />
@@ -1038,6 +1261,34 @@
                 <ScalarProperty Name="TranctionTypeID" ColumnName="TranctionTypeID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TempBills">
+            <EntityTypeMapping TypeName="InventoryModel.TempBill">
+              <MappingFragment StoreEntitySet="TempBill">
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductDesc" ColumnName="ProductDesc" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
+                <ScalarProperty Name="TempID" ColumnName="TempID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShopInfoes">
+            <EntityTypeMapping TypeName="InventoryModel.ShopInfo">
+              <MappingFragment StoreEntitySet="ShopInfo">
+                <ScalarProperty Name="Gstn" ColumnName="Gstn" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Dist" ColumnName="Dist" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="ShopAddress" ColumnName="ShopAddress" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
