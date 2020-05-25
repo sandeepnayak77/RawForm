@@ -1,6 +1,7 @@
 ﻿using Microsoft.Reporting.WinForms;
 using RawForms.AppUtil;
 using RawForms.Connection;
+using RawForms.Dialog;
 using RawForms.Entities;
 using RawForms.Reports;
 using System;
@@ -447,7 +448,8 @@ namespace RawForms
             List<CustomerBillProduct> billProdList = new List<CustomerBillProduct>();
             billProdList.Clear();
 
-            CustomerBillForm cust = new CustomerBillForm();
+            //CustomerBillForm cust = new CustomerBillForm();
+            CustomerDetails custinfo = new CustomerDetails();
 
             for (int i = 0; i <= dataGridViewSale.RowCount - 2; i++) //count-2 because one header and one grand total at last row
             {
@@ -467,8 +469,8 @@ namespace RawForms
             customerBillData.gstn = "GST043621987PS";
             customerBillData.billNo = _globalBillNo;
             customerBillData.billData = billProdList;
-            cust.showBill(customerBillData);
-            cust.ShowDialog(this);
+            custinfo.prodBillInfoPass(customerBillData, _globalBillNo);
+            custinfo.ShowDialog(this);
             
         }
 

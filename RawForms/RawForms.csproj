@@ -184,7 +184,14 @@
     <Compile Include="Dialog\AddNewVariant.Designer.cs">
       <DependentUpon>AddNewVariant.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\CustomerDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\CustomerDetails.Designer.cs">
+      <DependentUpon>CustomerDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\CustomerBillData.cs" />
+    <Compile Include="Entities\CustomerInfoDetails.cs" />
     <Compile Include="Entities\Money.cs" />
     <Compile Include="Entities\Results.cs" />
     <Compile Include="ForgotPassword.cs">
@@ -287,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\AddNewVariant.resx">
       <DependentUpon>AddNewVariant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\CustomerDetails.resx">
+      <DependentUpon>CustomerDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ForgotPassword.resx">
       <DependentUpon>ForgotPassword.cs</DependentUpon>
