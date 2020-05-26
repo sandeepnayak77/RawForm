@@ -28,35 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.reportViewerCustBill = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelBtn = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.panel2.SuspendLayout();
+            this.panelReport = new System.Windows.Forms.Panel();
+            this.reportViewerCustBill = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.panelBtn.SuspendLayout();
+            this.panelReport.SuspendLayout();
             this.SuspendLayout();
             // 
-            // reportViewerCustBill
+            // panelBtn
             // 
-            this.reportViewerCustBill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportViewerCustBill.LocalReport.ReportEmbeddedResource = "RawForms.Reports.CustomerBill.rdlc";
-            this.reportViewerCustBill.Location = new System.Drawing.Point(0, 0);
-            this.reportViewerCustBill.Name = "reportViewerCustBill";
-            this.reportViewerCustBill.ServerReport.BearerToken = null;
-            this.reportViewerCustBill.Size = new System.Drawing.Size(979, 576);
-            this.reportViewerCustBill.TabIndex = 0;
-            this.reportViewerCustBill.Load += new System.EventHandler(this.reportViewerCustBill_Load);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnSave);
-            this.panel2.Controls.Add(this.btnExit);
-            this.panel2.Controls.Add(this.btnEdit);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 520);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(979, 56);
-            this.panel2.TabIndex = 2;
+            this.panelBtn.Controls.Add(this.btnSave);
+            this.panelBtn.Controls.Add(this.btnExit);
+            this.panelBtn.Controls.Add(this.btnEdit);
+            this.panelBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBtn.Location = new System.Drawing.Point(0, 520);
+            this.panelBtn.Name = "panelBtn";
+            this.panelBtn.Size = new System.Drawing.Size(878, 56);
+            this.panelBtn.TabIndex = 2;
             // 
             // btnSave
             // 
@@ -102,28 +93,51 @@
             this.btnEdit.TabIndex = 32;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // panelReport
+            // 
+            this.panelReport.Controls.Add(this.reportViewerCustBill);
+            this.panelReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelReport.Location = new System.Drawing.Point(0, 0);
+            this.panelReport.Name = "panelReport";
+            this.panelReport.Size = new System.Drawing.Size(878, 520);
+            this.panelReport.TabIndex = 3;
+            // 
+            // reportViewerCustBill
+            // 
+            this.reportViewerCustBill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewerCustBill.LocalReport.ReportEmbeddedResource = "RawForms.Reports.CustomerBill.rdlc";
+            this.reportViewerCustBill.Location = new System.Drawing.Point(0, 0);
+            this.reportViewerCustBill.Name = "reportViewerCustBill";
+            this.reportViewerCustBill.ServerReport.BearerToken = null;
+            this.reportViewerCustBill.Size = new System.Drawing.Size(878, 520);
+            this.reportViewerCustBill.TabIndex = 0;
+            this.reportViewerCustBill.Load += new System.EventHandler(this.reportViewerCustBill_Load);
             // 
             // CustomerBillForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(979, 576);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.reportViewerCustBill);
+            this.ClientSize = new System.Drawing.Size(878, 576);
+            this.Controls.Add(this.panelReport);
+            this.Controls.Add(this.panelBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CustomerBillForm";
             this.Text = "CustomerBillForm";
             this.Load += new System.EventHandler(this.CustomerBillForm_Load);
-            this.panel2.ResumeLayout(false);
+            this.panelBtn.ResumeLayout(false);
+            this.panelReport.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelBtn;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Panel panelReport;
         public Microsoft.Reporting.WinForms.ReportViewer reportViewerCustBill;
     }
 }

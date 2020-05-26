@@ -17,10 +17,17 @@ namespace RawForms.Reports
         ReportDataSource rs = new ReportDataSource();
         CustomerBillData customerBillData = new CustomerBillData();
         CustomerInfoDetails customerInfoDetails = new CustomerInfoDetails();
+        ReportParameterCollection rp = new ReportParameterCollection();
+        ProductSale productSale = new ProductSale();
         string _billNo = string.Empty;
         
         public CustomerBillForm()
         {
+            InitializeComponent();
+        }
+        public CustomerBillForm(ProductSale prodSale)
+        {
+            productSale = prodSale;
             InitializeComponent();
         }
 
@@ -52,10 +59,12 @@ namespace RawForms.Reports
             this.reportViewerCustBill.LocalReport.DataSources.Clear();
             this.reportViewerCustBill.LocalReport.DataSources.Add(rs);
             this.reportViewerCustBill.LocalReport.ReportEmbeddedResource = "RawForms.Reports.CustomerBill.rdlc";            
-            ReportParameterCollection rp = new ReportParameterCollection();
+            
             rp.Add(new ReportParameter("gstNumber", cusBill.gstn));
             rp.Add(new ReportParameter("custName", custInfo.custName));
             rp.Add(new ReportParameter("custAddress", custInfo.custAddress));
+            rp.Add(new ReportParameter("billDate", custInfo.billDate.ToString("dd-MM-yyyy")));
+            rp.Add(new ReportParameter("billNumber", cusBill.billNo));
             this.reportViewerCustBill.LocalReport.SetParameters(rp);
             this.reportViewerCustBill.RefreshReport();
         }
@@ -63,18 +72,57 @@ namespace RawForms.Reports
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var ps = new ProductSale();
-            ps.CallBackFromReport(_billNo, customerBillData, customerInfoDetails);
+            if(btnSave.Text=="Save")
+            {
+                if ((MessageBox.Show("Are you Sure to Proceed ???", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                {
+                    btnSave.Text = "Print";
+                    btnExit.Text = "Close";
+                    btnEdit.Hide();
+                    var ps = new ProductSale();
+                    ps.CallBackFromReport(_billNo, customerBillData, customerInfoDetails, productSale);
+                }
+            }
+            else
+            {
+                if (btnSave.Text == "Print")
+                {
+                    this.reportViewerCustBill.PrintDialog();
+                }
+            }
+                
+            
+            
             //this.Close();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if(btnExit.Text=="Exit")
+            {
+                var ps = new ProductSale();
+                ps.CallBackFromReportExit(_billNo, productSale);
+                this.Close();
+            }
+            else
+            {
+                if (btnExit.Text == "Close")
+                {
+                    if ((MessageBox.Show("Do you Want to Close ???", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes))
+                        this.Close();
+                }
+            }
+                
+            
+            
         }
 
-
-
-        
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+                var ps = new ProductSale();
+                ps.CallBackFromReportEdit(_billNo, productSale);
+                this.Close();
+          
+        }
     }
 }

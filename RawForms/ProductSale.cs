@@ -434,6 +434,7 @@ namespace RawForms
         {
             if(dataGridViewSale.RowCount>1)
             {
+                
                 ProductTempSale();
                 SendProductinfForBill();
             }
@@ -491,7 +492,7 @@ namespace RawForms
             billProdList.Clear();
 
             //CustomerBillForm cust = new CustomerBillForm();
-            CustomerDetails custinfo = new CustomerDetails();
+            CustomerDetails custinfo = new CustomerDetails(this);
 
             for (int i = 0; i <= dataGridViewSale.RowCount - 2; i++) //count-2 because one header and one grand total at last row
             {
@@ -655,13 +656,25 @@ namespace RawForms
             
 
         }
-        public void CallBackFromReport(string billno, CustomerBillData cusBill, CustomerInfoDetails custInfo)
+        public void CallBackFromReport(string billno, CustomerBillData cusBill, CustomerInfoDetails custInfo, ProductSale prodSale)
         {
             MessageBox.Show("Please enter First Name!" + billno);
             customerBillData = cusBill;
             customerInfoDetails = custInfo;
- 
             ProductFinalSale(billno);
+            prodSale.dataGridViewSale.Rows.Clear();
+        }
+
+        public void CallBackFromReportEdit(string billno, ProductSale prodSale)
+        {
+            TempBillClear(billno);
+            
+        }
+
+        public void CallBackFromReportExit(string billno, ProductSale prodSale)
+        {
+            TempBillClear(billno);
+            prodSale.dataGridViewSale.Rows.Clear();
         }
 
         public void CustomerEntry(string billNo, decimal sumTotal, CustomerBillData cusBill, CustomerInfoDetails custInfo)
@@ -688,7 +701,7 @@ namespace RawForms
             billInfoTable.BillTypeID = billTypeIDList.BillTypeID;//Cash or Credit Bill
             billInfoTable.TotalAmount = sumTotal;
             billInfoTable.Discount = custInfo.custDiscount;
-            billInfoTable.BillDate = DateTime.Now.Date;
+            billInfoTable.BillDate = custInfo.billDate;
             billInfoTable.UpdatedOn = DateTime.Now;
             billInfoTable.CustomerInfo = custInfoTable;
             //database.CustomerInfoes.Add(custInfoTable);

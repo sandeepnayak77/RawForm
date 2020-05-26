@@ -16,9 +16,15 @@ namespace RawForms.Dialog
     public partial class CustomerDetails : Form
     {
         CustomerBillData custBillInfoData = new CustomerBillData();
+        ProductSale productSale = new ProductSale();
         string billnumber = "";
         public CustomerDetails()
         {
+            InitializeComponent();
+        }
+        public CustomerDetails(ProductSale prodSale)
+        {
+            productSale = prodSale;
             InitializeComponent();
         }
         private void CustomerDetails_Load(object sender, EventArgs e)
@@ -26,6 +32,8 @@ namespace RawForms.Dialog
             lblError.Text = "";
             lblError.ForeColor = Color.Red;
             lblBillNoView.Text = billnumber;
+            dateTimeBillDate.Format = DateTimePickerFormat.Custom;
+            dateTimeBillDate.CustomFormat = "dd-MM-yyyy";
         }
 
         private void lblLoginMessage_Click(object sender, EventArgs e)
@@ -54,9 +62,10 @@ namespace RawForms.Dialog
                 custDetails.custName = txtCustomerName.Text;
                 custDetails.custMobile = "9999999999";
                 custDetails.custEmail = "abc@gmail.com";
+                custDetails.billDate = dateTimeBillDate.Value.Date;
                 custDetails.custDiscount = 0;
                 this.Hide();
-                CustomerBillForm cust = new CustomerBillForm();
+                CustomerBillForm cust = new CustomerBillForm(productSale);
                 cust.showBill(custBillInfoData,custDetails);
                 cust.ShowDialog(this);
                 this.Close();
