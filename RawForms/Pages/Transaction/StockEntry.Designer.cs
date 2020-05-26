@@ -28,12 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockEntry));
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnadd = new System.Windows.Forms.Button();
+            this.txtNewStock = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.printPreviewDialogStockEntry = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocumentStockEntry = new System.Drawing.Printing.PrintDocument();
             this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CatagoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,18 +67,6 @@
             this.SalesPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnadd = new System.Windows.Forms.Button();
-            this.txtNewStock = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.printPreviewDialogStockEntry = new System.Windows.Forms.PrintPreviewDialog();
-            this.printDocumentStockEntry = new System.Drawing.Printing.PrintDocument();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -101,14 +101,14 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductID,
             this.CatagoryID,
@@ -131,14 +131,14 @@
             this.SalesPrice,
             this.Total,
             this.Delete});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
@@ -152,162 +152,6 @@
             this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView1_RowsAdded);
             this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView1_RowsRemoved);
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
-            // 
-            // ProductID
-            // 
-            this.ProductID.DataPropertyName = "ProductID";
-            this.ProductID.HeaderText = "ProductID";
-            this.ProductID.Name = "ProductID";
-            this.ProductID.Visible = false;
-            this.ProductID.Width = 89;
-            // 
-            // CatagoryID
-            // 
-            this.CatagoryID.DataPropertyName = "CatagoryID";
-            this.CatagoryID.HeaderText = "CatagoryID";
-            this.CatagoryID.Name = "CatagoryID";
-            this.CatagoryID.Visible = false;
-            this.CatagoryID.Width = 99;
-            // 
-            // TypeID
-            // 
-            this.TypeID.DataPropertyName = "TypeID";
-            this.TypeID.HeaderText = "TypeID";
-            this.TypeID.Name = "TypeID";
-            this.TypeID.Visible = false;
-            this.TypeID.Width = 74;
-            // 
-            // SubTypeID
-            // 
-            this.SubTypeID.DataPropertyName = "SubTypeID";
-            this.SubTypeID.HeaderText = "SubTypeID";
-            this.SubTypeID.Name = "SubTypeID";
-            this.SubTypeID.Visible = false;
-            this.SubTypeID.Width = 96;
-            // 
-            // VarientID
-            // 
-            this.VarientID.DataPropertyName = "VarientID";
-            this.VarientID.HeaderText = "VarientID";
-            this.VarientID.Name = "VarientID";
-            this.VarientID.Visible = false;
-            this.VarientID.Width = 87;
-            // 
-            // UnitID
-            // 
-            this.UnitID.DataPropertyName = "UnitID";
-            this.UnitID.HeaderText = "UnitID";
-            this.UnitID.Name = "UnitID";
-            this.UnitID.Visible = false;
-            this.UnitID.Width = 68;
-            // 
-            // UnitName
-            // 
-            this.UnitName.DataPropertyName = "UnitName";
-            this.UnitName.HeaderText = "UnitName";
-            this.UnitName.Name = "UnitName";
-            this.UnitName.Visible = false;
-            // 
-            // PriceID
-            // 
-            this.PriceID.DataPropertyName = "PriceID";
-            this.PriceID.HeaderText = "PriceID";
-            this.PriceID.Name = "PriceID";
-            this.PriceID.Visible = false;
-            this.PriceID.Width = 74;
-            // 
-            // StockID
-            // 
-            this.StockID.DataPropertyName = "StockID";
-            this.StockID.HeaderText = "StockID";
-            this.StockID.Name = "StockID";
-            this.StockID.Visible = false;
-            this.StockID.Width = 78;
-            // 
-            // ProductType
-            // 
-            this.ProductType.DataPropertyName = "TypeName";
-            this.ProductType.HeaderText = "Type";
-            this.ProductType.Name = "ProductType";
-            this.ProductType.ReadOnly = true;
-            this.ProductType.Width = 60;
-            // 
-            // SubType
-            // 
-            this.SubType.DataPropertyName = "SubTypeName";
-            this.SubType.HeaderText = "Sub-Type";
-            this.SubType.Name = "SubType";
-            this.SubType.ReadOnly = true;
-            this.SubType.Width = 87;
-            // 
-            // Variants
-            // 
-            this.Variants.DataPropertyName = "VarientName";
-            this.Variants.HeaderText = "Variety";
-            this.Variants.Name = "Variants";
-            this.Variants.ReadOnly = true;
-            // 
-            // Description
-            // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Description.DataPropertyName = "Description";
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            // 
-            // cmbUnit
-            // 
-            this.cmbUnit.HeaderText = "Unit";
-            this.cmbUnit.Name = "cmbUnit";
-            this.cmbUnit.Visible = false;
-            // 
-            // CurrentStock
-            // 
-            this.CurrentStock.DataPropertyName = "Stock";
-            this.CurrentStock.HeaderText = "Current Stock";
-            this.CurrentStock.Name = "CurrentStock";
-            this.CurrentStock.ReadOnly = true;
-            this.CurrentStock.Width = 112;
-            // 
-            // NewStock
-            // 
-            this.NewStock.HeaderText = "New Stock";
-            this.NewStock.Name = "NewStock";
-            this.NewStock.Width = 92;
-            // 
-            // CostPrice
-            // 
-            this.CostPrice.DataPropertyName = "CostPrice";
-            this.CostPrice.HeaderText = "Dealer Price";
-            this.CostPrice.Name = "CostPrice";
-            this.CostPrice.Width = 120;
-            // 
-            // MRP
-            // 
-            this.MRP.DataPropertyName = "MRP";
-            this.MRP.HeaderText = "MRP";
-            this.MRP.Name = "MRP";
-            this.MRP.Width = 120;
-            // 
-            // SalesPrice
-            // 
-            this.SalesPrice.DataPropertyName = "SalesPrice";
-            this.SalesPrice.HeaderText = "Sales Price";
-            this.SalesPrice.Name = "SalesPrice";
-            this.SalesPrice.Width = 120;
-            // 
-            // Total
-            // 
-            this.Total.DataPropertyName = "Total";
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            // 
-            // Delete
-            // 
-            this.Delete.HeaderText = "Delete";
-            this.Delete.Name = "Delete";
-            this.Delete.Text = "Delete";
-            this.Delete.Width = 50;
             // 
             // panel1
             // 
@@ -446,6 +290,176 @@
             // 
             this.printDocumentStockEntry.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocumentStockEntry_PrintPage);
             // 
+            // ProductID
+            // 
+            this.ProductID.DataPropertyName = "ProductID";
+            this.ProductID.HeaderText = "ProductID";
+            this.ProductID.Name = "ProductID";
+            this.ProductID.ReadOnly = true;
+            this.ProductID.Visible = false;
+            this.ProductID.Width = 89;
+            // 
+            // CatagoryID
+            // 
+            this.CatagoryID.DataPropertyName = "CatagoryID";
+            this.CatagoryID.HeaderText = "CatagoryID";
+            this.CatagoryID.Name = "CatagoryID";
+            this.CatagoryID.ReadOnly = true;
+            this.CatagoryID.Visible = false;
+            this.CatagoryID.Width = 99;
+            // 
+            // TypeID
+            // 
+            this.TypeID.DataPropertyName = "TypeID";
+            this.TypeID.HeaderText = "TypeID";
+            this.TypeID.Name = "TypeID";
+            this.TypeID.ReadOnly = true;
+            this.TypeID.Visible = false;
+            this.TypeID.Width = 74;
+            // 
+            // SubTypeID
+            // 
+            this.SubTypeID.DataPropertyName = "SubTypeID";
+            this.SubTypeID.HeaderText = "SubTypeID";
+            this.SubTypeID.Name = "SubTypeID";
+            this.SubTypeID.ReadOnly = true;
+            this.SubTypeID.Visible = false;
+            this.SubTypeID.Width = 96;
+            // 
+            // VarientID
+            // 
+            this.VarientID.DataPropertyName = "VarientID";
+            this.VarientID.HeaderText = "VarientID";
+            this.VarientID.Name = "VarientID";
+            this.VarientID.ReadOnly = true;
+            this.VarientID.Visible = false;
+            this.VarientID.Width = 87;
+            // 
+            // UnitID
+            // 
+            this.UnitID.DataPropertyName = "UnitID";
+            this.UnitID.HeaderText = "UnitID";
+            this.UnitID.Name = "UnitID";
+            this.UnitID.ReadOnly = true;
+            this.UnitID.Visible = false;
+            this.UnitID.Width = 68;
+            // 
+            // UnitName
+            // 
+            this.UnitName.DataPropertyName = "UnitName";
+            this.UnitName.HeaderText = "UnitName";
+            this.UnitName.Name = "UnitName";
+            this.UnitName.ReadOnly = true;
+            this.UnitName.Visible = false;
+            // 
+            // PriceID
+            // 
+            this.PriceID.DataPropertyName = "PriceID";
+            this.PriceID.HeaderText = "PriceID";
+            this.PriceID.Name = "PriceID";
+            this.PriceID.ReadOnly = true;
+            this.PriceID.Visible = false;
+            this.PriceID.Width = 74;
+            // 
+            // StockID
+            // 
+            this.StockID.DataPropertyName = "StockID";
+            this.StockID.HeaderText = "StockID";
+            this.StockID.Name = "StockID";
+            this.StockID.ReadOnly = true;
+            this.StockID.Visible = false;
+            this.StockID.Width = 78;
+            // 
+            // ProductType
+            // 
+            this.ProductType.DataPropertyName = "TypeName";
+            this.ProductType.HeaderText = "Type";
+            this.ProductType.Name = "ProductType";
+            this.ProductType.ReadOnly = true;
+            this.ProductType.Width = 60;
+            // 
+            // SubType
+            // 
+            this.SubType.DataPropertyName = "SubTypeName";
+            this.SubType.HeaderText = "Sub-Type";
+            this.SubType.Name = "SubType";
+            this.SubType.ReadOnly = true;
+            this.SubType.Width = 87;
+            // 
+            // Variants
+            // 
+            this.Variants.DataPropertyName = "VarientName";
+            this.Variants.HeaderText = "Variety";
+            this.Variants.Name = "Variants";
+            this.Variants.ReadOnly = true;
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Description.DataPropertyName = "Description";
+            this.Description.HeaderText = "Description";
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
+            // 
+            // cmbUnit
+            // 
+            this.cmbUnit.HeaderText = "Unit";
+            this.cmbUnit.Name = "cmbUnit";
+            this.cmbUnit.ReadOnly = true;
+            this.cmbUnit.Visible = false;
+            // 
+            // CurrentStock
+            // 
+            this.CurrentStock.DataPropertyName = "Stock";
+            this.CurrentStock.HeaderText = "Current Stock";
+            this.CurrentStock.Name = "CurrentStock";
+            this.CurrentStock.ReadOnly = true;
+            this.CurrentStock.Width = 112;
+            // 
+            // NewStock
+            // 
+            this.NewStock.HeaderText = "New Stock";
+            this.NewStock.Name = "NewStock";
+            this.NewStock.Width = 92;
+            // 
+            // CostPrice
+            // 
+            this.CostPrice.DataPropertyName = "CostPrice";
+            this.CostPrice.HeaderText = "Dealer Price";
+            this.CostPrice.Name = "CostPrice";
+            this.CostPrice.ReadOnly = true;
+            this.CostPrice.Width = 120;
+            // 
+            // MRP
+            // 
+            this.MRP.DataPropertyName = "MRP";
+            this.MRP.HeaderText = "MRP";
+            this.MRP.Name = "MRP";
+            this.MRP.ReadOnly = true;
+            this.MRP.Width = 120;
+            // 
+            // SalesPrice
+            // 
+            this.SalesPrice.DataPropertyName = "SalesPrice";
+            this.SalesPrice.HeaderText = "Sales Price";
+            this.SalesPrice.Name = "SalesPrice";
+            this.SalesPrice.ReadOnly = true;
+            this.SalesPrice.Width = 120;
+            // 
+            // Total
+            // 
+            this.Total.DataPropertyName = "Total";
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            this.Delete.HeaderText = "Delete";
+            this.Delete.Name = "Delete";
+            this.Delete.Text = "Delete";
+            this.Delete.Width = 50;
+            // 
             // StockEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
@@ -458,6 +472,7 @@
             this.Name = "StockEntry";
             this.Text = "StockEntry";
             this.Load += new System.EventHandler(this.StockEntry_Load);
+            this.Shown += new System.EventHandler(this.StockEntry_Shown);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -482,6 +497,8 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialogStockEntry;
+        private System.Drawing.Printing.PrintDocument printDocumentStockEntry;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CatagoryID;
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeID;
@@ -503,7 +520,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SalesPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
-        private System.Windows.Forms.PrintPreviewDialog printPreviewDialogStockEntry;
-        private System.Drawing.Printing.PrintDocument printDocumentStockEntry;
     }
 }

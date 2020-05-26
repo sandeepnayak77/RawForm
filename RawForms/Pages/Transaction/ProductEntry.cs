@@ -21,7 +21,7 @@ namespace RawForms
         public ProductEntry()
         {
             InitializeComponent();
-            Login.ValidateLogin();
+            Login.ValidateLogin(this);
         }
         public void BindCatagories()
         {

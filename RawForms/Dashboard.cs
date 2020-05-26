@@ -148,7 +148,7 @@ namespace RawForms
 
         private void Dashboard_Shown(object sender, EventArgs e)
         {
-            Login.ValidateLogin();
+            Login.ValidateLogin(this);
         }
     }
 }

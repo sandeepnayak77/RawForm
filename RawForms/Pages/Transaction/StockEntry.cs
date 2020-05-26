@@ -383,6 +383,7 @@ namespace RawForms
 
         private void StockEntry_Load(object sender, EventArgs e)
         {
+            Login.ValidateLogin(this);
             dataGridView1.AutoGenerateColumns = false;
             BindUnits();
             ControlValidation.DisableGridSort(this.dataGridView1, DataGridViewColumnSortMode.NotSortable);
@@ -576,8 +577,9 @@ namespace RawForms
             return billString;
         }
 
-
-
-
+        private void StockEntry_Shown(object sender, EventArgs e)
+        {
+            //Login.ValidateLogin();
+        }
     }
 }

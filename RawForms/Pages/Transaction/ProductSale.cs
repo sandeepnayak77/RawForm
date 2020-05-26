@@ -273,6 +273,7 @@ namespace RawForms
 
         private void ProductSale_Load(object sender, EventArgs e)
         {
+            Login.ValidateLogin(this);
             dataGridViewSale.AutoGenerateColumns = false;
            ControlValidation.DisableGridSort(this.dataGridViewSale, DataGridViewColumnSortMode.NotSortable);
             
@@ -336,7 +337,7 @@ namespace RawForms
 
         private void dataGridViewSale_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.RowIndex != dataGridViewSale.RowCount - 1)
+          if (e.RowIndex >= 0 && e.RowIndex != dataGridViewSale.RowCount - 1)
             {
                 if (e.ColumnIndex == this.Delete.Index)
                 {
@@ -708,6 +709,11 @@ namespace RawForms
             database.BillInfoes.Add(billInfoTable);
             database.SaveChanges();
 
+        }
+
+        private void ProductSale_Shown(object sender, EventArgs e)
+        {
+            //Login.ValidateLogin();
         }
     }
 }

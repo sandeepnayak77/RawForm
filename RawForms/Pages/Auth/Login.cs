@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.Caching;
+using System.Collections;
 
 namespace RawForms
 {
@@ -24,8 +25,16 @@ namespace RawForms
             InitializeComponent();
             this._userAuthRepository = new GenericRepository<UserAuth>();
         }
+        public Login(Form form)
+        {
+            InitializeComponent();
+            this._userAuthRepository = new GenericRepository<UserAuth>();
 
-        
+
+            _form = form;
+        }
+
+        Form _form = new Form();
 
         private void txtUsername_Click(object sender, EventArgs e)
         {
@@ -132,6 +141,9 @@ namespace RawForms
                     _userInfoCache.Add("userinfo", login, policy);
                     //Dashboard dashboardfrm = new Dashboard();
                     //dashboardfrm.Show();
+                    //Accessing the Cache Value from Cache Memory
+                    var userInfo = (UserAuth)_userInfoCache.Get("userinfo");
+                    string str = userInfo.UserName;
                     this.Hide();                    
                 }
                 else
@@ -177,6 +189,7 @@ namespace RawForms
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+            _form.Close();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -188,12 +201,12 @@ namespace RawForms
         {
             _userInfoCache.Dispose();
         }
-        public static void ValidateLogin()
+        public static void ValidateLogin(Form sender)
         {
            var result= _userInfoCache.Get("userinfo");
             if (result ==null)
             {
-                Login log = new Login();
+                Login log = new Login(sender);
                 log.ShowDialog();
             }
             

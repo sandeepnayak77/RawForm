@@ -46,6 +46,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridViewSale = new System.Windows.Forms.DataGridView();
+            this.timerSales = new System.Windows.Forms.Timer(this.components);
             this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CatagoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,7 +66,6 @@
             this.SalesPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.timerSales = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -291,11 +291,18 @@
             this.dataGridViewSale.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewSale_EditingControlShowing);
             this.dataGridViewSale.DoubleClick += new System.EventHandler(this.dataGridViewSale_DoubleClick);
             // 
+            // timerSales
+            // 
+            this.timerSales.Enabled = true;
+            this.timerSales.Interval = 1000;
+            this.timerSales.Tick += new System.EventHandler(this.timerSales_Tick);
+            // 
             // ProductID
             // 
             this.ProductID.DataPropertyName = "ProductID";
             this.ProductID.HeaderText = "ProductID";
             this.ProductID.Name = "ProductID";
+            this.ProductID.ReadOnly = true;
             this.ProductID.Visible = false;
             this.ProductID.Width = 89;
             // 
@@ -304,6 +311,7 @@
             this.CatagoryID.DataPropertyName = "CatagoryID";
             this.CatagoryID.HeaderText = "CatagoryID";
             this.CatagoryID.Name = "CatagoryID";
+            this.CatagoryID.ReadOnly = true;
             this.CatagoryID.Visible = false;
             this.CatagoryID.Width = 99;
             // 
@@ -312,6 +320,7 @@
             this.TypeID.DataPropertyName = "TypeID";
             this.TypeID.HeaderText = "TypeID";
             this.TypeID.Name = "TypeID";
+            this.TypeID.ReadOnly = true;
             this.TypeID.Visible = false;
             this.TypeID.Width = 74;
             // 
@@ -320,6 +329,7 @@
             this.SubTypeID.DataPropertyName = "SubTypeID";
             this.SubTypeID.HeaderText = "SubTypeID";
             this.SubTypeID.Name = "SubTypeID";
+            this.SubTypeID.ReadOnly = true;
             this.SubTypeID.Visible = false;
             this.SubTypeID.Width = 96;
             // 
@@ -328,6 +338,7 @@
             this.VarientID.DataPropertyName = "VarientID";
             this.VarientID.HeaderText = "VarientID";
             this.VarientID.Name = "VarientID";
+            this.VarientID.ReadOnly = true;
             this.VarientID.Visible = false;
             this.VarientID.Width = 87;
             // 
@@ -336,6 +347,7 @@
             this.UnitID.DataPropertyName = "UnitID";
             this.UnitID.HeaderText = "UnitID";
             this.UnitID.Name = "UnitID";
+            this.UnitID.ReadOnly = true;
             this.UnitID.Visible = false;
             this.UnitID.Width = 68;
             // 
@@ -344,6 +356,7 @@
             this.PriceID.DataPropertyName = "PriceID";
             this.PriceID.HeaderText = "PriceID";
             this.PriceID.Name = "PriceID";
+            this.PriceID.ReadOnly = true;
             this.PriceID.Visible = false;
             this.PriceID.Width = 74;
             // 
@@ -352,6 +365,7 @@
             this.StockID.DataPropertyName = "StockID";
             this.StockID.HeaderText = "StockID";
             this.StockID.Name = "StockID";
+            this.StockID.ReadOnly = true;
             this.StockID.Visible = false;
             this.StockID.Width = 78;
             // 
@@ -436,12 +450,6 @@
             this.Delete.Text = "Delete";
             this.Delete.Width = 50;
             // 
-            // timerSales
-            // 
-            this.timerSales.Enabled = true;
-            this.timerSales.Interval = 1000;
-            this.timerSales.Tick += new System.EventHandler(this.timerSales_Tick);
-            // 
             // ProductSale
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -454,6 +462,7 @@
             this.Name = "ProductSale";
             this.Text = "ProductSale";
             this.Load += new System.EventHandler(this.ProductSale_Load);
+            this.Shown += new System.EventHandler(this.ProductSale_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
