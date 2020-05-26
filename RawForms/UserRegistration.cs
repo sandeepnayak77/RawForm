@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace RawForms
 {
-    public partial class Signup : Form
+    public partial class UserRegistration : Form
     {
-        public Signup()
+        public UserRegistration()
         {
             InitializeComponent();
         }

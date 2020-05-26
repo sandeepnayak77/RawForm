@@ -16,8 +16,8 @@ namespace RawForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
-            //Application.Run(new NewPassword());
+            //Application.Run(new Login());
+            Application.Run(new Dashboard());
             //Application.Run(new ProductEntry());
             //Application.Run(new StockEntry());
             //Application.Run(new ProductSale());
