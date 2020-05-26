@@ -345,11 +345,11 @@
     <EmbeddedResource Include="Reports\testRunner.resx">
       <DependentUpon>testRunner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Signup.resx">
-      <DependentUpon>Signup.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="StockEntry.resx">
       <DependentUpon>StockEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserRegistration.resx">
+      <DependentUpon>UserRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Connection\dbContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

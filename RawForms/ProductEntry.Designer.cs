@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblLoginMessage = new System.Windows.Forms.Label();
             this.cmbCatagory = new System.Windows.Forms.ComboBox();
             this.lblCatagory = new System.Windows.Forms.Label();
             this.btnCatagory = new System.Windows.Forms.Button();
@@ -56,30 +54,7 @@
             this.lblSalesPrice = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(152)))), ((int)(((byte)(220)))));
-            this.panel1.Controls.Add(this.lblLoginMessage);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1000, 51);
-            this.panel1.TabIndex = 0;
-            // 
-            // lblLoginMessage
-            // 
-            this.lblLoginMessage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLoginMessage.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLoginMessage.ForeColor = System.Drawing.Color.White;
-            this.lblLoginMessage.Location = new System.Drawing.Point(0, 0);
-            this.lblLoginMessage.Name = "lblLoginMessage";
-            this.lblLoginMessage.Size = new System.Drawing.Size(1000, 51);
-            this.lblLoginMessage.TabIndex = 0;
-            this.lblLoginMessage.Text = "Product Entry";
-            this.lblLoginMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cmbCatagory
             // 
@@ -89,7 +64,7 @@
             this.cmbCatagory.Font = new System.Drawing.Font("Verdana", 12F);
             this.cmbCatagory.ForeColor = System.Drawing.Color.DarkGray;
             this.cmbCatagory.FormattingEnabled = true;
-            this.cmbCatagory.Location = new System.Drawing.Point(398, 67);
+            this.cmbCatagory.Location = new System.Drawing.Point(301, 18);
             this.cmbCatagory.Name = "cmbCatagory";
             this.cmbCatagory.Size = new System.Drawing.Size(295, 26);
             this.cmbCatagory.TabIndex = 1;
@@ -98,7 +73,7 @@
             // lblCatagory
             // 
             this.lblCatagory.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCatagory.Location = new System.Drawing.Point(292, 69);
+            this.lblCatagory.Location = new System.Drawing.Point(195, 20);
             this.lblCatagory.Name = "lblCatagory";
             this.lblCatagory.Size = new System.Drawing.Size(100, 23);
             this.lblCatagory.TabIndex = 17;
@@ -112,7 +87,7 @@
             this.btnCatagory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCatagory.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCatagory.ForeColor = System.Drawing.Color.White;
-            this.btnCatagory.Location = new System.Drawing.Point(763, 66);
+            this.btnCatagory.Location = new System.Drawing.Point(666, 17);
             this.btnCatagory.Name = "btnCatagory";
             this.btnCatagory.Size = new System.Drawing.Size(123, 26);
             this.btnCatagory.TabIndex = 2;
@@ -128,7 +103,7 @@
             this.cmbUnit.Font = new System.Drawing.Font("Verdana", 12F);
             this.cmbUnit.ForeColor = System.Drawing.Color.DarkGray;
             this.cmbUnit.FormattingEnabled = true;
-            this.cmbUnit.Location = new System.Drawing.Point(399, 274);
+            this.cmbUnit.Location = new System.Drawing.Point(302, 225);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(295, 26);
             this.cmbUnit.TabIndex = 9;
@@ -136,7 +111,7 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(293, 276);
+            this.label1.Location = new System.Drawing.Point(196, 227);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 23);
             this.label1.TabIndex = 21;
@@ -150,7 +125,7 @@
             this.btnUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUnit.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUnit.ForeColor = System.Drawing.Color.White;
-            this.btnUnit.Location = new System.Drawing.Point(764, 273);
+            this.btnUnit.Location = new System.Drawing.Point(667, 224);
             this.btnUnit.Name = "btnUnit";
             this.btnUnit.Size = new System.Drawing.Size(123, 26);
             this.btnUnit.TabIndex = 10;
@@ -165,7 +140,7 @@
             this.btnTypeAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTypeAdd.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTypeAdd.ForeColor = System.Drawing.Color.White;
-            this.btnTypeAdd.Location = new System.Drawing.Point(763, 118);
+            this.btnTypeAdd.Location = new System.Drawing.Point(666, 69);
             this.btnTypeAdd.Name = "btnTypeAdd";
             this.btnTypeAdd.Size = new System.Drawing.Size(123, 26);
             this.btnTypeAdd.TabIndex = 4;
@@ -176,7 +151,7 @@
             // lblType
             // 
             this.lblType.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblType.Location = new System.Drawing.Point(292, 121);
+            this.lblType.Location = new System.Drawing.Point(195, 72);
             this.lblType.Name = "lblType";
             this.lblType.Size = new System.Drawing.Size(100, 23);
             this.lblType.TabIndex = 18;
@@ -191,7 +166,7 @@
             this.cmbProductType.Font = new System.Drawing.Font("Verdana", 12F);
             this.cmbProductType.ForeColor = System.Drawing.Color.DarkGray;
             this.cmbProductType.FormattingEnabled = true;
-            this.cmbProductType.Location = new System.Drawing.Point(398, 119);
+            this.cmbProductType.Location = new System.Drawing.Point(301, 70);
             this.cmbProductType.Name = "cmbProductType";
             this.cmbProductType.Size = new System.Drawing.Size(295, 26);
             this.cmbProductType.TabIndex = 3;
@@ -201,7 +176,7 @@
             // 
             this.lblError.AutoEllipsis = true;
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(400, 538);
+            this.lblError.Location = new System.Drawing.Point(303, 489);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(293, 18);
             this.lblError.TabIndex = 26;
@@ -216,7 +191,7 @@
             this.cmbSubType.Font = new System.Drawing.Font("Verdana", 12F);
             this.cmbSubType.ForeColor = System.Drawing.Color.DarkGray;
             this.cmbSubType.FormattingEnabled = true;
-            this.cmbSubType.Location = new System.Drawing.Point(398, 169);
+            this.cmbSubType.Location = new System.Drawing.Point(301, 120);
             this.cmbSubType.Name = "cmbSubType";
             this.cmbSubType.Size = new System.Drawing.Size(295, 26);
             this.cmbSubType.TabIndex = 5;
@@ -226,7 +201,7 @@
             // 
             this.lblSubType.AutoEllipsis = true;
             this.lblSubType.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubType.Location = new System.Drawing.Point(292, 171);
+            this.lblSubType.Location = new System.Drawing.Point(195, 122);
             this.lblSubType.Name = "lblSubType";
             this.lblSubType.Size = new System.Drawing.Size(100, 23);
             this.lblSubType.TabIndex = 19;
@@ -240,7 +215,7 @@
             this.btnSubTypeAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubTypeAdd.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubTypeAdd.ForeColor = System.Drawing.Color.White;
-            this.btnSubTypeAdd.Location = new System.Drawing.Point(763, 168);
+            this.btnSubTypeAdd.Location = new System.Drawing.Point(666, 119);
             this.btnSubTypeAdd.Name = "btnSubTypeAdd";
             this.btnSubTypeAdd.Size = new System.Drawing.Size(123, 26);
             this.btnSubTypeAdd.TabIndex = 6;
@@ -256,7 +231,7 @@
             this.cmbVariety.Font = new System.Drawing.Font("Verdana", 12F);
             this.cmbVariety.ForeColor = System.Drawing.Color.DarkGray;
             this.cmbVariety.FormattingEnabled = true;
-            this.cmbVariety.Location = new System.Drawing.Point(399, 221);
+            this.cmbVariety.Location = new System.Drawing.Point(302, 172);
             this.cmbVariety.Name = "cmbVariety";
             this.cmbVariety.Size = new System.Drawing.Size(295, 26);
             this.cmbVariety.TabIndex = 7;
@@ -266,7 +241,7 @@
             // 
             this.lblVariety.AutoEllipsis = true;
             this.lblVariety.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVariety.Location = new System.Drawing.Point(293, 223);
+            this.lblVariety.Location = new System.Drawing.Point(196, 174);
             this.lblVariety.Name = "lblVariety";
             this.lblVariety.Size = new System.Drawing.Size(100, 23);
             this.lblVariety.TabIndex = 20;
@@ -280,7 +255,7 @@
             this.btnVariety.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVariety.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVariety.ForeColor = System.Drawing.Color.White;
-            this.btnVariety.Location = new System.Drawing.Point(764, 220);
+            this.btnVariety.Location = new System.Drawing.Point(667, 171);
             this.btnVariety.Name = "btnVariety";
             this.btnVariety.Size = new System.Drawing.Size(123, 26);
             this.btnVariety.TabIndex = 8;
@@ -292,7 +267,7 @@
             // 
             this.lblDescription.AutoEllipsis = true;
             this.lblDescription.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.Location = new System.Drawing.Point(293, 349);
+            this.lblDescription.Location = new System.Drawing.Point(196, 300);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(100, 23);
             this.lblDescription.TabIndex = 22;
@@ -303,7 +278,7 @@
             // 
             this.txtDescription.Font = new System.Drawing.Font("Verdana", 12F);
             this.txtDescription.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtDescription.Location = new System.Drawing.Point(399, 328);
+            this.txtDescription.Location = new System.Drawing.Point(302, 279);
             this.txtDescription.MaxLength = 200;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
@@ -314,7 +289,7 @@
             // 
             this.txtCostPrice.Font = new System.Drawing.Font("Verdana", 12F);
             this.txtCostPrice.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtCostPrice.Location = new System.Drawing.Point(398, 409);
+            this.txtCostPrice.Location = new System.Drawing.Point(301, 360);
             this.txtCostPrice.MaxLength = 10;
             this.txtCostPrice.Name = "txtCostPrice";
             this.txtCostPrice.Size = new System.Drawing.Size(294, 27);
@@ -325,7 +300,7 @@
             // 
             this.txtMRP.Font = new System.Drawing.Font("Verdana", 12F);
             this.txtMRP.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtMRP.Location = new System.Drawing.Point(399, 461);
+            this.txtMRP.Location = new System.Drawing.Point(302, 412);
             this.txtMRP.MaxLength = 10;
             this.txtMRP.Name = "txtMRP";
             this.txtMRP.Size = new System.Drawing.Size(294, 27);
@@ -336,7 +311,7 @@
             // 
             this.txtSalesPrice.Font = new System.Drawing.Font("Verdana", 12F);
             this.txtSalesPrice.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtSalesPrice.Location = new System.Drawing.Point(398, 508);
+            this.txtSalesPrice.Location = new System.Drawing.Point(301, 459);
             this.txtSalesPrice.MaxLength = 10;
             this.txtSalesPrice.Name = "txtSalesPrice";
             this.txtSalesPrice.Size = new System.Drawing.Size(294, 27);
@@ -347,7 +322,7 @@
             // 
             this.lblBuyPrice.AutoEllipsis = true;
             this.lblBuyPrice.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBuyPrice.Location = new System.Drawing.Point(292, 411);
+            this.lblBuyPrice.Location = new System.Drawing.Point(195, 362);
             this.lblBuyPrice.Name = "lblBuyPrice";
             this.lblBuyPrice.Size = new System.Drawing.Size(100, 23);
             this.lblBuyPrice.TabIndex = 23;
@@ -358,7 +333,7 @@
             // 
             this.lblMRP.AutoEllipsis = true;
             this.lblMRP.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMRP.Location = new System.Drawing.Point(293, 465);
+            this.lblMRP.Location = new System.Drawing.Point(196, 416);
             this.lblMRP.Name = "lblMRP";
             this.lblMRP.Size = new System.Drawing.Size(100, 23);
             this.lblMRP.TabIndex = 24;
@@ -369,7 +344,7 @@
             // 
             this.lblSalesPrice.AutoEllipsis = true;
             this.lblSalesPrice.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSalesPrice.Location = new System.Drawing.Point(290, 510);
+            this.lblSalesPrice.Location = new System.Drawing.Point(193, 461);
             this.lblSalesPrice.Name = "lblSalesPrice";
             this.lblSalesPrice.Size = new System.Drawing.Size(100, 23);
             this.lblSalesPrice.TabIndex = 25;
@@ -383,7 +358,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(412, 561);
+            this.btnSave.Location = new System.Drawing.Point(315, 512);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(123, 26);
             this.btnSave.TabIndex = 15;
@@ -399,7 +374,7 @@
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.Color.White;
-            this.btnClear.Location = new System.Drawing.Point(563, 560);
+            this.btnClear.Location = new System.Drawing.Point(466, 511);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(123, 26);
             this.btnClear.TabIndex = 16;
@@ -438,22 +413,17 @@
             this.Controls.Add(this.cmbUnit);
             this.Controls.Add(this.lblCatagory);
             this.Controls.Add(this.cmbCatagory);
-            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ProductEntry";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ProductEntry";
             this.Load += new System.EventHandler(this.ProductEntry_Load);
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblLoginMessage;
         private System.Windows.Forms.ComboBox cmbCatagory;
         private System.Windows.Forms.Label lblCatagory;
         private System.Windows.Forms.Button btnCatagory;
