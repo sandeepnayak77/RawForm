@@ -20,9 +20,15 @@ namespace RawForms.Reports
         ReportParameterCollection rp = new ReportParameterCollection();
         ProductSale productSale = new ProductSale();
         string _billNo = string.Empty;
+        int _printType = 0; //0 - Sales Bill ; 1 - Only Printing of existing bill
         
         public CustomerBillForm()
         {
+            InitializeComponent();
+        }
+        public CustomerBillForm(int printonly)
+        {
+            _printType = printonly;
             InitializeComponent();
         }
         public CustomerBillForm(ProductSale prodSale)
@@ -44,6 +50,14 @@ namespace RawForms.Reports
         private void reportViewerCustBill_Load(object sender, EventArgs e)
         {
             //ReportDataSource rs = new ReportDataSource();
+            //
+            //Disable all other feature for print only Bill as text print button will print the bill only
+            if(_printType == 1)
+            {
+                btnSave.Text = "Print";
+                btnExit.Text = "Close";
+                btnEdit.Hide();
+            }
 
         }
 
@@ -65,6 +79,8 @@ namespace RawForms.Reports
             rp.Add(new ReportParameter("custAddress", custInfo.custAddress));
             rp.Add(new ReportParameter("billDate", custInfo.billDate.ToString("dd-MM-yyyy")));
             rp.Add(new ReportParameter("billNumber", cusBill.billNo));
+            rp.Add(new ReportParameter("shopName", cusBill.shopName));
+            rp.Add(new ReportParameter("shopAddress", cusBill.shopAddress));
             this.reportViewerCustBill.LocalReport.SetParameters(rp);
             this.reportViewerCustBill.RefreshReport();
         }

@@ -28,20 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BillHistoryReport));
             this.panelSearch = new System.Windows.Forms.Panel();
-            this.panelGrid = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.btnCancle = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.dataGridViewBillHistory = new System.Windows.Forms.DataGridView();
-            this.lblStartDate = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblStartDate = new System.Windows.Forms.Label();
+            this.panelGrid = new System.Windows.Forms.Panel();
+            this.dataGridViewBillHistory = new System.Windows.Forms.DataGridView();
+            this.btnClose = new System.Windows.Forms.PictureBox();
             this.BillID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BillTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,12 +58,13 @@
             this.BalanceAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelSearch.SuspendLayout();
             this.panelGrid.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBillHistory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             this.SuspendLayout();
             // 
             // panelSearch
             // 
+            this.panelSearch.Controls.Add(this.btnClose);
             this.panelSearch.Controls.Add(this.dateTimePickerEnd);
             this.panelSearch.Controls.Add(this.dateTimePickerStart);
             this.panelSearch.Controls.Add(this.btnSearch);
@@ -77,6 +76,59 @@
             this.panelSearch.Size = new System.Drawing.Size(1083, 126);
             this.panelSearch.TabIndex = 0;
             // 
+            // dateTimePickerEnd
+            // 
+            this.dateTimePickerEnd.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(315, 35);
+            this.dateTimePickerEnd.Name = "dateTimePickerEnd";
+            this.dateTimePickerEnd.Size = new System.Drawing.Size(91, 20);
+            this.dateTimePickerEnd.TabIndex = 37;
+            // 
+            // dateTimePickerStart
+            // 
+            this.dateTimePickerStart.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerStart.Location = new System.Drawing.Point(102, 36);
+            this.dateTimePickerStart.Name = "dateTimePickerStart";
+            this.dateTimePickerStart.Size = new System.Drawing.Size(91, 20);
+            this.dateTimePickerStart.TabIndex = 36;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Location = new System.Drawing.Point(478, 31);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(65, 26);
+            this.btnSearch.TabIndex = 35;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(226, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 23);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "End Date";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblStartDate
+            // 
+            this.lblStartDate.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStartDate.Location = new System.Drawing.Point(13, 33);
+            this.lblStartDate.Name = "lblStartDate";
+            this.lblStartDate.Size = new System.Drawing.Size(83, 23);
+            this.lblStartDate.TabIndex = 33;
+            this.lblStartDate.Text = "Start Date";
+            this.lblStartDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panelGrid
             // 
             this.panelGrid.Controls.Add(this.dataGridViewBillHistory);
@@ -86,60 +138,6 @@
             this.panelGrid.Size = new System.Drawing.Size(1083, 438);
             this.panelGrid.TabIndex = 1;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnOk);
-            this.panel2.Controls.Add(this.btnCancle);
-            this.panel2.Controls.Add(this.btnEdit);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 515);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1083, 49);
-            this.panel2.TabIndex = 31;
-            // 
-            // btnOk
-            // 
-            this.btnOk.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOk.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOk.ForeColor = System.Drawing.Color.White;
-            this.btnOk.Location = new System.Drawing.Point(185, 12);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(193, 37);
-            this.btnOk.TabIndex = 30;
-            this.btnOk.Text = "Ok";
-            this.btnOk.UseVisualStyleBackColor = false;
-            // 
-            // btnCancle
-            // 
-            this.btnCancle.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCancle.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancle.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancle.ForeColor = System.Drawing.Color.White;
-            this.btnCancle.Location = new System.Drawing.Point(623, 12);
-            this.btnCancle.Name = "btnCancle";
-            this.btnCancle.Size = new System.Drawing.Size(193, 37);
-            this.btnCancle.TabIndex = 31;
-            this.btnCancle.Text = "Cancel";
-            this.btnCancle.UseVisualStyleBackColor = false;
-            this.btnCancle.Click += new System.EventHandler(this.btnCancle_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Location = new System.Drawing.Point(405, 12);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(193, 37);
-            this.btnEdit.TabIndex = 32;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = false;
-            // 
             // dataGridViewBillHistory
             // 
             this.dataGridViewBillHistory.AllowUserToAddRows = false;
@@ -148,14 +146,14 @@
             this.dataGridViewBillHistory.AllowUserToResizeRows = false;
             this.dataGridViewBillHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewBillHistory.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewBillHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewBillHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewBillHistory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BillID,
             this.BillTypeID,
@@ -173,78 +171,43 @@
             this.Discount,
             this.PaidAmount,
             this.BalanceAmount});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewBillHistory.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewBillHistory.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewBillHistory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewBillHistory.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewBillHistory.Name = "dataGridViewBillHistory";
             this.dataGridViewBillHistory.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewBillHistory.Size = new System.Drawing.Size(1083, 438);
             this.dataGridViewBillHistory.TabIndex = 30;
+            this.dataGridViewBillHistory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBillHistory_CellContentClick);
+            this.dataGridViewBillHistory.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBillHistory_CellMouseLeave);
+            this.dataGridViewBillHistory.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewBillHistory_CellMouseMove);
+            this.dataGridViewBillHistory.MouseLeave += new System.EventHandler(this.dataGridViewBillHistory_MouseLeave);
+            this.dataGridViewBillHistory.MouseMove += new System.Windows.Forms.MouseEventHandler(this.dataGridViewBillHistory_MouseMove);
             // 
-            // lblStartDate
+            // btnClose
             // 
-            this.lblStartDate.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartDate.Location = new System.Drawing.Point(13, 33);
-            this.lblStartDate.Name = "lblStartDate";
-            this.lblStartDate.Size = new System.Drawing.Size(83, 23);
-            this.lblStartDate.TabIndex = 33;
-            this.lblStartDate.Text = "Start Date";
-            this.lblStartDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(226, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 23);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "End Date";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(478, 31);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(65, 26);
-            this.btnSearch.TabIndex = 35;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // dateTimePickerStart
-            // 
-            this.dateTimePickerStart.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerStart.Location = new System.Drawing.Point(102, 36);
-            this.dateTimePickerStart.Name = "dateTimePickerStart";
-            this.dateTimePickerStart.Size = new System.Drawing.Size(91, 20);
-            this.dateTimePickerStart.TabIndex = 36;
-            // 
-            // dateTimePickerEnd
-            // 
-            this.dateTimePickerEnd.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerEnd.Location = new System.Drawing.Point(315, 35);
-            this.dateTimePickerEnd.Name = "dateTimePickerEnd";
-            this.dateTimePickerEnd.Size = new System.Drawing.Size(91, 20);
-            this.dateTimePickerEnd.TabIndex = 37;
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.Location = new System.Drawing.Point(1058, 0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(25, 25);
+            this.btnClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnClose.TabIndex = 38;
+            this.btnClose.TabStop = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // BillID
             // 
             this.BillID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.BillID.DataPropertyName = "BillID";
+            this.BillID.Frozen = true;
             this.BillID.HeaderText = "BillID";
             this.BillID.Name = "BillID";
             this.BillID.Visible = false;
@@ -254,6 +217,7 @@
             // 
             this.BillTypeID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.BillTypeID.DataPropertyName = "BillTypeID";
+            this.BillTypeID.Frozen = true;
             this.BillTypeID.HeaderText = "BillTypeID";
             this.BillTypeID.Name = "BillTypeID";
             this.BillTypeID.Visible = false;
@@ -263,6 +227,7 @@
             // 
             this.CustomerID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.CustomerID.DataPropertyName = "CustomerID";
+            this.CustomerID.Frozen = true;
             this.CustomerID.HeaderText = "CustomerID";
             this.CustomerID.Name = "CustomerID";
             this.CustomerID.Visible = false;
@@ -271,6 +236,7 @@
             // TranctionTypeID
             // 
             this.TranctionTypeID.DataPropertyName = "TranctionTypeID";
+            this.TranctionTypeID.Frozen = true;
             this.TranctionTypeID.HeaderText = "Tranction TypeID";
             this.TranctionTypeID.Name = "TranctionTypeID";
             this.TranctionTypeID.ReadOnly = true;
@@ -280,6 +246,7 @@
             // SerialNo
             // 
             this.SerialNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.SerialNo.Frozen = true;
             this.SerialNo.HeaderText = "SL No";
             this.SerialNo.Name = "SerialNo";
             this.SerialNo.ReadOnly = true;
@@ -392,16 +359,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1083, 564);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelGrid);
             this.Controls.Add(this.panelSearch);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "BillHistoryReport";
             this.Text = "BillHistoryReport";
             this.Load += new System.EventHandler(this.BillHistoryReport_Load);
             this.panelSearch.ResumeLayout(false);
             this.panelGrid.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBillHistory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -410,16 +377,13 @@
 
         private System.Windows.Forms.Panel panelSearch;
         private System.Windows.Forms.Panel panelGrid;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Button btnCancle;
-        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.DataGridView dataGridViewBillHistory;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblStartDate;
         private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
         private System.Windows.Forms.DateTimePicker dateTimePickerStart;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.PictureBox btnClose;
         private System.Windows.Forms.DataGridViewTextBoxColumn BillID;
         private System.Windows.Forms.DataGridViewTextBoxColumn BillTypeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;

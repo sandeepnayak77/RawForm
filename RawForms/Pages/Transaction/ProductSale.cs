@@ -508,9 +508,16 @@ namespace RawForms
                 billProdList.Add(custBillProduct);
 
             }
+            var database = new InventoryEntities();
+            var shopInfo = (from c in database.ShopInfoes
+                            select c).FirstOrDefault();
+
+            string shopAddress = shopInfo.ShopAddress + " " + shopInfo.City + " " + shopInfo.Dist + " " + shopInfo.State + " " + shopInfo.ZIP + " Tel :" + shopInfo.PhoneNo;
 
             var customerBillData = new CustomerBillData();
-            customerBillData.gstn = "GST043621987PS";
+            customerBillData.gstn = shopInfo.Gstn;
+            customerBillData.shopName = shopInfo.ShopName;
+            customerBillData.shopAddress = shopAddress;
             customerBillData.billNo = _globalBillNo;
             customerBillData.billData = billProdList;
             custinfo.prodBillInfoPass(customerBillData, _globalBillNo);

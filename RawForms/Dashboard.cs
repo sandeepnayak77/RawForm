@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using RawForms.AppUtil;
+using RawForms.Pages.Report;
 
 namespace RawForms
 {
@@ -150,5 +151,14 @@ namespace RawForms
         {
             Login.ValidateLogin(this);
         }
+
+        private void btnBillReports_Click(object sender, EventArgs e)
+        {
+            var v = AppTheme.SetAppTheme();
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(v[0], v[1], v[2]);
+            lblTitleBar.Text = "Bill Reports";
+            LoadFormInPanel(new BillHistoryReport());
+        }
     }
+    
 }

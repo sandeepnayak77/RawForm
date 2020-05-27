@@ -1,10 +1,13 @@
 ﻿using Microsoft.ReportingServices.RdlExpressions.ExpressionHostObjectModel;
 using RawForms.AppUtil;
 using RawForms.Connection;
+using RawForms.Entities;
+using RawForms.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,7 +27,7 @@ namespace RawForms.Pages.Report
         {
             dataGridViewBillHistory.AutoGenerateColumns = false;
             ControlValidation.DisableGridSort(this.dataGridViewBillHistory, DataGridViewColumnSortMode.NotSortable);
-            panel2.Hide();
+            
         }
 
         private void btnCancle_Click(object sender, EventArgs e)
@@ -87,6 +90,8 @@ namespace RawForms.Pages.Report
                 grow.Cells[5].Value = row.TransactionTypeName;
                 grow.Cells[6].Value = row.BillTypeName;
                 grow.Cells[7].Value = row.BillNumber;
+                grow.Cells[7].Style.ForeColor = Color.Blue;
+                
                 grow.Cells[8].Value = row.CustomerName;
                 grow.Cells[9].Value = row.Mobile;
                 grow.Cells[10].Value = row.CustomerAddress;
@@ -104,6 +109,135 @@ namespace RawForms.Pages.Report
             }
         }
 
-      
+        private void dataGridViewBillHistory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string lclBillNo = "";
+            if (e.RowIndex >= 0 && e.RowIndex != dataGridViewBillHistory.RowCount - 1)
+            {
+                if (e.ColumnIndex == this.BillNumber.Index)
+                {
+                    
+                        lclBillNo = Convert.ToString(dataGridViewBillHistory.Rows[e.RowIndex].Cells["BillNumber"].Value);
+                        ReportBuilder(lclBillNo);
+
+                    
+                }
+            }
+                
+        }
+
+        public void ReportBuilder(string lclbillNo)
+        {
+            
+            List<CustomerBillProduct> billProdList = new List<CustomerBillProduct>();
+            billProdList.Clear();
+            var billedItems = (from c in database.TransactionDetails
+                               join d in database.ProductInfoes on c.ProductID equals d.ProductID
+                               where c.BillNumber == lclbillNo
+                               select new
+                               {
+                                   c.Quantity,
+                                   c.UnitPrice,
+                                   c.TotalPrice,
+                                   d.Description
+                               });
+
+            var billingInfo = (from c in database.BillInfoes
+                               join d in database.CustomerInfoes on c.CustomerID equals d.CustomerID
+                               where c.BillNumber == lclbillNo
+                               select new
+                               {
+                                   c.BillDate,
+                                   c.Discount,
+                                   c.TotalAmount,
+                                   d.CustomerName,
+                                   d.CustomerAddress,
+                                   d.Mobile,
+                                   d.Email,
+
+                               }).FirstOrDefault();
+
+            var shopInfo = (from c in database.ShopInfoes
+                            select c).FirstOrDefault();
+
+            string shopAddress = shopInfo.ShopAddress + " " + shopInfo.City + " " + shopInfo.Dist + " " + shopInfo.State + " " + shopInfo.ZIP + " Tel :" + shopInfo.PhoneNo;
+
+            foreach(var row in billedItems)
+            {
+                var custBillProduct = new CustomerBillProduct
+                {
+                    Productdesc = Convert.ToString(row.Description),
+                    Productprice = Convert.ToDecimal(row.UnitPrice),
+                    Productunit = Convert.ToDecimal(row.Quantity),
+                    Totalprice = Convert.ToDecimal(row.TotalPrice),
+                };
+                billProdList.Add(custBillProduct);
+
+            }
+            var customerBillData = new CustomerBillData();
+            customerBillData.gstn = shopInfo.Gstn;
+            customerBillData.shopName = shopInfo.ShopName;
+            customerBillData.shopAddress = shopAddress;
+            customerBillData.billNo = lclbillNo;
+            customerBillData.billData = billProdList;
+
+            
+            var custDetails = new CustomerInfoDetails();
+            custDetails.custAddress = billingInfo.CustomerAddress;
+            custDetails.custName = billingInfo.CustomerName;
+            custDetails.custMobile = billingInfo.Mobile;
+            custDetails.custEmail = billingInfo.Email;
+            custDetails.billDate = (DateTime)billingInfo.BillDate;
+            custDetails.custDiscount = Convert.ToDecimal(billingInfo.Discount);
+            int printonlyBill = 1;
+            var printBill = new CustomerBillForm(printonlyBill);
+            printBill.showBill(customerBillData, custDetails);
+            printBill.ShowDialog(this);
+        }
+
+        private void dataGridViewBillHistory_MouseMove(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void dataGridViewBillHistory_MouseLeave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dataGridViewBillHistory_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if(e.ColumnIndex>=0)
+                {
+                    if (dataGridViewBillHistory.Columns[e.ColumnIndex] == dataGridViewBillHistory.Columns["BillNumber"])
+                    {
+                        dataGridViewBillHistory.Cursor = Cursors.Hand;
+                    }
+                    else
+                    {
+                        dataGridViewBillHistory.Cursor = Cursors.Default;
+                    }
+
+                }
+
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void dataGridViewBillHistory_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridViewBillHistory.Cursor = Cursors.Default;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close(); 
+        }
     }
 }
