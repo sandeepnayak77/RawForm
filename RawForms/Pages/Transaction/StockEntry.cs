@@ -1,5 +1,7 @@
 ﻿using RawForms.AppUtil;
 using RawForms.Connection;
+using RawForms.Dialog;
+using RawForms.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +24,8 @@ namespace RawForms
 
         Dictionary<String, Int32> pidDictionary = new Dictionary<String, Int32>();
         Bitmap bmp;
+        string _billNumber = "";
+        decimal _grandTotal = 0;
 
         public void BindUnits()
         {
@@ -280,13 +284,13 @@ namespace RawForms
 
         }
 
-        public void StockUpdae()
+        public void StockUpdate(StockEntry myStockentry)
         {
-            string strBillNo = GetBillNumber();
-            for (int i = 0; i < dataGridView1.RowCount-1; i++)
+            
+            for (int i = 0; i < myStockentry.dataGridView1.RowCount-1; i++)
             {
-                int _prodID = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
-                int _stockID = Convert.ToInt32(dataGridView1.Rows[i].Cells["StockID"].Value);
+                int _prodID = Convert.ToInt32(myStockentry.dataGridView1.Rows[i].Cells[0].Value);
+                int _stockID = Convert.ToInt32(myStockentry.dataGridView1.Rows[i].Cells["StockID"].Value);
                 decimal _stock, _ob, _cb, _buyQty, _unitPrice, _totalPrice;
                 var database = new InventoryEntities();
                 var list = (from c in database.ProductStocks
@@ -309,8 +313,8 @@ namespace RawForms
                 int _txnType = txnTypelist.TransactionTypeID;
 
                 _stock = Convert.ToDecimal(list.Stock);
-                _buyQty = Convert.ToDecimal(dataGridView1.Rows[i].Cells["NewStock"].Value);
-                _unitPrice = Convert.ToDecimal(dataGridView1.Rows[i].Cells["CostPrice"].Value);
+                _buyQty = Convert.ToDecimal(myStockentry.dataGridView1.Rows[i].Cells["NewStock"].Value);
+                _unitPrice = Convert.ToDecimal(myStockentry.dataGridView1.Rows[i].Cells["CostPrice"].Value);
                 _totalPrice = _unitPrice * _buyQty;
 
                 _ob = _stock;
@@ -326,7 +330,7 @@ namespace RawForms
                 txnDetail.OpeningBalance = _ob;
                 txnDetail.ClosingBalance = _cb;
                 txnDetail.UpdatedOn = System.DateTime.Now;
-                txnDetail.BillNumber = strBillNo;
+                txnDetail.BillNumber = myStockentry._billNumber;
 
                 database.TransactionDetails.Add(txnDetail);
 
@@ -354,7 +358,7 @@ namespace RawForms
         {
             if(dataGridView1.RowCount>1)
             {
-                decimal _grandTotal = 0;
+                 _grandTotal = 0;
                 int i;
                 for (i = 0; i <= dataGridView1.RowCount - 2; i++)
                 {
@@ -478,7 +482,10 @@ namespace RawForms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            StockUpdae();
+
+            _billNumber = GetBillNumber();
+            GetSellerInfo(_billNumber, _grandTotal);
+            //StockUpdate();
             //dataGridView1.Dispose();
             dataGridView1.Rows.Clear();
             //PrintPreview();
@@ -581,5 +588,54 @@ namespace RawForms
         {
             //Login.ValidateLogin();
         }
+
+        public void SellerEntry(string billNo, decimal sumTotal, CustomerInfoDetails custInfo)
+        {
+            
+            var database = new InventoryEntities();
+            var billTypeIDList = (from c in database.BillTypes
+                                  where c.BillTypeName == "Cash"
+                                  select new
+                                  {
+                                      c.BillTypeID
+
+                                  }).FirstOrDefault();
+
+            var custInfoTable = new CustomerInfo();
+            var billInfoTable = new BillInfo();
+            custInfoTable.CustomerName = custInfo.custName;
+            custInfoTable.CustomerAddress = custInfo.custAddress;
+            custInfoTable.Mobile = custInfo.custMobile;
+            custInfoTable.Email = custInfo.custEmail;
+            database.CustomerInfoes.Add(custInfoTable);
+
+
+            billInfoTable.BillNumber = billNo;
+            billInfoTable.BillTypeID = billTypeIDList.BillTypeID;//Cash or Credit Bill
+            billInfoTable.TotalAmount = sumTotal;
+            billInfoTable.Discount = custInfo.custDiscount;
+            billInfoTable.BillDate = custInfo.billDate;
+            billInfoTable.UpdatedOn = DateTime.Now;
+            billInfoTable.CustomerInfo = custInfoTable;
+            //database.CustomerInfoes.Add(custInfoTable);
+            database.BillInfoes.Add(billInfoTable);
+            database.SaveChanges();
+
+        }
+
+        public void GetSellerInfo(string billno, decimal sumtotal)
+        {
+            int sellerEntry = 1;
+            CustomerDetails custinfo = new CustomerDetails(sellerEntry, billno, sumtotal, this );
+            custinfo.ShowDialog(this);
+        }
+        public void CalllbackFromCustDetails(StockEntry lcstockentry, CustomerInfoDetails custInfo, string billNo)
+        {
+            StockUpdate(lcstockentry);
+            SellerEntry(billNo, lcstockentry._grandTotal, custInfo);
+
+
+        }
+
     }
 }

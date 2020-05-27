@@ -398,6 +398,7 @@
             this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Description.DataPropertyName = "Description";
             this.Description.HeaderText = "Description";
+            this.Description.MinimumWidth = 80;
             this.Description.Name = "Description";
             this.Description.ReadOnly = true;
             // 

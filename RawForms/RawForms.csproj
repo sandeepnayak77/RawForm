@@ -210,6 +210,12 @@
     <Compile Include="Pages\Modal\AddNewCatagory.Designer.cs">
       <DependentUpon>AddNewCatagory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Report\BillHistoryReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\Report\BillHistoryReport.Designer.cs">
+      <DependentUpon>BillHistoryReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Test_Ref\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Modal\AddNewCatagory.resx">
       <DependentUpon>AddNewCatagory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Report\BillHistoryReport.resx">
+      <DependentUpon>BillHistoryReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Test_Ref\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -401,7 +410,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\Common\" />
-    <Folder Include="Pages\Report\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

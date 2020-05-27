@@ -17,7 +17,8 @@ namespace RawForms.Dialog
     {
         CustomerBillData custBillInfoData = new CustomerBillData();
         ProductSale productSale = new ProductSale();
-        string billnumber = "";
+        string _billnumber = "";
+        int sellerEntry = 0; // 0 - customer entry, 1 - sellser entry
         public CustomerDetails()
         {
             InitializeComponent();
@@ -25,15 +26,29 @@ namespace RawForms.Dialog
         public CustomerDetails(ProductSale prodSale)
         {
             productSale = prodSale;
+            sellerEntry = 0;
             InitializeComponent();
         }
+
+        public CustomerDetails(int i, string billno, decimal sumTotal, StockEntry stockentry)
+        {
+            _glStockEntry = stockentry;
+            sellerEntry = i;
+            _billnumber = billno;
+            InitializeComponent();
+        }
+        StockEntry _glStockEntry = new StockEntry();
         private void CustomerDetails_Load(object sender, EventArgs e)
         {
             lblError.Text = "";
             lblError.ForeColor = Color.Red;
-            lblBillNoView.Text = billnumber;
+            lblBillNoView.Text = _billnumber;
             dateTimeBillDate.Format = DateTimePickerFormat.Custom;
             dateTimeBillDate.CustomFormat = "dd-MM-yyyy";
+            if(sellerEntry==1)
+            {
+                lblCustomerName.Text = "Seller Name";
+            }
         }
 
         private void lblLoginMessage_Click(object sender, EventArgs e)
@@ -65,10 +80,21 @@ namespace RawForms.Dialog
                 custDetails.billDate = dateTimeBillDate.Value.Date;
                 custDetails.custDiscount = 0;
                 this.Hide();
-                CustomerBillForm cust = new CustomerBillForm(productSale);
-                cust.showBill(custBillInfoData,custDetails);
-                cust.ShowDialog(this);
-                this.Close();
+                if (sellerEntry==1)
+                {
+                    this.Hide();
+                    var stockEntry = new StockEntry();
+                    stockEntry.CalllbackFromCustDetails(_glStockEntry, custDetails, _billnumber);
+                    this.Close();
+                }
+                else
+                {
+                    CustomerBillForm cust = new CustomerBillForm(productSale);
+                    cust.showBill(custBillInfoData, custDetails);
+                    cust.ShowDialog(this);
+                    this.Close();
+                }
+                
             }
             
         }
@@ -84,7 +110,7 @@ namespace RawForms.Dialog
         {
             
             custBillInfoData = custBillData;
-            billnumber = billno;
+            _billnumber = billno;
 
         }
 

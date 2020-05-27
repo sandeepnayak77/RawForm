@@ -22,14 +22,21 @@ namespace RawForms
         public string _globalBillNo = "";
         CustomerBillData customerBillData = new CustomerBillData();
         CustomerInfoDetails customerInfoDetails = new CustomerInfoDetails();
+        Dictionary<String, Int32> pidDictionary = new Dictionary<String, Int32>();
         public ProductSale()
         {
             
             InitializeComponent();
             AutoCompleteText();
         }
-        Dictionary<String, Int32> pidDictionary = new Dictionary<String, Int32>();
-        
+       
+        private void ProductSale_Load(object sender, EventArgs e)
+        {
+            Login.ValidateLogin(this);
+            dataGridViewSale.AutoGenerateColumns = false;
+            ControlValidation.DisableGridSort(this.dataGridViewSale, DataGridViewColumnSortMode.NotSortable);
+
+        }
 
         public void AutoCompleteText()
         {
@@ -271,14 +278,7 @@ namespace RawForms
             }
         }
 
-        private void ProductSale_Load(object sender, EventArgs e)
-        {
-            Login.ValidateLogin(this);
-            dataGridViewSale.AutoGenerateColumns = false;
-           ControlValidation.DisableGridSort(this.dataGridViewSale, DataGridViewColumnSortMode.NotSortable);
-            
-        }
-
+   
         private void timerSales_Tick(object sender, EventArgs e)
         {
             lblDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
@@ -659,7 +659,7 @@ namespace RawForms
         }
         public void CallBackFromReport(string billno, CustomerBillData cusBill, CustomerInfoDetails custInfo, ProductSale prodSale)
         {
-            MessageBox.Show("Please enter First Name!" + billno);
+            //MessageBox.Show("Please enter First Name!" + billno);
             customerBillData = cusBill;
             customerInfoDetails = custInfo;
             ProductFinalSale(billno);
