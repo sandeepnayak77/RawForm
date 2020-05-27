@@ -13,5 +13,6 @@ namespace RawForms.Entities
         public string custMobile { get; set; }
         public string custEmail { get; set; }
         public decimal custDiscount { get; set; }
+        public DateTime billDate { get; set; }
     }
 }

@@ -507,7 +507,7 @@
             this.panel10.Size = new System.Drawing.Size(576, 2);
             this.panel10.TabIndex = 18;
             // 
-            // Signup
+            // UserRegistration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -534,7 +534,7 @@
             this.Controls.Add(this.panelUsername);
             this.Controls.Add(this.lblLoginMessage);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Signup";
+            this.Name = "UserRegistration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Signup";
             this.Load += new System.EventHandler(this.Signup_Load);

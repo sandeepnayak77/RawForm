@@ -164,68 +164,74 @@
     <Compile Include="Connection\UserMaster.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\AddNewProductType.cs">
+    <Compile Include="Pages\Modal\AddNewProductType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\AddNewProductType.Designer.cs">
+    <Compile Include="Pages\Modal\AddNewProductType.Designer.cs">
       <DependentUpon>AddNewProductType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\AddNewSubType.cs">
+    <Compile Include="Pages\Modal\AddNewSubType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\AddNewSubType.Designer.cs">
+    <Compile Include="Pages\Modal\AddNewSubType.Designer.cs">
       <DependentUpon>AddNewSubType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\AddNewUnit.cs">
+    <Compile Include="Pages\Modal\AddNewUnit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\AddNewUnit.Designer.cs">
+    <Compile Include="Pages\Modal\AddNewUnit.Designer.cs">
       <DependentUpon>AddNewUnit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\AddNewVariant.cs">
+    <Compile Include="Pages\Modal\AddNewVariant.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\AddNewVariant.Designer.cs">
+    <Compile Include="Pages\Modal\AddNewVariant.Designer.cs">
       <DependentUpon>AddNewVariant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\CustomerDetails.cs">
+    <Compile Include="Pages\Modal\CustomerDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\CustomerDetails.Designer.cs">
+    <Compile Include="Pages\Modal\CustomerDetails.Designer.cs">
       <DependentUpon>CustomerDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\CustomerBillData.cs" />
     <Compile Include="Entities\CustomerInfoDetails.cs" />
     <Compile Include="Entities\Money.cs" />
     <Compile Include="Entities\Results.cs" />
-    <Compile Include="ForgotPassword.cs">
+    <Compile Include="Pages\Auth\ForgotPassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ForgotPassword.Designer.cs">
+    <Compile Include="Pages\Auth\ForgotPassword.Designer.cs">
       <DependentUpon>ForgotPassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\AddNewCatagory.cs">
+    <Compile Include="Pages\Modal\AddNewCatagory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\AddNewCatagory.Designer.cs">
+    <Compile Include="Pages\Modal\AddNewCatagory.Designer.cs">
       <DependentUpon>AddNewCatagory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Pages\Report\BillHistoryReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Pages\Report\BillHistoryReport.Designer.cs">
+      <DependentUpon>BillHistoryReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Test_Ref\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\Test_Ref\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewPassword.cs">
+    <Compile Include="Pages\Auth\NewPassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewPassword.Designer.cs">
+    <Compile Include="Pages\Auth\NewPassword.Designer.cs">
       <DependentUpon>NewPassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Pages\Auth\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="Pages\Auth\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard.cs">
@@ -234,22 +240,22 @@
     <Compile Include="Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventory.cs">
+    <Compile Include="Pages\Test_Ref\Inventory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inventory.Designer.cs">
+    <Compile Include="Pages\Test_Ref\Inventory.Designer.cs">
       <DependentUpon>Inventory.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductEntry.cs">
+    <Compile Include="Pages\Transaction\ProductEntry.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductEntry.Designer.cs">
+    <Compile Include="Pages\Transaction\ProductEntry.Designer.cs">
       <DependentUpon>ProductEntry.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductSale.cs">
+    <Compile Include="Pages\Transaction\ProductSale.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductSale.Designer.cs">
+    <Compile Include="Pages\Transaction\ProductSale.Designer.cs">
       <DependentUpon>ProductSale.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -268,64 +274,62 @@
     </Compile>
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="RepositoryContracts\IGenericRepository.cs" />
-    <Compile Include="UserRegistration.cs">
+    <Compile Include="Pages\Auth\UserRegistration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserRegistration.Designer.cs">
+    <Compile Include="Pages\Auth\UserRegistration.Designer.cs">
       <DependentUpon>UserRegistration.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="StockEntry.cs">
+    <Compile Include="Pages\Transaction\StockEntry.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StockEntry.Designer.cs">
+    <Compile Include="Pages\Transaction\StockEntry.Designer.cs">
       <DependentUpon>StockEntry.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TempBillDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TempBillDataSet.xsd</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\AddNewProductType.resx">
+    <EmbeddedResource Include="Pages\Modal\AddNewProductType.resx">
       <DependentUpon>AddNewProductType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\AddNewSubType.resx">
+    <EmbeddedResource Include="Pages\Modal\AddNewSubType.resx">
       <DependentUpon>AddNewSubType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\AddNewUnit.resx">
+    <EmbeddedResource Include="Pages\Modal\AddNewUnit.resx">
       <DependentUpon>AddNewUnit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\AddNewVariant.resx">
+    <EmbeddedResource Include="Pages\Modal\AddNewVariant.resx">
       <DependentUpon>AddNewVariant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\CustomerDetails.resx">
+    <EmbeddedResource Include="Pages\Modal\CustomerDetails.resx">
       <DependentUpon>CustomerDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ForgotPassword.resx">
+    <EmbeddedResource Include="Pages\Auth\ForgotPassword.resx">
       <DependentUpon>ForgotPassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\AddNewCatagory.resx">
+    <EmbeddedResource Include="Pages\Modal\AddNewCatagory.resx">
       <DependentUpon>AddNewCatagory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Pages\Report\BillHistoryReport.resx">
+      <DependentUpon>BillHistoryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Test_Ref\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewPassword.resx">
+    <EmbeddedResource Include="Pages\Auth\NewPassword.resx">
       <DependentUpon>NewPassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="Pages\Auth\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inventory.resx">
+    <EmbeddedResource Include="Pages\Test_Ref\Inventory.resx">
       <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductEntry.resx">
+    <EmbeddedResource Include="Pages\Transaction\ProductEntry.resx">
       <DependentUpon>ProductEntry.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductSale.resx">
+    <EmbeddedResource Include="Pages\Transaction\ProductSale.resx">
       <DependentUpon>ProductSale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -345,11 +349,11 @@
     <EmbeddedResource Include="Reports\testRunner.resx">
       <DependentUpon>testRunner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Signup.resx">
-      <DependentUpon>Signup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StockEntry.resx">
+    <EmbeddedResource Include="Pages\Transaction\StockEntry.resx">
       <DependentUpon>StockEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Auth\UserRegistration.resx">
+      <DependentUpon>UserRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Connection\dbContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -372,17 +376,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="TempBillDataSet.xsc">
-      <DependentUpon>TempBillDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="TempBillDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TempBillDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="TempBillDataSet.xss">
-      <DependentUpon>TempBillDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -415,6 +408,8 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Pages\Common\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

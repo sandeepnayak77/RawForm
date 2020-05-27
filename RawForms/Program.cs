@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RawForms.Pages.Report;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,10 +18,11 @@ namespace RawForms
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Login());
-            Application.Run(new Dashboard());
+            Application.Run(new Dashboard()); // production release
             //Application.Run(new ProductEntry());
             //Application.Run(new StockEntry());
             //Application.Run(new ProductSale());
+            //Application.Run(new BillHistoryReport());
         }
     }
 }

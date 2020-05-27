@@ -22,14 +22,21 @@ namespace RawForms
         public string _globalBillNo = "";
         CustomerBillData customerBillData = new CustomerBillData();
         CustomerInfoDetails customerInfoDetails = new CustomerInfoDetails();
+        Dictionary<String, Int32> pidDictionary = new Dictionary<String, Int32>();
         public ProductSale()
         {
             
             InitializeComponent();
             AutoCompleteText();
         }
-        Dictionary<String, Int32> pidDictionary = new Dictionary<String, Int32>();
-        
+       
+        private void ProductSale_Load(object sender, EventArgs e)
+        {
+            Login.ValidateLogin(this);
+            dataGridViewSale.AutoGenerateColumns = false;
+            ControlValidation.DisableGridSort(this.dataGridViewSale, DataGridViewColumnSortMode.NotSortable);
+
+        }
 
         public void AutoCompleteText()
         {
@@ -271,13 +278,7 @@ namespace RawForms
             }
         }
 
-        private void ProductSale_Load(object sender, EventArgs e)
-        {
-            dataGridViewSale.AutoGenerateColumns = false;
-           ControlValidation.DisableGridSort(this.dataGridViewSale, DataGridViewColumnSortMode.NotSortable);
-            
-        }
-
+   
         private void timerSales_Tick(object sender, EventArgs e)
         {
             lblDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
@@ -336,7 +337,7 @@ namespace RawForms
 
         private void dataGridViewSale_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.RowIndex != dataGridViewSale.RowCount - 1)
+          if (e.RowIndex >= 0 && e.RowIndex != dataGridViewSale.RowCount - 1)
             {
                 if (e.ColumnIndex == this.Delete.Index)
                 {
@@ -434,6 +435,7 @@ namespace RawForms
         {
             if(dataGridViewSale.RowCount>1)
             {
+                
                 ProductTempSale();
                 SendProductinfForBill();
             }
@@ -491,7 +493,7 @@ namespace RawForms
             billProdList.Clear();
 
             //CustomerBillForm cust = new CustomerBillForm();
-            CustomerDetails custinfo = new CustomerDetails();
+            CustomerDetails custinfo = new CustomerDetails(this);
 
             for (int i = 0; i <= dataGridViewSale.RowCount - 2; i++) //count-2 because one header and one grand total at last row
             {
@@ -506,9 +508,16 @@ namespace RawForms
                 billProdList.Add(custBillProduct);
 
             }
+            var database = new InventoryEntities();
+            var shopInfo = (from c in database.ShopInfoes
+                            select c).FirstOrDefault();
+
+            string shopAddress = shopInfo.ShopAddress + " " + shopInfo.City + " " + shopInfo.Dist + " " + shopInfo.State + " " + shopInfo.ZIP + " Tel :" + shopInfo.PhoneNo;
 
             var customerBillData = new CustomerBillData();
-            customerBillData.gstn = "GST043621987PS";
+            customerBillData.gstn = shopInfo.Gstn;
+            customerBillData.shopName = shopInfo.ShopName;
+            customerBillData.shopAddress = shopAddress;
             customerBillData.billNo = _globalBillNo;
             customerBillData.billData = billProdList;
             custinfo.prodBillInfoPass(customerBillData, _globalBillNo);
@@ -655,13 +664,25 @@ namespace RawForms
             
 
         }
-        public void CallBackFromReport(string billno, CustomerBillData cusBill, CustomerInfoDetails custInfo)
+        public void CallBackFromReport(string billno, CustomerBillData cusBill, CustomerInfoDetails custInfo, ProductSale prodSale)
         {
-            MessageBox.Show("Please enter First Name!" + billno);
+            //MessageBox.Show("Please enter First Name!" + billno);
             customerBillData = cusBill;
             customerInfoDetails = custInfo;
- 
             ProductFinalSale(billno);
+            prodSale.dataGridViewSale.Rows.Clear();
+        }
+
+        public void CallBackFromReportEdit(string billno, ProductSale prodSale)
+        {
+            TempBillClear(billno);
+            
+        }
+
+        public void CallBackFromReportExit(string billno, ProductSale prodSale)
+        {
+            TempBillClear(billno);
+            prodSale.dataGridViewSale.Rows.Clear();
         }
 
         public void CustomerEntry(string billNo, decimal sumTotal, CustomerBillData cusBill, CustomerInfoDetails custInfo)
@@ -688,13 +709,18 @@ namespace RawForms
             billInfoTable.BillTypeID = billTypeIDList.BillTypeID;//Cash or Credit Bill
             billInfoTable.TotalAmount = sumTotal;
             billInfoTable.Discount = custInfo.custDiscount;
-            billInfoTable.BillDate = DateTime.Now.Date;
+            billInfoTable.BillDate = custInfo.billDate;
             billInfoTable.UpdatedOn = DateTime.Now;
             billInfoTable.CustomerInfo = custInfoTable;
             //database.CustomerInfoes.Add(custInfoTable);
             database.BillInfoes.Add(billInfoTable);
             database.SaveChanges();
 
+        }
+
+        private void ProductSale_Shown(object sender, EventArgs e)
+        {
+            //Login.ValidateLogin();
         }
     }
 }

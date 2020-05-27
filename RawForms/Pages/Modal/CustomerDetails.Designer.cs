@@ -38,6 +38,8 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lblBillNo = new System.Windows.Forms.Label();
             this.lblBillNoView = new System.Windows.Forms.Label();
+            this.lblBillDate = new System.Windows.Forms.Label();
+            this.dateTimeBillDate = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // lblCustomerDetails
@@ -87,7 +89,7 @@
             // lblAddress
             // 
             this.lblAddress.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.Location = new System.Drawing.Point(12, 171);
+            this.lblAddress.Location = new System.Drawing.Point(12, 152);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(139, 27);
             this.lblAddress.TabIndex = 12;
@@ -98,10 +100,10 @@
             // 
             this.txtAddress.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddress.ForeColor = System.Drawing.Color.DarkGray;
-            this.txtAddress.Location = new System.Drawing.Point(157, 155);
+            this.txtAddress.Location = new System.Drawing.Point(157, 145);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(330, 70);
+            this.txtAddress.Size = new System.Drawing.Size(330, 47);
             this.txtAddress.TabIndex = 13;
             // 
             // btnCancel
@@ -154,11 +156,31 @@
             this.lblBillNoView.Text = "XXX";
             this.lblBillNoView.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblBillDate
+            // 
+            this.lblBillDate.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBillDate.Location = new System.Drawing.Point(12, 205);
+            this.lblBillDate.Name = "lblBillDate";
+            this.lblBillDate.Size = new System.Drawing.Size(139, 27);
+            this.lblBillDate.TabIndex = 18;
+            this.lblBillDate.Text = "BillDate";
+            this.lblBillDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // dateTimeBillDate
+            // 
+            this.dateTimeBillDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimeBillDate.Location = new System.Drawing.Point(157, 205);
+            this.dateTimeBillDate.Name = "dateTimeBillDate";
+            this.dateTimeBillDate.Size = new System.Drawing.Size(105, 20);
+            this.dateTimeBillDate.TabIndex = 19;
+            // 
             // CustomerDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(510, 327);
+            this.Controls.Add(this.dateTimeBillDate);
+            this.Controls.Add(this.lblBillDate);
             this.Controls.Add(this.lblBillNoView);
             this.Controls.Add(this.lblBillNo);
             this.Controls.Add(this.btnCancel);
@@ -190,5 +212,7 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Label lblBillNo;
         private System.Windows.Forms.Label lblBillNoView;
+        private System.Windows.Forms.Label lblBillDate;
+        private System.Windows.Forms.DateTimePicker dateTimeBillDate;
     }
 }

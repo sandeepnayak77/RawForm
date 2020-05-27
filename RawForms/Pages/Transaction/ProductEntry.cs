@@ -21,7 +21,7 @@ namespace RawForms
         public ProductEntry()
         {
             InitializeComponent();
-            Login.ValidateLogin();
+            Login.ValidateLogin(this);
         }
         public void BindCatagories()
         {
@@ -91,6 +91,11 @@ namespace RawForms
 
 
             string prodCode = "FFU";
+
+            
+
+
+
             
             try
             {
@@ -135,12 +140,46 @@ namespace RawForms
                     result.Result = true;
                     result.Message = " Record Successfully Added !!! ";
                     ClearControls();
+                    cmbVariety.SelectedIndex = 0;
                 }
                 else
                 {
-                    result.Result = false;
-                    result.Message = "Product Already Exist";
+                    if (btnSave.Text == "Update")
+                    {
+                        var prodIdInfo = (from c in database.ProductInfoes
+                                          where c.CatagoryID == catID && c.TypeID == typeID && c.SubTypeID == subTypeID && c.VarientID == varientID
+                                          select c).FirstOrDefault();
+                        int lclproductID = prodIdInfo.ProductID;
+                        var prodInfoUpdate = (from c in database.ProductInfoes
+                                              join d in database.ProductPrices on c.ProductID equals d.ProductID
+                                              where c.ProductID == lclproductID
+                                              select new
+                                              {
+                                                  prodinfotable = c,
+                                                  prodpricetable = d
+                                              }).FirstOrDefault();
+
+
+                        prodInfoUpdate.prodinfotable.Description = desc;
+                        prodInfoUpdate.prodinfotable.UnitID = unitId;
+                        prodInfoUpdate.prodpricetable.SalesPrice = dec_sp;
+                        prodInfoUpdate.prodpricetable.CostPrice = dec_cp;
+                        prodInfoUpdate.prodpricetable.MRP = dec_mrp;
+                        database.SaveChanges();
+
+                        result.Result = true;
+                        result.Message = "Product Info Successfully Updated";
+                        ClearControls();
+                        cmbVariety.SelectedIndex = 0;
+                        btnSave.Text = "Save";
+                    }
+                    
                 }
+
+                
+
+
+
                 return result;
             }
             catch (Exception ex)
@@ -184,10 +223,11 @@ namespace RawForms
                     txtMRP.Text = pricedetail.MRP.ToString();
                     txtSalesPrice.Text = pricedetail.SalesPrice.ToString();
                     cmbUnit.SelectedValue = count.UnitID;
-
+                    btnSave.Text = "Update";
                 }
                 else
                 {
+                    btnSave.Text = "Save";
                     ClearControls();
                 }
             }
@@ -202,8 +242,10 @@ namespace RawForms
         private void ProductEntry_Load(object sender, EventArgs e)
         {
             lblError.Text = "";
-            BindCatagories();
             BindUnits();
+            BindCatagories();
+            
+            btnSave.Text = "Save";
         }
 
         private void btnCatagory_Click(object sender, EventArgs e)
@@ -229,6 +271,8 @@ namespace RawForms
                 btnTypeAdd.Enabled = true;
                 btnTypeAdd.Visible = true;
                 lblError.Text = "";
+                ClearControls();
+                btnSave.Text = "Save";
             }
             else
             {
@@ -244,7 +288,8 @@ namespace RawForms
                 cmbVariety.Enabled = false;
                 btnVariety.Enabled = false;
                 btnVariety.Visible = false;
-
+                lblError.Text = "";
+                ClearControls();
             }
             
         }
@@ -257,6 +302,8 @@ namespace RawForms
                 btnSubTypeAdd.Enabled = true;
                 btnSubTypeAdd.Visible = true;
                 lblError.Text = "";
+                ClearControls();
+                btnSave.Text = "Save";
             }
             else
             {
@@ -268,7 +315,7 @@ namespace RawForms
                 cmbVariety.Enabled = false;
                 btnVariety.Enabled = false;
                 btnVariety.Visible = false;
-
+                ClearControls();
             }
 
         }
@@ -281,6 +328,8 @@ namespace RawForms
                 btnVariety.Visible = true;
                 BindProductVariety();
                 lblError.Text = "";
+                ClearControls();
+                btnSave.Text = "Save";
             }
             else
             {
@@ -288,7 +337,8 @@ namespace RawForms
                 cmbVariety.Enabled = false;
                 btnVariety.Enabled = false;
                 btnVariety.Visible = false;
-
+                lblError.Text = "";
+                lblError.Text = "";
             }
         }
 
@@ -458,6 +508,7 @@ namespace RawForms
 
         private void cmbVariety_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             GetProductInfo();
         }
 
