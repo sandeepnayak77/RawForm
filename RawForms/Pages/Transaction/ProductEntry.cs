@@ -67,7 +67,8 @@ namespace RawForms
         {
             var database = new InventoryEntities();
             var subTypeID = Convert.ToInt32(cmbSubType.SelectedValue);
-            var varients = (from c in database.ProductVarients where c.SubTypeID == subTypeID select c).ToList();
+            //var varients = (from c in database.ProductVarients where c.SubTypeID == subTypeID select c).ToList();
+            var varients = (from c in database.ProductVarients select c).ToList();
             varients.Insert(0, new ProductVarient { VarientID = 0, VarientName = "--Select Sub-Type --" });
             cmbVariety.DisplayMember = "VarientName";
             cmbVariety.ValueMember = "VarientID";

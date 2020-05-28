@@ -107,6 +107,7 @@ namespace RawForms.Pages.Report
                 //dataGridViewBillHistory.Rows.Add();
 
             }
+            dataGridViewBillHistory.Rows.Add();
         }
 
         private void dataGridViewBillHistory_CellContentClick(object sender, DataGridViewCellEventArgs e)

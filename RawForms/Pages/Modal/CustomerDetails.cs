@@ -1,4 +1,5 @@
 ﻿using RawForms.AppUtil;
+using RawForms.Connection;
 using RawForms.Entities;
 using RawForms.Reports;
 using System;
@@ -110,6 +111,7 @@ namespace RawForms.Dialog
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            TempBillClear(_billnumber);
             this.Close();
         }
 
@@ -126,6 +128,28 @@ namespace RawForms.Dialog
         private void txtDiscount_KeyPress(object sender, KeyPressEventArgs e)
         {
             ControlValidation.IsPrice(sender, e);
+        }
+
+        private void txtDiscount_Leave(object sender, EventArgs e)
+        {
+            double value;
+
+            if (double.TryParse(txtDiscount.Text, out value))
+            {
+                txtDiscount.Text = String.Format("{0:0,0.00}", value);
+            }
+        }
+
+        public void TempBillClear(string _billNo)
+        {
+            var database = new InventoryEntities();
+            var tempProdRecords = (from c in database.TempBills
+                                   where c.BillNumber == _billNo
+                                   select c);
+            database.TempBills.RemoveRange(tempProdRecords);
+            database.SaveChanges();
+
+
         }
     }
 }

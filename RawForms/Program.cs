@@ -23,6 +23,7 @@ namespace RawForms
             //Application.Run(new StockEntry());
             //Application.Run(new ProductSale());
             //Application.Run(new BillHistoryReport());
+            //Application.Run(new ProfitLossReport());
         }
     }
 }

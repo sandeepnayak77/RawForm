@@ -195,6 +195,7 @@
             this.txtDiscount.Size = new System.Drawing.Size(140, 27);
             this.txtDiscount.TabIndex = 21;
             this.txtDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiscount_KeyPress);
+            this.txtDiscount.Leave += new System.EventHandler(this.txtDiscount_Leave);
             // 
             // CustomerDetails
             // 

@@ -80,7 +80,7 @@ namespace RawForms
                 {
                     ProductEntry prodEntry = (ProductEntry) Owner.ActiveControl;
                     prodEntry.BindCatagories();
-
+                    txtCatagory.Text = "";
                     lblError.Text = result.Message;
                     lblError.ForeColor = Color.Green;
                 }

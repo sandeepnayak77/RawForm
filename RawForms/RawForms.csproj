@@ -216,6 +216,12 @@
     <Compile Include="Pages\Report\BillHistoryReport.Designer.cs">
       <DependentUpon>BillHistoryReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Report\ProfitLossReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\Report\ProfitLossReport.Designer.cs">
+      <DependentUpon>ProfitLossReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Test_Ref\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -313,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Report\BillHistoryReport.resx">
       <DependentUpon>BillHistoryReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Report\ProfitLossReport.resx">
+      <DependentUpon>ProfitLossReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Test_Ref\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
