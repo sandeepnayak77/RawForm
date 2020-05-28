@@ -1,4 +1,5 @@
 ﻿using RawForms.AppUtil;
+using RawForms.Connection;
 using RawForms.Entities;
 using RawForms.Reports;
 using System;
@@ -58,6 +59,15 @@ namespace RawForms.Dialog
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            decimal discount;
+            if(txtDiscount.Text.Trim()=="")
+            {
+                discount = 0;
+            }
+            else
+            {
+                discount = Convert.ToDecimal(txtDiscount.Text.Trim());
+            }
             if (txtCustomerName.Text.Trim() == "" || ControlValidation.IsReserveWord(txtCustomerName.Text.Trim().ToLower()))
             {
                 lblError.Text = "Please Enter Customer Name";
@@ -78,7 +88,7 @@ namespace RawForms.Dialog
                 custDetails.custMobile = "9999999999";
                 custDetails.custEmail = "abc@gmail.com";
                 custDetails.billDate = dateTimeBillDate.Value.Date;
-                custDetails.custDiscount = 0;
+                custDetails.custDiscount = discount;
                 this.Hide();
                 if (sellerEntry==1)
                 {
@@ -101,6 +111,7 @@ namespace RawForms.Dialog
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            TempBillClear(_billnumber);
             this.Close();
         }
 
@@ -114,6 +125,31 @@ namespace RawForms.Dialog
 
         }
 
-     
+        private void txtDiscount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ControlValidation.IsPrice(sender, e);
+        }
+
+        private void txtDiscount_Leave(object sender, EventArgs e)
+        {
+            double value;
+
+            if (double.TryParse(txtDiscount.Text, out value))
+            {
+                txtDiscount.Text = String.Format("{0:0,0.00}", value);
+            }
+        }
+
+        public void TempBillClear(string _billNo)
+        {
+            var database = new InventoryEntities();
+            var tempProdRecords = (from c in database.TempBills
+                                   where c.BillNumber == _billNo
+                                   select c);
+            database.TempBills.RemoveRange(tempProdRecords);
+            database.SaveChanges();
+
+
+        }
     }
 }

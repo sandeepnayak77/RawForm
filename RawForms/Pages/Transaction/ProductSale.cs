@@ -364,13 +364,16 @@ namespace RawForms
         {
             try
             {
-
-                if (dataGridViewSale.CurrentRow.Index != -1)
+                if(dataGridViewSale.CurrentRow!=null)
                 {
-                    int productID = Convert.ToInt32(dataGridViewSale.CurrentRow.Cells["ProductID"].Value);
-                    GetProductByKey(productID);
-                    txtCurrentStock.Text = GetCurrentStock(productID).ToString();
+                    if (dataGridViewSale.CurrentRow.Index != -1)
+                    {
+                        int productID = Convert.ToInt32(dataGridViewSale.CurrentRow.Cells["ProductID"].Value);
+                        GetProductByKey(productID);
+                        txtCurrentStock.Text = GetCurrentStock(productID).ToString();
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
