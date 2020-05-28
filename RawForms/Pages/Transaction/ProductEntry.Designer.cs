@@ -294,6 +294,7 @@
             this.txtCostPrice.Name = "txtCostPrice";
             this.txtCostPrice.Size = new System.Drawing.Size(294, 27);
             this.txtCostPrice.TabIndex = 12;
+           
             this.txtCostPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCostPrice_KeyPress);
             // 
             // txtMRP

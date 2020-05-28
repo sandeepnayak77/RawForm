@@ -58,6 +58,15 @@ namespace RawForms.Dialog
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            decimal discount;
+            if(txtDiscount.Text.Trim()=="")
+            {
+                discount = 0;
+            }
+            else
+            {
+                discount = Convert.ToDecimal(txtDiscount.Text.Trim());
+            }
             if (txtCustomerName.Text.Trim() == "" || ControlValidation.IsReserveWord(txtCustomerName.Text.Trim().ToLower()))
             {
                 lblError.Text = "Please Enter Customer Name";
@@ -78,7 +87,7 @@ namespace RawForms.Dialog
                 custDetails.custMobile = "9999999999";
                 custDetails.custEmail = "abc@gmail.com";
                 custDetails.billDate = dateTimeBillDate.Value.Date;
-                custDetails.custDiscount = 0;
+                custDetails.custDiscount = discount;
                 this.Hide();
                 if (sellerEntry==1)
                 {
@@ -114,6 +123,9 @@ namespace RawForms.Dialog
 
         }
 
-     
+        private void txtDiscount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ControlValidation.IsPrice(sender, e);
+        }
     }
 }

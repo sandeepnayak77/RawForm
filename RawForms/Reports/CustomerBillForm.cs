@@ -81,6 +81,7 @@ namespace RawForms.Reports
             rp.Add(new ReportParameter("billNumber", cusBill.billNo));
             rp.Add(new ReportParameter("shopName", cusBill.shopName));
             rp.Add(new ReportParameter("shopAddress", cusBill.shopAddress));
+            rp.Add(new ReportParameter("discount", custInfo.custDiscount.ToString()));
             this.reportViewerCustBill.LocalReport.SetParameters(rp);
             this.reportViewerCustBill.RefreshReport();
         }

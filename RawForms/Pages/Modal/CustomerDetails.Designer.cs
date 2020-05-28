@@ -40,6 +40,8 @@
             this.lblBillNoView = new System.Windows.Forms.Label();
             this.lblBillDate = new System.Windows.Forms.Label();
             this.dateTimeBillDate = new System.Windows.Forms.DateTimePicker();
+            this.lblDiscount = new System.Windows.Forms.Label();
+            this.txtDiscount = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblCustomerDetails
@@ -174,11 +176,33 @@
             this.dateTimeBillDate.Size = new System.Drawing.Size(105, 20);
             this.dateTimeBillDate.TabIndex = 19;
             // 
+            // lblDiscount
+            // 
+            this.lblDiscount.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiscount.Location = new System.Drawing.Point(268, 205);
+            this.lblDiscount.Name = "lblDiscount";
+            this.lblDiscount.Size = new System.Drawing.Size(73, 27);
+            this.lblDiscount.TabIndex = 20;
+            this.lblDiscount.Text = "Discount";
+            this.lblDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtDiscount
+            // 
+            this.txtDiscount.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDiscount.ForeColor = System.Drawing.Color.DarkGray;
+            this.txtDiscount.Location = new System.Drawing.Point(347, 205);
+            this.txtDiscount.Name = "txtDiscount";
+            this.txtDiscount.Size = new System.Drawing.Size(140, 27);
+            this.txtDiscount.TabIndex = 21;
+            this.txtDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiscount_KeyPress);
+            // 
             // CustomerDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(510, 327);
+            this.Controls.Add(this.txtDiscount);
+            this.Controls.Add(this.lblDiscount);
             this.Controls.Add(this.dateTimeBillDate);
             this.Controls.Add(this.lblBillDate);
             this.Controls.Add(this.lblBillNoView);
@@ -214,5 +238,7 @@
         private System.Windows.Forms.Label lblBillNoView;
         private System.Windows.Forms.Label lblBillDate;
         private System.Windows.Forms.DateTimePicker dateTimeBillDate;
+        private System.Windows.Forms.Label lblDiscount;
+        private System.Windows.Forms.TextBox txtDiscount;
     }
 }
