@@ -191,6 +191,20 @@
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
         </EntityType>
+        <EntityType Name="ShopInfo">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShopName" Type="varchar" MaxLength="50" />
+          <Property Name="ShopAddress" Type="varchar" MaxLength="200" />
+          <Property Name="ZIP" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Dist" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNo" Type="varchar" MaxLength="50" />
+          <Property Name="Gstn" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserMaster">
           <Key>
             <PropertyRef Name="UserId" />
@@ -425,6 +439,7 @@
           <EntitySet Name="TransactionDetail" EntityType="Self.TransactionDetail" Schema="Transaction" store:Type="Tables" />
           <EntitySet Name="TransactionType" EntityType="Self.TransactionType" Schema="Transaction" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="User" store:Type="Tables" />
+          <EntitySet Name="ShopInfo" EntityType="Self.ShopInfo" Schema="User" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="User" store:Type="Tables" />
           <AssociationSet Name="FK_BillInfo_BillType" Association="Self.FK_BillInfo_BillType">
             <End Role="BillType" EntitySet="BillType" />
@@ -622,6 +637,7 @@
             <End Role="TransactionDetail" EntitySet="TransactionDetails" />
           </AssociationSet>
           <EntitySet Name="TempBills" EntityType="InventoryModel.TempBill" />
+          <EntitySet Name="ShopInfoes" EntityType="InventoryModel.ShopInfo" />
           </EntityContainer>
         <EntityType Name="UserAuth">
           <Key>
@@ -1013,6 +1029,20 @@
           <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="3" />
           <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="3" />
         </EntityType>
+        <EntityType Name="ShopInfo">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShopAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ZIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dist" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gstn" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1244,6 +1274,21 @@
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
                 <ScalarProperty Name="TempID" ColumnName="TempID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShopInfoes">
+            <EntityTypeMapping TypeName="InventoryModel.ShopInfo">
+              <MappingFragment StoreEntitySet="ShopInfo">
+                <ScalarProperty Name="Gstn" ColumnName="Gstn" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Dist" ColumnName="Dist" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="ShopAddress" ColumnName="ShopAddress" />
+                <ScalarProperty Name="ShopName" ColumnName="ShopName" />
+                <ScalarProperty Name="ShopID" ColumnName="ShopID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -45,5 +45,6 @@ namespace RawForms.Connection
         public virtual DbSet<CustomerInfo> CustomerInfoes { get; set; }
         public virtual DbSet<TransactionDetail> TransactionDetails { get; set; }
         public virtual DbSet<TempBill> TempBills { get; set; }
+        public virtual DbSet<ShopInfo> ShopInfoes { get; set; }
     }
 }

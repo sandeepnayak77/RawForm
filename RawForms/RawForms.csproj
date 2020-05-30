@@ -142,6 +142,9 @@
     <Compile Include="Connection\SecurityQuestion.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Connection\ShopInfo.cs">
+      <DependentUpon>dbContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Connection\StockChild.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
@@ -194,10 +197,16 @@
     <Compile Include="Entities\CustomerInfoDetails.cs" />
     <Compile Include="Entities\Money.cs" />
     <Compile Include="Entities\Results.cs" />
-    <Compile Include="ForgotPassword.cs">
+    <Compile Include="Pages\HomePage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ForgotPassword.Designer.cs">
+    <Compile Include="Pages\HomePage.Designer.cs">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ForgotPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\ForgotPassword.Designer.cs">
       <DependentUpon>ForgotPassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\AddNewCatagory.cs">
@@ -206,46 +215,53 @@
     <Compile Include="Dialog\AddNewCatagory.Designer.cs">
       <DependentUpon>AddNewCatagory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Pages\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Pages\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewPassword.cs">
+    <Compile Include="Dialog\messageBoxAlert.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewPassword.Designer.cs">
+    <Compile Include="Dialog\messageBoxAlert.Designer.cs">
+      <DependentUpon>messageBoxAlert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\messageBoxDialogue.cs" />
+    <Compile Include="Pages\NewPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\NewPassword.Designer.cs">
       <DependentUpon>NewPassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Pages\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="Pages\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard.cs">
+    <Compile Include="Pages\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dashboard.Designer.cs">
+    <Compile Include="Pages\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventory.cs">
+    <Compile Include="Pages\Inventory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inventory.Designer.cs">
+    <Compile Include="Pages\Inventory.Designer.cs">
       <DependentUpon>Inventory.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductEntry.cs">
+    <Compile Include="Pages\ProductEntry.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductEntry.Designer.cs">
+    <Compile Include="Pages\ProductEntry.Designer.cs">
       <DependentUpon>ProductEntry.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProductSale.cs">
+    <Compile Include="Pages\ProductSale.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProductSale.Designer.cs">
+    <Compile Include="Pages\ProductSale.Designer.cs">
       <DependentUpon>ProductSale.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -262,17 +278,17 @@
     <Compile Include="Reports\testRunner.Designer.cs">
       <DependentUpon>testRunner.cs</DependentUpon>
     </Compile>
-    <Compile Include="Signup.cs">
+    <Compile Include="Pages\Signup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Signup.Designer.cs">
+    <Compile Include="Pages\Signup.Designer.cs">
       <DependentUpon>Signup.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="StockEntry.cs">
+    <Compile Include="Pages\StockEntry.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StockEntry.Designer.cs">
+    <Compile Include="Pages\StockEntry.Designer.cs">
       <DependentUpon>StockEntry.cs</DependentUpon>
     </Compile>
     <Compile Include="TempBillDataSet.Designer.cs">
@@ -280,7 +296,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TempBillDataSet.xsd</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Dashboard.resx">
+    <EmbeddedResource Include="Pages\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\AddNewProductType.resx">
@@ -298,28 +314,34 @@
     <EmbeddedResource Include="Dialog\CustomerDetails.resx">
       <DependentUpon>CustomerDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ForgotPassword.resx">
+    <EmbeddedResource Include="Pages\HomePage.resx">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ForgotPassword.resx">
       <DependentUpon>ForgotPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\AddNewCatagory.resx">
       <DependentUpon>AddNewCatagory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Pages\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewPassword.resx">
+    <EmbeddedResource Include="Dialog\messageBoxAlert.resx">
+      <DependentUpon>messageBoxAlert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\NewPassword.resx">
       <DependentUpon>NewPassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="Pages\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inventory.resx">
+    <EmbeddedResource Include="Pages\Inventory.resx">
       <DependentUpon>Inventory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductEntry.resx">
+    <EmbeddedResource Include="Pages\ProductEntry.resx">
       <DependentUpon>ProductEntry.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProductSale.resx">
+    <EmbeddedResource Include="Pages\ProductSale.resx">
       <DependentUpon>ProductSale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -339,10 +361,10 @@
     <EmbeddedResource Include="Reports\testRunner.resx">
       <DependentUpon>testRunner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Signup.resx">
+    <EmbeddedResource Include="Pages\Signup.resx">
       <DependentUpon>Signup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="StockEntry.resx">
+    <EmbeddedResource Include="Pages\StockEntry.resx">
       <DependentUpon>StockEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Connection\dbContext.edmx">
@@ -392,6 +414,13 @@
       <DependentUpon>dbContext.edmx</DependentUpon>
       <LastGenOutput>dbContext.cs</LastGenOutput>
     </Content>
+    <Content Include="Icons\buy.png" />
+    <Content Include="Icons\data-warehouse.png" />
+    <Content Include="Icons\edit.png" />
+    <Content Include="Icons\home-page %281%29.png" />
+    <Content Include="Icons\home-page %282%29.png" />
+    <Content Include="Icons\home-page.png" />
+    <Content Include="Icons\icons8-home-24.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

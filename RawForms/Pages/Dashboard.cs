@@ -110,6 +110,7 @@ namespace RawForms
             var v = AppTheme.SetAppTheme();
             this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(v[0], v[1], v[2]);
             lblTitleBar.Text = "Inventory";
+            lblTitleBar.TextAlign = ContentAlignment.MiddleLeft;
             LoadFormInPanel(new Inventory());
         }
 
@@ -140,6 +141,24 @@ namespace RawForms
             LoadFormInPanel(new ProductSale());
         }
 
-        
+        private void settings_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelContainer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelTitleBar_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelContainer_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
