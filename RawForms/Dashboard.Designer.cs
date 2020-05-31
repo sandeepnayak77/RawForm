@@ -33,7 +33,7 @@
             this.btnInventoryMenu = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnPLStmt = new System.Windows.Forms.Button();
             this.btnSlide = new System.Windows.Forms.PictureBox();
             this.btnBillReports = new System.Windows.Forms.Button();
             this.btnSales = new System.Windows.Forms.Button();
@@ -62,7 +62,7 @@
             this.panelVerticalMenu.Controls.Add(this.btnInventoryMenu);
             this.panelVerticalMenu.Controls.Add(this.button1);
             this.panelVerticalMenu.Controls.Add(this.button6);
-            this.panelVerticalMenu.Controls.Add(this.button5);
+            this.panelVerticalMenu.Controls.Add(this.btnPLStmt);
             this.panelVerticalMenu.Controls.Add(this.btnSlide);
             this.panelVerticalMenu.Controls.Add(this.btnBillReports);
             this.panelVerticalMenu.Controls.Add(this.btnSales);
@@ -126,22 +126,23 @@
             this.button6.Text = "Inventory";
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnPLStmt
             // 
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(0, 283);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(250, 40);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "Inventory";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnPLStmt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPLStmt.FlatAppearance.BorderSize = 0;
+            this.btnPLStmt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnPLStmt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPLStmt.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPLStmt.ForeColor = System.Drawing.Color.White;
+            this.btnPLStmt.Image = ((System.Drawing.Image)(resources.GetObject("btnPLStmt.Image")));
+            this.btnPLStmt.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPLStmt.Location = new System.Drawing.Point(0, 283);
+            this.btnPLStmt.Name = "btnPLStmt";
+            this.btnPLStmt.Size = new System.Drawing.Size(250, 40);
+            this.btnPLStmt.TabIndex = 1;
+            this.btnPLStmt.Text = "Profit Loss Stmt";
+            this.btnPLStmt.UseVisualStyleBackColor = true;
+            this.btnPLStmt.Click += new System.EventHandler(this.button5_Click);
             // 
             // btnSlide
             // 
@@ -348,7 +349,7 @@
         private System.Windows.Forms.Button btnProductEntry;
         private System.Windows.Forms.Button btnInventoryMenu;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnPLStmt;
         private System.Windows.Forms.Button btnBillReports;
         private System.Windows.Forms.Button btnSales;
         private System.Windows.Forms.Button btnStockEntry;

@@ -118,7 +118,6 @@
             this.reportViewerCustBill.ServerReport.BearerToken = null;
             this.reportViewerCustBill.Size = new System.Drawing.Size(878, 520);
             this.reportViewerCustBill.TabIndex = 0;
-            this.reportViewerCustBill.UseWaitCursor = true;
             this.reportViewerCustBill.Load += new System.EventHandler(this.reportViewerCustBill_Load);
             // 
             // CustomerBillForm

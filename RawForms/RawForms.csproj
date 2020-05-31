@@ -164,6 +164,12 @@
     <Compile Include="Connection\UserMaster.cs">
       <DependentUpon>dbContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="HomePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomePage.designer.cs">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Modal\AddNewProductType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +216,13 @@
     <Compile Include="Pages\Modal\AddNewCatagory.Designer.cs">
       <DependentUpon>AddNewCatagory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Modal\messageBoxAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\Modal\messageBoxAlert.designer.cs">
+      <DependentUpon>messageBoxAlert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Modal\messageBoxDialogue.cs" />
     <Compile Include="Pages\Report\BillHistoryReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,6 +309,9 @@
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HomePage.resx">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Modal\AddNewProductType.resx">
       <DependentUpon>AddNewProductType.cs</DependentUpon>
     </EmbeddedResource>
@@ -316,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Modal\AddNewCatagory.resx">
       <DependentUpon>AddNewCatagory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Modal\messageBoxAlert.resx">
+      <DependentUpon>messageBoxAlert.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Report\BillHistoryReport.resx">
       <DependentUpon>BillHistoryReport.cs</DependentUpon>
@@ -400,6 +419,29 @@
       <DependentUpon>dbContext.edmx</DependentUpon>
       <LastGenOutput>dbContext.cs</LastGenOutput>
     </Content>
+    <Content Include="Icons\bell %281%29.png" />
+    <Content Include="Icons\bell %282%29.png" />
+    <Content Include="Icons\bell.png" />
+    <Content Include="Icons\cash.png" />
+    <Content Include="Icons\delete-cross.png" />
+    <Content Include="Icons\discount.png" />
+    <Content Include="Icons\gear %281%29.png" />
+    <Content Include="Icons\gear.png" />
+    <Content Include="Icons\hamburger.png" />
+    <Content Include="Icons\home-page16.png" />
+    <Content Include="Icons\home-page24.png" />
+    <Content Include="Icons\home.png" />
+    <Content Include="Icons\icons8-minus-24.png" />
+    <Content Include="Icons\icons8-shutdown-24.png" />
+    <Content Include="Icons\multi-tab.png" />
+    <Content Include="Icons\product.png" />
+    <Content Include="Icons\sale %281%29.png" />
+    <Content Include="Icons\sale %282%29.png" />
+    <Content Include="Icons\sale.png" />
+    <Content Include="Icons\sales %281%29.png" />
+    <Content Include="Icons\sales.png" />
+    <Content Include="Icons\seo-report.png" />
+    <Content Include="Icons\settings.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

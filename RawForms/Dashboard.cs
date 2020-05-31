@@ -159,6 +159,14 @@ namespace RawForms
             lblTitleBar.Text = "Bill Reports";
             LoadFormInPanel(new BillHistoryReport());
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var v = AppTheme.SetAppTheme();
+            this.panelTitleBar.BackColor = System.Drawing.Color.FromArgb(v[0], v[1], v[2]);
+            lblTitleBar.Text = "Profit Loss Statement";
+            LoadFormInPanel(new ProfitLossReport());
+        }
     }
     
 }

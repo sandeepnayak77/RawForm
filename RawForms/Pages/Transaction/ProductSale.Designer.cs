@@ -46,26 +46,26 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridViewSale = new System.Windows.Forms.DataGridView();
-            this.timerSales = new System.Windows.Forms.Timer(this.components);
-            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SalesPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Variants = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SerialNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PriceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VarientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CatagoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CatagoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VarientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SerialNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Variants = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalesPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.timerSales = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -291,146 +291,14 @@
             this.dataGridViewSale.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewSale_EditingControlShowing);
             this.dataGridViewSale.DoubleClick += new System.EventHandler(this.dataGridViewSale_DoubleClick);
             // 
-            // timerSales
+            // ProductID
             // 
-            this.timerSales.Enabled = true;
-            this.timerSales.Interval = 1000;
-            this.timerSales.Tick += new System.EventHandler(this.timerSales_Tick);
-            // 
-            // Delete
-            // 
-            this.Delete.HeaderText = "Delete";
-            this.Delete.Name = "Delete";
-            this.Delete.Text = "Delete";
-            this.Delete.Width = 50;
-            // 
-            // Total
-            // 
-            this.Total.DataPropertyName = "Total";
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            // 
-            // SalesPrice
-            // 
-            this.SalesPrice.DataPropertyName = "SalesPrice";
-            this.SalesPrice.HeaderText = "Sales Price";
-            this.SalesPrice.Name = "SalesPrice";
-            this.SalesPrice.ReadOnly = true;
-            this.SalesPrice.Width = 120;
-            // 
-            // MRP
-            // 
-            this.MRP.DataPropertyName = "MRP";
-            this.MRP.HeaderText = "MRP";
-            this.MRP.Name = "MRP";
-            this.MRP.ReadOnly = true;
-            this.MRP.Width = 120;
-            // 
-            // UnitName
-            // 
-            this.UnitName.DataPropertyName = "UnitName";
-            this.UnitName.HeaderText = "UnitName";
-            this.UnitName.Name = "UnitName";
-            this.UnitName.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.Width = 92;
-            // 
-            // Description
-            // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Description.DataPropertyName = "Description";
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
-            // 
-            // Variants
-            // 
-            this.Variants.DataPropertyName = "VarientName";
-            this.Variants.HeaderText = "Variety";
-            this.Variants.Name = "Variants";
-            this.Variants.ReadOnly = true;
-            // 
-            // SubType
-            // 
-            this.SubType.DataPropertyName = "SubTypeName";
-            this.SubType.HeaderText = "Sub-Type";
-            this.SubType.Name = "SubType";
-            this.SubType.ReadOnly = true;
-            this.SubType.Width = 87;
-            // 
-            // ProductType
-            // 
-            this.ProductType.DataPropertyName = "TypeName";
-            this.ProductType.HeaderText = "Type";
-            this.ProductType.Name = "ProductType";
-            this.ProductType.ReadOnly = true;
-            this.ProductType.Width = 60;
-            // 
-            // SerialNo
-            // 
-            this.SerialNo.HeaderText = "SL No";
-            this.SerialNo.Name = "SerialNo";
-            this.SerialNo.ReadOnly = true;
-            this.SerialNo.Width = 50;
-            // 
-            // StockID
-            // 
-            this.StockID.DataPropertyName = "StockID";
-            this.StockID.HeaderText = "StockID";
-            this.StockID.Name = "StockID";
-            this.StockID.ReadOnly = true;
-            this.StockID.Visible = false;
-            this.StockID.Width = 78;
-            // 
-            // PriceID
-            // 
-            this.PriceID.DataPropertyName = "PriceID";
-            this.PriceID.HeaderText = "PriceID";
-            this.PriceID.Name = "PriceID";
-            this.PriceID.ReadOnly = true;
-            this.PriceID.Visible = false;
-            this.PriceID.Width = 74;
-            // 
-            // UnitID
-            // 
-            this.UnitID.DataPropertyName = "UnitID";
-            this.UnitID.HeaderText = "UnitID";
-            this.UnitID.Name = "UnitID";
-            this.UnitID.ReadOnly = true;
-            this.UnitID.Visible = false;
-            this.UnitID.Width = 68;
-            // 
-            // VarientID
-            // 
-            this.VarientID.DataPropertyName = "VarientID";
-            this.VarientID.HeaderText = "VarientID";
-            this.VarientID.Name = "VarientID";
-            this.VarientID.ReadOnly = true;
-            this.VarientID.Visible = false;
-            this.VarientID.Width = 87;
-            // 
-            // SubTypeID
-            // 
-            this.SubTypeID.DataPropertyName = "SubTypeID";
-            this.SubTypeID.HeaderText = "SubTypeID";
-            this.SubTypeID.Name = "SubTypeID";
-            this.SubTypeID.ReadOnly = true;
-            this.SubTypeID.Visible = false;
-            this.SubTypeID.Width = 96;
-            // 
-            // TypeID
-            // 
-            this.TypeID.DataPropertyName = "TypeID";
-            this.TypeID.HeaderText = "TypeID";
-            this.TypeID.Name = "TypeID";
-            this.TypeID.ReadOnly = true;
-            this.TypeID.Visible = false;
-            this.TypeID.Width = 74;
+            this.ProductID.DataPropertyName = "ProductID";
+            this.ProductID.HeaderText = "ProductID";
+            this.ProductID.Name = "ProductID";
+            this.ProductID.ReadOnly = true;
+            this.ProductID.Visible = false;
+            this.ProductID.Width = 89;
             // 
             // CatagoryID
             // 
@@ -441,14 +309,146 @@
             this.CatagoryID.Visible = false;
             this.CatagoryID.Width = 99;
             // 
-            // ProductID
+            // TypeID
             // 
-            this.ProductID.DataPropertyName = "ProductID";
-            this.ProductID.HeaderText = "ProductID";
-            this.ProductID.Name = "ProductID";
-            this.ProductID.ReadOnly = true;
-            this.ProductID.Visible = false;
-            this.ProductID.Width = 89;
+            this.TypeID.DataPropertyName = "TypeID";
+            this.TypeID.HeaderText = "TypeID";
+            this.TypeID.Name = "TypeID";
+            this.TypeID.ReadOnly = true;
+            this.TypeID.Visible = false;
+            this.TypeID.Width = 74;
+            // 
+            // SubTypeID
+            // 
+            this.SubTypeID.DataPropertyName = "SubTypeID";
+            this.SubTypeID.HeaderText = "SubTypeID";
+            this.SubTypeID.Name = "SubTypeID";
+            this.SubTypeID.ReadOnly = true;
+            this.SubTypeID.Visible = false;
+            this.SubTypeID.Width = 96;
+            // 
+            // VarientID
+            // 
+            this.VarientID.DataPropertyName = "VarientID";
+            this.VarientID.HeaderText = "VarientID";
+            this.VarientID.Name = "VarientID";
+            this.VarientID.ReadOnly = true;
+            this.VarientID.Visible = false;
+            this.VarientID.Width = 87;
+            // 
+            // UnitID
+            // 
+            this.UnitID.DataPropertyName = "UnitID";
+            this.UnitID.HeaderText = "UnitID";
+            this.UnitID.Name = "UnitID";
+            this.UnitID.ReadOnly = true;
+            this.UnitID.Visible = false;
+            this.UnitID.Width = 68;
+            // 
+            // PriceID
+            // 
+            this.PriceID.DataPropertyName = "PriceID";
+            this.PriceID.HeaderText = "PriceID";
+            this.PriceID.Name = "PriceID";
+            this.PriceID.ReadOnly = true;
+            this.PriceID.Visible = false;
+            this.PriceID.Width = 74;
+            // 
+            // StockID
+            // 
+            this.StockID.DataPropertyName = "StockID";
+            this.StockID.HeaderText = "StockID";
+            this.StockID.Name = "StockID";
+            this.StockID.ReadOnly = true;
+            this.StockID.Visible = false;
+            this.StockID.Width = 78;
+            // 
+            // SerialNo
+            // 
+            this.SerialNo.HeaderText = "SL No";
+            this.SerialNo.Name = "SerialNo";
+            this.SerialNo.ReadOnly = true;
+            this.SerialNo.Width = 50;
+            // 
+            // ProductType
+            // 
+            this.ProductType.DataPropertyName = "TypeName";
+            this.ProductType.HeaderText = "Type";
+            this.ProductType.Name = "ProductType";
+            this.ProductType.ReadOnly = true;
+            this.ProductType.Width = 60;
+            // 
+            // SubType
+            // 
+            this.SubType.DataPropertyName = "SubTypeName";
+            this.SubType.HeaderText = "Sub-Type";
+            this.SubType.Name = "SubType";
+            this.SubType.ReadOnly = true;
+            this.SubType.Width = 87;
+            // 
+            // Variants
+            // 
+            this.Variants.DataPropertyName = "VarientName";
+            this.Variants.HeaderText = "Variety";
+            this.Variants.Name = "Variants";
+            this.Variants.ReadOnly = true;
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Description.DataPropertyName = "Description";
+            this.Description.HeaderText = "Description";
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Width = 92;
+            // 
+            // UnitName
+            // 
+            this.UnitName.DataPropertyName = "UnitName";
+            this.UnitName.HeaderText = "UnitName";
+            this.UnitName.Name = "UnitName";
+            this.UnitName.ReadOnly = true;
+            // 
+            // MRP
+            // 
+            this.MRP.DataPropertyName = "MRP";
+            this.MRP.HeaderText = "MRP";
+            this.MRP.Name = "MRP";
+            this.MRP.ReadOnly = true;
+            this.MRP.Width = 120;
+            // 
+            // SalesPrice
+            // 
+            this.SalesPrice.DataPropertyName = "SalesPrice";
+            this.SalesPrice.HeaderText = "Sales Price";
+            this.SalesPrice.Name = "SalesPrice";
+            this.SalesPrice.ReadOnly = true;
+            this.SalesPrice.Width = 120;
+            // 
+            // Total
+            // 
+            this.Total.DataPropertyName = "Total";
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            this.Delete.HeaderText = "Delete";
+            this.Delete.Name = "Delete";
+            this.Delete.Text = "Delete";
+            this.Delete.Width = 50;
+            // 
+            // timerSales
+            // 
+            this.timerSales.Enabled = true;
+            this.timerSales.Interval = 1000;
+            this.timerSales.Tick += new System.EventHandler(this.timerSales_Tick);
             // 
             // ProductSale
             // 
